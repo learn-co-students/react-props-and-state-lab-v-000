@@ -36,7 +36,8 @@ class App extends React.Component {
     }
 
     fetch(url)
-      .then(pets => {this.state.pets = pets})
+      .then(res => res.json())
+      .then(pets => this.setState({ pets }))
   }
 
   render() {
@@ -49,7 +50,7 @@ class App extends React.Component {
           <div className="ui grid">
             <div className="four wide column">
               <Filters
-                filters={this.state.filters}
+                filters={this.state.filters.type}
                 onChangeType={this.onChangeType}
                 onFindPetsClick={this.onFindPetsClick}
               />
