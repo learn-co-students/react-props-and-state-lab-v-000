@@ -2,15 +2,13 @@ const React = require('react');
 
 const Filters = require('./Filters');
 const PetBrowser = require('./PetBrowser');
-const { getAll } = require('../data/pets');
-
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      pets: getAll(),
+      pets: [],
       adoptedPets: [],
       filters: {
         type: 'all',
@@ -30,7 +28,7 @@ class App extends React.Component {
               <Filters />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets}/>
+              <PetBrowser />
             </div>
           </div>
         </div>
