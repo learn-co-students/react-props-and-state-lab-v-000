@@ -22,16 +22,17 @@ class App extends React.Component {
 
   handleChangeFilter(newType) {
     this.setState({
-      filter: Object.assign({}, this.state.filters, {
-        type: newType
+      filters: Object.assign({}, this.state.filters, {
+        type: newType,
       })
-    })
+    });
   }
 
   handleAdoptPet(id) {
-    let updatedAdopedPets = this.state.adoptedPets.push(id);
+    let updatedAdopedPets = this.state.adoptedPets
+    updatedAdopedPets.push(id);
     this.setState({
-      adoptedPets: updatedAdopedPets
+      adoptedPets: updatedAdopedPets,
     })
   }
 
