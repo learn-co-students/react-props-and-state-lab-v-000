@@ -5,11 +5,12 @@ class Pet extends React.Component {
     super();
   }
 
+// (gender: ♂ or ♀)
   render() {
     return (
       <div className="card">
         <div className="content">
-          <a className="header">Pet name (gender: ♂ or ♀)</a>
+          <a className="header">Pet name: {this.props.name} - Gender: {this.props.gender} </a>
           <div className="meta">
             <span className="date">Pet type</span>
           </div>
@@ -25,6 +26,20 @@ class Pet extends React.Component {
       </div>
     );
   }
+}
+
+Pet.defaultProps = {
+  isAdopted: false
+}
+
+Pet.propTypes = {
+  name: React.PropTypes.string,
+  gender: React.PropTypes.symbol,
+  type: React.PropTypes.string,
+  age: React.PropTypes.integer,
+  weight: React.PropTypes.integer,
+  isAdopted: React.PropTypes.boolean,
+  onAdoptPet: React.PropTypes.func
 }
 
 module.exports = Pet;
