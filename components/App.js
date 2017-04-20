@@ -14,6 +14,36 @@ export default class App extends React.Component {
         type: 'all',
       }
     };
+    this.change = this.change.bind(this);
+    this.find = this.find.bind(this);
+    this.adopt = this.adopt.bind(this);
+  }
+
+  change(type){
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        type: type
+      })
+    })
+  }
+
+  find(){
+    let url = '/api/pets';
+
+    if (this.state.filters.type === 'all') {
+      url
+    } else {
+      url += `?type=${this.state.filters.type}`
+    }
+
+    fetch(url)
+      .then(res => res)
+  }
+
+  adopt(id){
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, id]
+    })
   }
 
   render() {
@@ -25,10 +55,13 @@ export default class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters
+                onChangeType={this.change}
+                onFindPetsClick={this.find}
+              />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser onAdoptPet={this.adopt}/>
             </div>
           </div>
         </div>
