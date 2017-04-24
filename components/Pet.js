@@ -7,14 +7,14 @@ class Pet extends React.Component {
   }
 
   handleClick() {
-    onAdoptPet(this.props.id)
+    this.props.onAdoptPet(this.props.id)
   }
   
   render() {
     return (
       <div className="card">
         <div className="content">
-          <a className="header">{this.props.name} (gender: ♂ or ♀)</a>
+          <a className="header">{this.props.name} {this.props.gender === 'male' ? '♂' : '♀'}</a>
           <div className="meta">
             <span className="date">{this.props.type}</span>
           </div>
