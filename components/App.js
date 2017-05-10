@@ -14,9 +14,31 @@ export default class App extends React.Component {
         type: 'all',
       }
     };
+
+    this.onChangeType = this.onChangeType.bind(this);
+    this.onFindPetsClick = this.onFindPetsClick.bind(this);
+  }
+
+  onChangeType(type) {
+    console.log(type);
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        type: type
+      })
+    })
+  }
+
+  onFindPetsClick(type) {
+    let url = "/api/pets";
+
+    if(type !== 'all') { url = `${url}?type=${type}` };
+
+    fetch(url).then(function(response) {
+    });
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="ui container">
         <header>
@@ -25,10 +47,12 @@ export default class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters filters={this.state.filters}
+                onChangeType={this.onChangeType}
+                onFindPetsClick={this.onFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} />
             </div>
           </div>
         </div>
