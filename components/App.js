@@ -42,11 +42,11 @@ export default class App extends React.Component {
       url = "/api/pets?type=" + type;
     }
 
-    fetch(url).then(function(response) {
-      this.setState({
-        pets: response.body.json()
-      })
-    });
+    fetch(url)
+      .then(res => res.json())
+      .then(pets => {
+        this.setState({pets: pets });
+      });
   }
 
   render() {
@@ -64,7 +64,8 @@ export default class App extends React.Component {
             </div>
             <div className="twelve wide column">
               <PetBrowser pets={this.state.pets}
-                onAdoptPet={this.onAdoptPet} />
+                onAdoptPet={this.onAdoptPet}
+                adoptedPets={this.state.adoptedPets} />
             </div>
           </div>
         </div>
