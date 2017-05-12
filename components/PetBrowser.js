@@ -1,12 +1,19 @@
-const React = require('react');
+import React from 'react';
 
-const Pet = require('./Pet');
+import Pet from './Pet';
 
 class PetBrowser extends React.Component {
   render() {
+    const {onAdoptPet, adoptedPets} = this.props;
+    console.log(adoptedPets)
+    const pets = this.props.pets.map((pet, index) => {
+      console.log(pet.id)
+      return <Pet pet={pet} key={index} onAdoptPet={onAdoptPet} isAdopted={adoptedPets.filter(id => id == pet.id).length > 0 ? true: false} />
+    });
+
     return (
       <div className="ui cards">
-        <code>&lt;Pet /&gt;</code> &nbsp; components should go here
+        {pets}
       </div>
     );
   }
