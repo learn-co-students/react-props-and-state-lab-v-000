@@ -25,6 +25,8 @@ export default class App extends React.Component {
       filters: Object.assign({}, this.state.filters, {
         type: type
       })
+    }, function() {
+      console.log(this.state.filters.type) // optional
     })
   }
 
@@ -37,11 +39,14 @@ export default class App extends React.Component {
 
     fetch(url)
       .then(response => response.json())
-      .then(pets => this.setState({pets}))
+      .then(pets => this.setState({pets},
+        () => console.log(this.state.pets))) // optional
   }
 
-  handleAdoptPet() {
-
+  handleAdoptPet(petId) {
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, petId]
+    }, () => console.log(this.state.adoptedPets)) // optional
   }
 
 

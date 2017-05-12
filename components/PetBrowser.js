@@ -4,8 +4,8 @@ const Pet = require('./Pet');
 
 class PetBrowser extends React.Component {
   render() {
-    const pets = this.props.pets.map(pet => (
-      <Pet pet={pet} onAdoptPet={this.props.onAdoptPet} isAdopted={this.props.adoptedPets.includes(pet.id)} />
+    const pets = this.props.pets.map((pet, index) => (
+      <Pet pet={pet} key={index} onAdoptPet={this.props.onAdoptPet} isAdopted={this.props.adoptedPets.includes(pet.id)} />
     ))
 
     return (
