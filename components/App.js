@@ -3,9 +3,21 @@ import React from 'react';
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
 
+function getURL(filter) {
+  if (filter === 'all') {
+    return '/api/pets'
+  } else {
+    return `/api/pets?type=${filter}`
+  }
+}
+
 export default class App extends React.Component {
   constructor() {
     super();
+
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleFindPets = this.handleFindPets.bind(this);
+    this.handleAdoptPet = this.handleAdoptPet.bind(this);
 
     this.state = {
       pets: [],
@@ -14,6 +26,27 @@ export default class App extends React.Component {
         type: 'all',
       }
     };
+  }
+
+  handleFilterChange(type) {
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        type: type,
+      })
+    })
+  }
+
+  handleFindPets() {
+    const url = getURL(this.state.filters.type)
+    fetch(url)
+    .then(res => res.json())
+    .then(pets => this.setState({pets}))
+  }
+
+  handleAdoptPet(petId) {
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, petId]
+    })
   }
 
   render() {
@@ -25,10 +58,10 @@ export default class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters type={this.state.type} onChangeType={this.handleFilterChange} onFindPetsClick={this.handleFindPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.handleAdoptPet}/>
             </div>
           </div>
         </div>
