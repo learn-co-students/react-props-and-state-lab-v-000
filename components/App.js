@@ -32,7 +32,7 @@ export default class App extends React.Component {
     let url = '/api/pets';
 
     if (this.state.filters.type !== 'all') {
-      url += '?type=${this.state.filters.type}';
+      url += `?type=${this.state.filters.type}`;
     }
 
     fetch(url)
