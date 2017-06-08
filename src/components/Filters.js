@@ -1,29 +1,40 @@
 import React from 'react';
 
 class Filters extends React.Component {
-  constructor() {
-    super();
-  }
+    constructor() {
+        super();
+        
+    }
+    
+    findPetsClicked = () => {
+        this.props.onFindPetsClick();
+    }
+    selectChangeHandler = (e) => {
+        this.props.onChangeType(e.target.value);
+    }
+    
+    render() {
 
-  render() {
-      let filter = this.props.filters.type
-      let options = <option value={filter}>{filter}</option>
-      
-    return (
-      <div className="ui form">
-        <h3>Animal type</h3>
-        <div className="field">
-          <select name="type" id="type">
-            {options}
-          </select>
-        </div>
+        let filter = this.props.filters.type
 
-        <div className="field">
-          <button className="ui secondary button">Find pets</button>
-        </div>
-      </div>
-    );
-  }
+        return (
+            <div className="ui form">
+                <h3>Animal type</h3>
+                <div className="field">
+                    <select name="type" id="type" value={filter} onChange={this.selectChangeHandler}>
+                        <option value="all">All</option>
+                        <option value="cat">Cats</option>
+                        <option value="dog">Dogs</option>
+                        <option value="micropig">Micropigs</option>
+                    </select>
+                </div>
+
+                <div className="field">
+                    <button className="ui secondary button" onClick={this.findPetsClicked} >Find pets</button>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Filters;
