@@ -25,7 +25,7 @@ class App extends React.Component {
     })
   }
 
-  onFindPetsClick() {
+  onFindPetsClick=()=> {
     var url = "/api/pets"
     if (this.state.filters.type !== 'all') {
       url += `?type=${this.state.filters.type}`
@@ -33,10 +33,11 @@ class App extends React.Component {
     fetch(url).then(res => res.json()).then(res => {this.setState({pets: res })})
   }
 
-  onAdoptPet(petId) {
+  onAdoptPet =(petId)=> {
     this.setState({
-      adoptedPets:
-      this.state.adoptedPets.push(petId)
+      adoptedPets:[
+      ...this.state.adoptedPets,
+      petId]
     })
   }
 
