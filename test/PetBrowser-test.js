@@ -13,6 +13,7 @@ const ADOPTED_PETS = [ALL_PETS[0].id];
 describe('<PetBrowser />', () => {
   it('should render Pet components based on its props', () => {
     const wrapper = shallow(<PetBrowser pets={ALL_PETS} adoptedPets={ADOPTED_PETS} />);
+    console.log(wrapper.text())
     expect(wrapper.find(Pet).length).to.equal(ALL_PETS.length);
   });
 
