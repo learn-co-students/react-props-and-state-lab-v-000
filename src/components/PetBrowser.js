@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Pet from './Pet';
 
@@ -11,5 +12,6 @@ class PetBrowser extends React.Component {
     );
   }
 }
-
+PetBrowser.propTypes = {
+}
 export default PetBrowser;
