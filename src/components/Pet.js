@@ -1,21 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
-
-  }
-
+  
   adoptMe = () => {
-    this.props.onAdoptPet(this.props.pets.id)
+    {this.props.onAdoptPet(this.props.pet.id)}
   }
 
   render() {
     return (
       <div className="card">
         <div className="content">
-          <a className="header">{this.props.pet.name} {(this.props.pet.gender == "male") ? "♂" : "♀"}</a>
+          <a className="header">{this.props.pet.name} {(this.props.pet.gender === "male") ? "♂" : "♀"}</a>
           <div className="meta">
             <span className="date">{this.props.pet.type}</span>
           </div>
