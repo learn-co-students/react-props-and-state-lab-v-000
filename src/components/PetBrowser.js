@@ -11,13 +11,13 @@ class PetBrowser extends React.Component {
   render(){
 	var petsList = this.props.pets.map((pet, i) => { 
   		  return (
-  		  	<Pet key={i} pet={pet} onAdoptPet={this.adoptPet} isAdopted={false}/>
+  		  	<Pet key={i} pet={pet} onAdoptPet={this.adoptPet.bind(this)} isAdopted={false}/>
   		  	)
   		  })
 
 	var adoptedPetsList = this.props.adoptedPets.map((pet, i) => { 
   		  return (
-  		  	<Pet key={i} pet={pet} onAdoptPet={this.adoptPet} isAdopted={true}/>
+  		  	<Pet key={i} pet={pet} onAdoptPet={this.adoptPet.bind(this)} isAdopted={true}/>
   		  	)
   		  })
   		

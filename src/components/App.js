@@ -46,9 +46,11 @@ class App extends React.Component {
     })
   }
 
-  onAdoptPet = (id, type, gender, age, weight, name) => {
+  onAdoptPet = (id) => {
     debugger;
-    var petObj = {id: id, type: type, gender: gender, age: age, weight: weight, name: name}
+    var petObj = this.state.pets.filter((pet) => {
+      return pet.id === id
+    })
     this.state.adoptedPets.push(petObj)
     var newPets= this.state.pets.filter((pet) => {
       return pet.id !== petObj.id

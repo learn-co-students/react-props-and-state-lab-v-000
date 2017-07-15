@@ -6,8 +6,8 @@ class Pet extends React.Component {
   }
 
   handleButtonClick = () => {
-    debugger
-    this.props.onAdoptPet(this.props.pet.id, this.props.pet.type, this.props.pet.gender, this.props.pet.age, this.props.pet.weight, this.props.pet.name)
+    debugger;
+    this.props.onAdoptPet(this.props.pet.id).bind(this)
   }
 
   renderButton = () => {
