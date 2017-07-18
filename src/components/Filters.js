@@ -1,9 +1,6 @@
 import React from 'react';
 
 class Filters extends React.Component {
-  constructor() {
-    super();
-  }
 
   onChangeType(event){
     this.props.onChangeType(event.target.value)
