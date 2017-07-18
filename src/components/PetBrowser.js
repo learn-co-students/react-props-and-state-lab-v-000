@@ -3,7 +3,7 @@ import React from 'react';
 import Pet from './Pet';
 
 class PetBrowser extends React.Component {
-  
+
   render() {
     // get the final items
     const pets = this.props.pets.map((pet, index) => {

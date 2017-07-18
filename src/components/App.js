@@ -27,7 +27,7 @@ class App extends React.Component {
   findPets(){
     if (this.state.filters.type !== "all"){
       var query = `?type=${this.state.filters.type}`
-    } else {var query = ""}
+    } else {query = ""} //hoising means no additional var
     fetch(`/api/pets${query}`).then((data) => {
       return data.json();
     }).then((data) => {
@@ -38,7 +38,9 @@ class App extends React.Component {
   }
 
   adoptPet(id){
-    this.state.adoptedPets.push(id);
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, id]
+    });
   }
 
   render() {
@@ -53,7 +55,7 @@ class App extends React.Component {
               <Filters filters={this.state.filters} onChangeType={this.updateFilters.bind(this)} onFindPetsClick={this.findPets.bind(this)}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.pets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.adoptPet.bind(this)} />
+              <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.adoptPet.bind(this)} />
             </div>
           </div>
         </div>
