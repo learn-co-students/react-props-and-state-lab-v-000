@@ -1,4 +1,5 @@
 import React from 'react';
+import 'whatwg-fetch';
 
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
@@ -16,6 +17,49 @@ class App extends React.Component {
     };
   }
 
+  handleChangeFilterType = (type) => {
+    this.setState({
+      filters:
+        Object.assign({},
+          this.state.filters,
+          {type: type
+        })
+    }, console.log("it is " + this.state.filters.type))
+  }
+
+  handlePetAdoption = (id) => {
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, id]
+    })
+  }
+
+  handleFindPet = () => {
+    var path = "/api/pets";
+
+    switch (this.state.filters.type){
+      case "cat":
+        path += "?type=cat"
+        break;
+      case "dog":
+        path += "?type=dog"
+        break;
+      case "micropig":
+        path += "?type=micropig"
+        break;
+      default:
+        path += ''
+        break;
+    }
+
+    fetch(path)
+      .then(response => {return response.json()})
+      .then( data => {
+        this.setState({
+          pets: data
+        })
+      })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -25,10 +69,13 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters filters={this.state.filters} onChangeType={this.handleChangeFilterType} onFindPetsClick={this.handleFindPet}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets}
+                onAdoptPet={this.handlePetAdoption}
+                adoptedPets={this.state.adoptedPets}
+               />
             </div>
           </div>
         </div>
