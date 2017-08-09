@@ -3,7 +3,7 @@ import React from 'react';
 export default class Filters extends React.Component {
 
   changeType = (event) => {
-   event.props.onChangeType(event.target.value)
+    this.props.onChangeType(event.target.value)
  }
 
   render() {
