@@ -29,7 +29,7 @@ class Pet extends React.Component {
   }
 
   render() {
-      const { pet, isAdopted } = this.props;
+      
 
     return (
       <div className="card">
@@ -44,8 +44,8 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-         {!isAdopted && <button className="ui primary button" onClick={this.handleAdopt}>Adopt pet</button>}
-          {isAdopted && <button className="ui disabled button">Already adopted</button>}
+         {!this.props.isAdopted && <button className="ui primary button" onClick={this.handleAdopt}>Adopt pet</button>}
+          {this.props.isAdopted && <button className="ui disabled button">Already adopted</button>}
         </div>
       </div>
     );
