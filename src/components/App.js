@@ -31,15 +31,15 @@ class App extends React.Component {
 
   searchPets() {
     let type = this.state.filters.type
-    if (type === 'all') {
-      fetch('/api/pets', {
-       method: 'get'
-      }) 
-    } else {
-      fetch(`/api/pets?type=${type}`, {
-        method: 'get'
-      })
-    }
+    let url = '/api/pets'
+
+    if (type !== 'all') {
+     url += `?type=${type}`
+    } 
+      
+    fetch(url, {
+      method: 'get'
+    })
   }
 
   handleAdoptPet(petId) {
