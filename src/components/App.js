@@ -17,6 +17,7 @@ class App extends React.Component {
 
     this.changeFilter = this.changeFilter.bind(this);
     this.searchPets = this.searchPets.bind(this);
+    this.handleAdoptPet = this.handleAdoptPet.bind(this);
   }
 
   changeFilter(type) {
@@ -41,6 +42,12 @@ class App extends React.Component {
     }
   }
 
+  handleAdoptPet(petId) {
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, petId],
+    });
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -60,6 +67,7 @@ class App extends React.Component {
               <PetBrowser 
                 pets={this.state.pets}
                 adoptedPets={this.state.adoptedPets}
+                onAdoptPet={this.handleAdoptPet}
               />
             </div>
           </div>
