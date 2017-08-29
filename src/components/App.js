@@ -2,14 +2,15 @@ import React from 'react';
 
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
+import { getAll, getByType } from'../data/pets';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      pets: [],
-      adoptedPets: [],
+      pets: getAll(),
+      adoptedPets: ["2c902312-dfa3-446f-8b4b-5e115170d807"],
       filters: {
         type: 'all',
       }
@@ -28,19 +29,24 @@ class App extends React.Component {
   fetchPets = () => {
     let apiUrl = '/api/pets'
 
-    if (this.state.filters.type === 'cat') {
-      apiUrl += '?type=cat'
-    } else if (this.state.filters.type === 'dog') {
-      apiUrl += '?type=dog'
-    } else if (this.state.filters.type === 'micropig') {
-      apiUrl += '?type=micropig'
+    if (this.state.filters.type !== 'all') {
+      apiUrl += `?type=${this.state.filters.type}`
     }
 
-    fetch(apiUrl).then(response => {
+    // fetch(apiUrl).then(response => {
+    //   this.setState({
+    //     pets: getAll().filter(pet => pet.type === this.state.filters.type)
+    //   })
+    // })
+    if (this.state.filters.type === 'all') {
       this.setState({
-        pets: response
+        pets: getAll()
       })
-    })
+    } else {
+      this.setState({
+        pets: getByType(this.state.filters.type)
+      })
+    }
   }
 
   addToAdoptedPets = (id) => {
@@ -68,8 +74,8 @@ class App extends React.Component {
             </div>
             <div className="twelve wide column">
               <PetBrowser pets={this.state.pets}
-              onAdoptPet={this.addToAdoptedPets}/>
-              isAdopted={this.state.adoptedPets}
+              onAdoptPet={this.addToAdoptedPets}
+              isAdopted={this.state.adoptedPets}/>
             </div>
           </div>
         </div>
