@@ -2,10 +2,9 @@
 
 ## Overview
 
-You'll build a small React application where you'll update state in response to an XHR payload and pass props among components to handle updates. 
+You'll build a small React application where you'll update state in response to an XHR payload and pass props among components to handle updates.
 
 ## Animal Shelter
-![Best Friends](https://media.giphy.com/media/xTiTnz5OOUn49wKbg4/giphy.gif)
 
 Time to put all of our hard-earned knowledge to the test! This lab is fairly big, and will require you to use everything you've learned up to this point. Don't be intimidated, there are plenty of tests to guide you along the way! In this lab, we'll be working on a front-end for an animal shelter. Sadly, there still are way too many cute pets without any owners. Let's help them out by creating a UI in React!
 
