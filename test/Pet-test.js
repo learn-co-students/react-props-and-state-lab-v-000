@@ -27,6 +27,7 @@ const GENDER_ICON_MALE = '♂';
 const GENDER_ICON_FEMALE = '♀';
 
 describe('<Pet />', () => {
+  debugger;
   describe('Rendering props', () => {
     it('should render the name', () => {
       const wrapper = shallow(<Pet pet={MALE_DOG} />);
