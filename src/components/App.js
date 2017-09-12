@@ -14,6 +14,14 @@ class App extends React.Component {
         type: 'all',
       }
     };
+
+    onChangeType = () => {
+        this.setState({
+            filters: {
+                type: 'micropig'
+            }
+        })
+    }
   }
 
   render() {
@@ -25,7 +33,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.state.filters}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser />
