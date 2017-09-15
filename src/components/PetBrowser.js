@@ -1,27 +1,19 @@
 import React from 'react';
 
 import Pet from './Pet';
-import allPets from '../data/pets'
 
 class PetBrowser extends React.Component {
   render() {
+    const pets = this.props.pets.map((pet, index) => (
+      <Pet pet={pet} key={index} onAdoptPet={this.props.onAdoptPet} isAdopted={this.props.adoptedPets.includes(pet.id)} />
+    ));
+
     return (
       <div className="ui cards">
-     { allPets.map((pet) => {
-        return (
-        < Pet
-          id='pet.id'
-          type='pet.type'
-          gender='pet.gender'
-          age='pet.age'
-          weight='pet.weight'
-          name='pet.name'
-          />)
-      })
-    }
+        {pets}
       </div>
     );
   }
 }
 
-export default PetBrowser;
+module.exports = PetBrowser;
