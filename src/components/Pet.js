@@ -3,18 +3,18 @@ import React from 'react';
 export default class Pet extends React.Component {
   constructor() {
     super();
-    
-    this.handleAdoptPet = this.handleAdoptPet.bind(this);
-  }
 
-  handleAdoptPet() {
-    this.props.onAdoptPet(this.props.pet.id);
-  }
-  
+    this.handleAdoptPet = this.handleAdoptPet.bind(this);
+    }
+
+    handleAdoptPet() {
+      this.props.onAdoptPet(this.props.pet.id);
+    }
+
   render() {
     const { pet, isAdopted } = this.props;
     const { name, type, gender, age, weight } = pet;
-    
+
     return (
       <div className="card">
         <div className="content">
