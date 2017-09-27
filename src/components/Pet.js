@@ -1,13 +1,13 @@
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
 	onAdoptPet = () => {
-	
-		
+
+
 	}
 
 //name, type, age and weight. Based on the pet's gender
