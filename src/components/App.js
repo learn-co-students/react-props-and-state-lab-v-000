@@ -14,19 +14,38 @@ class App extends React.Component {
         type: 'all',
       }
     };
+
   }
 
 
+	onChangeType = (event) => {
+			this.setState({
+			type: event.target,
+		})
+	};
+
+	onFindPetsClick = (event) => {
+		if(this.state.filters.type === "all" || this.state.filters.type === undefined){
+		fetch("/api/pets").then((response)=>{
+			this.setState({
+				pets: response,
+			})
+    })} else {
+			fetch(`/api/pets?type=${this.state.filters.type}`).then((response)=>{
+			this.setState({
+				pets: response,
+		})})
+	}};
 
   render() {
 		var appChild = React.Children.map(this.props.children, child => {
-			if (child === this.props.filters) {
+			if (child === this.state.filters) {
 				return React.cloneElement(child, {
-        filters: this.props.filters
+        filters: this.state.filters
       });} else {
 				return React.cloneElement(child, {
-        pets: this.props.pets,
-				adoptedPets: this.props.adoptedPets,
+        pets: this.state.pets,
+				adoptedPets: this.state.adoptedPets,
       })
 		}
     });
@@ -39,7 +58,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters filters={this.state.filters} />
+              <Filters filters={this.state.filters} onFindPetsClick={this.onFindPetsClick} onChangeType={this.onChangeType}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets}/>
