@@ -16,24 +16,7 @@ class App extends React.Component {
     };
   }
 
-	onChangeType = (event) => {
-		this.setState({
-			value: event.target.value,
-		})
-	};
 
-	onFindPetsClick = () => {
-	if(this.props.value === "all" || this.props.value === undefined){
-		fetch("/api/pets").then((response)=>{
-			this.setState({
-				pets: response,
-			})
-    })} else {
-			fetch(`/api/pets?type=${this.props.value}`).then((response)=>{
-			this.setState({
-				pets: response,
-		})})
-	}};
 
   render() {
 		var appChild = React.Children.map(this.props.children, child => {

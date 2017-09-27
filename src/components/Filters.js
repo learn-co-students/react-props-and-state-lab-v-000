@@ -1,15 +1,33 @@
 import React from 'react';
 
 class Filters extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
 		this.state = {
 			value: '',
-  }};
+  }
+	this.onFindPetsClick = this.onFindPetsClick.bind(this)
+};
 
+	onChangeType = (event) => {
+		this.setState({
+			value: event.target.value,
+		})
+	};
 
-
+	onFindPetsClick = (event) => {
+		if(this.state.value === "all" || this.state.value === undefined){
+		fetch("/api/pets").then((response)=>{
+			this.setState({
+				pets: response,
+			})
+    })} else {
+			fetch(`/api/pets?type=${this.state.value}`).then((response)=>{
+			this.setState({
+				pets: response,
+		})})
+	}};
 
   render() {
     return (
