@@ -42,10 +42,14 @@ this.setState({
 
   render() {
 		React.Children.map(this.props.children, child => {
+<<<<<<< HEAD
 			if (child === Filters) {       
+=======
+			if (child === Filters) {
+>>>>>>> b40c9929a581b1cd18b557c83beda46a5ed1aa71
 				return React.cloneElement(child, {
         filters: this.props.filters
-      });} else { 
+      });} else {
 				return React.cloneElement(child, {
         pets: this.props.pets,
 				adoptedPets: this.props.adoptedPets,

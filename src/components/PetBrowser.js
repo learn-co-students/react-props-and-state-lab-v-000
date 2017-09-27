@@ -13,8 +13,14 @@ class PetBrowser extends React.Component {
 
     return (
       <div className="ui cards">
+<<<<<<< HEAD
         <code><Pet {...this.props.pet}{...this.props.isAdopted}/></code>
 
+=======
+        <code>&lt;Pet /&gt;</code> &nbsp; components should go here
+		{this.props.pets.children}	<Pet />
+{childPets}
+>>>>>>> b40c9929a581b1cd18b557c83beda46a5ed1aa71
 </div>
     );
   }

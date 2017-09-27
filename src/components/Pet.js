@@ -1,6 +1,7 @@
 import React from 'react';
 
 class Pet extends React.Component {
+<<<<<<< HEAD
   constructor() {
     super();
 
@@ -13,6 +14,15 @@ this.state = {
 	
 		this.setState({
 isAdopted: true})
+=======
+  // constructor() {
+  //   super();
+  // }
+
+	onAdoptPet = () => {
+
+
+>>>>>>> b40c9929a581b1cd18b557c83beda46a5ed1aa71
 	}
 
 //name, type, age and weight. Based on the pet's gender
