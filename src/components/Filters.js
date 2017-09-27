@@ -5,32 +5,18 @@ class Filters extends React.Component {
     super();
 
 		this.state = {
-			value: 'micropig',
+			value: '',
   }};
 
-	onChangeType = (event) => {
-		this.setState({
-			value: event.target.value,
-})
-};
 
-	onFindPetsClick = (event) => {
-	if(this.props.value === "all" || this.props.value === undefined){
-		fetch("/api/pets").then(function(response){
-				return(response)
-		})
-} else {
-		fetch(`/api/pets?type=${this.props.value}`).then(function(response){
-		return(response)})
-		}
-};
+
 
   render() {
     return (
       <div className="ui form">
         <h3>Animal type</h3>
         <div className="field">
-          <select name="type" id="type"value={this.state.value} onChange={this.onChangeType} filters={this.props.filters} >
+          <select name="type" id="type"value={this.state.value} onChange={this.onChangeType} >
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>

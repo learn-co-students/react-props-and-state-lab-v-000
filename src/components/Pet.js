@@ -3,11 +3,16 @@ import React from 'react';
 class Pet extends React.Component {
   constructor() {
     super();
+
+this.state = {
+
+	isAdopted: false}
   }
 
 	onAdoptPet = () => {
 	
-		
+		this.setState({
+isAdopted: true})
 	}
 
 //name, type, age and weight. Based on the pet's gender
@@ -24,7 +29,7 @@ class Pet extends React.Component {
             <p>Weight: {this.props.pet.weight}</p>
           </div>
         </div>
-        <div className="extra content"> isAdopted={this.props.isAdopted===false ?
+        <div className="extra content">{this.props.isAdopted===false ?
           <button className="ui primary button" onClick={() => this.onAdoptPet(this.props.pet.id)}>Adopt pet</button> :
           <button className="ui disabled button">Already adopted</button> }
         </div>

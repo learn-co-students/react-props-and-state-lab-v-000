@@ -16,13 +16,32 @@ class App extends React.Component {
     };
   }
 
-	onChangeType = () => {}
+	onChangeType = (event) => {
+		this.setState({
+
+			value: event.target.value,
+})
+};
 
 
-onAdoptPet = () => {}
+	onFindPetsClick = () => {
+	if(this.props.value === "all" || this.props.value === undefined){
+		fetch("/api/pets").then((response)=>{
+this.setState({
+			pets: response,
+})
+		
+    })} else {
+		fetch(`/api/pets?type=${this.props.value}`).then((response)=>{
+		this.setState({
+			pets: response,
+})}
+)
+		
+}};
 
   render() {
-		const appChildren = React.Children.map(this.props.children, child => {
+		React.Children.map(this.props.children, child => {
 			if (child === Filters) {       
 				return React.cloneElement(child, {
         filters: this.props.filters
@@ -43,10 +62,10 @@ onAdoptPet = () => {}
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters {...this.state.filters} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser{...this.state.pets} {...this.state.adoptedPets}/>
             </div>
           </div>
         </div>

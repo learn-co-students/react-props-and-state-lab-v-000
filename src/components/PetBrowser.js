@@ -4,20 +4,17 @@ import Pet from './Pet';
 
 class PetBrowser extends React.Component {
   render() {
-  var childPets = React.Children.map(this.props.pets.children, child =>{return React.cloneElement(child, {
-      onAdoptPet: () => {},
-		//if(this.props.onAdoptPet === true)  {
-	//		isAdopted: true
-	//		} else { isAdopted: false}
-    });
-   });
-
+//  var childElem = React.Children.map(this.props.pets, child=>{return React.cloneElement(child, {
+    
+//	isAdopted: this.props.isAdopted
+//}
+ //  );
+  // });
 
     return (
       <div className="ui cards">
-        <code>&lt;Pet /&gt;</code> &nbsp; components should go here
-		{this.props.pets.children}	
-{childPets}	
+        <code><Pet {...this.props.pet}{...this.props.isAdopted}/></code>
+
 </div>
     );
   }
