@@ -7,10 +7,7 @@ class Filters extends React.Component {
 		this.state = {
 			value: '',
   }
-
 };
-
-
 
   render() {
     return (
@@ -18,8 +15,6 @@ class Filters extends React.Component {
         <h3>Animal type</h3>
         <div className="field">
           <select name="type" id="type"value={this.props.filters.type} onChange={()=>this.props.onChangeType('dog')} >
-//'dog' should not be hardcoded
-
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>

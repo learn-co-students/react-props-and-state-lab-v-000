@@ -27,6 +27,7 @@ this.onFindPetsClick = this.onFindPetsClick.bind(this)
 	)};
 
 	onChangeType = (event) => {	
+debugger;
 		this.setState({
 			filters: {
 				type:event,}

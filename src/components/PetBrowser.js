@@ -4,13 +4,10 @@ import Pet from './Pet';
 
 class PetBrowser extends React.Component {
 
-
-
   render() {
- 
     const childElem = React.Children.map(this.props.children, child => {
-			for(i=0; i< this.props.adoptedPets.length; i++) 
-				if(this.props.adoptedPets[i] === child){
+
+				if(this.props.adoptedPets === child){
 					return React.cloneElement(child, {
 			    isAdopted: true})
 				} else {
@@ -19,8 +16,8 @@ class PetBrowser extends React.Component {
 	     }});
 
     return (
+
       <div className="ui cards"><Pet
-				pets={childElem}
 				onAdoptPet={this.props.onAdoptPet}
 />
 			</div>

@@ -5,17 +5,11 @@ class Pet extends React.Component {
     super();
 
 this.state = {
-	//pet: this.props.pet
-//	isAdopted: false
-}
-  }
-
-
-
+}  }
 
   render() {
     return (
-      <div className="card">
+<div className="card">{this.props.children}
         <div className="content">
           <a className="header">Pet name:{this.props.pet.name} ({this.props.pet.gender === "male" ? "♂" : "♀"})</a>
           <div className="meta">
@@ -32,7 +26,7 @@ onClick={() => this.props.onAdoptPet(this.props.pet.id)}>Adopt pet</button> :
           <button className="ui disabled button">Already adopted</button> }
         </div>
       </div>
-    );
+    )
   }
 }
 
