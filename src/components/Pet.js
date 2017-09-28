@@ -3,11 +3,12 @@ import React from 'react';
 class Pet extends React.Component {
   constructor() {
     super();
-
-this.state = {
-}  }
+		this.state = {
+		}
+	}
 
   render() {
+
     return (
 <div className="card">
         <div className="content">
