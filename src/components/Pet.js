@@ -9,7 +9,7 @@ this.state = {
 
   render() {
     return (
-<div className="card">{this.props.children}
+<div className="card">
         <div className="content">
           <a className="header">Pet name:{this.props.pet.name} ({this.props.pet.gender === "male" ? "♂" : "♀"})</a>
           <div className="meta">
