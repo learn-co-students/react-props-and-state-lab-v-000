@@ -24,13 +24,13 @@ this.onFindPetsClick = this.onFindPetsClick.bind(this)
 	onAdoptPet(event) {
 		this.setState({
 			adoptedPets: [...this.state.adoptedPets, event]}
-)};
+	)};
 
 	onChangeType = (event) => {	
-	this.setState({
-		value: event.target.value,
-
-		})
+		this.setState({
+			filters: {
+				type:event,}
+		},()=>this.state.filters.type)
 	};
 
 	onFindPetsClick = (event) => {
