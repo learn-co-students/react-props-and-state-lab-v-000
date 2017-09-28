@@ -1,5 +1,5 @@
 import React from 'react';
-
+//dog shouldn't be hard coded
 class Filters extends React.Component {
   constructor(props) {
     super(props);
