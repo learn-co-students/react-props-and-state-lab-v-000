@@ -8,16 +8,21 @@ class PetBrowser extends React.Component {
 
   render() {
  
-   // const childElem = React.Children.map(this.props.children, child => {
-     // return React.cloneElement(child, {
-				//onAdoptPet: this.props.onAdoptPet,
-        //isAdopted: this.props.adoptedPets
-     // });
-    //});
+    const childElem = React.Children.map(this.props.children, child => {
+			for(i=0; i< this.props.adoptedPets.length; i++) 
+				if(this.props.adoptedPets[i] === child){
+					return React.cloneElement(child, {
+			    isAdopted: true})
+				} else {
+					return React.cloneElement(child, {
+			    isAdopted: ''})
+	     }});
+
     return (
       <div className="ui cards"> 
-	<code><Pet pets={this.props.pets}/></code>
-</div>
+				pet={childElem}
+				onAdoptPet={this.props.onAdoptPet}
+			</div>
     );
   }
 }

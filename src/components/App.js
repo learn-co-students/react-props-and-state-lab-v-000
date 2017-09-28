@@ -15,12 +15,21 @@ class App extends React.Component {
       }
     };
 
+this.onChangeType = this.onChangeType.bind(this)
+this.onAdoptPet = this.onAdoptPet.bind(this)
+this.onFindPetsClick = this.onFindPetsClick.bind(this)
+
   }
 
+	onAdoptPet(event) {
+		this.setState({
+			adoptedPets: [...this.state.adoptedPets, event]}
+)};
 
-	onChangeType = (event) => {
-			this.setState({
-			type: event.target,
+	onChangeType = (event) => {	
+	this.setState({
+		value: event.target.value,
+
 		})
 	};
 
@@ -38,20 +47,8 @@ class App extends React.Component {
 	}};
 
   render() {
-		var appChild = React.Children.map(this.props.children, child => {
-			if (child === this.state.filters) {
-				return React.cloneElement(child, {
-        filters: this.state.filters
-      });} else {
-				return React.cloneElement(child, {
-        pets: this.state.pets,
-				adoptedPets: this.state.adoptedPets,
-      })
-		}
-    });
-
     return (
-      <div className="ui container">{appChild}
+      <div className="ui container">
         <header>
           <h1 className="ui dividing header">React Animal Shelter</h1>
         </header>
@@ -61,7 +58,7 @@ class App extends React.Component {
               <Filters filters={this.state.filters} onFindPetsClick={this.onFindPetsClick} onChangeType={this.onChangeType}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets}/>
+              <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
