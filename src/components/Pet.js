@@ -4,7 +4,10 @@ class Pet extends React.Component {
   constructor() {
     super();
   }
-
+  handleClick = () => {
+    console.log(this.props.pet.id);
+    this.props.onAdoptPet(this.props.pet.id)
+  }
   render() {
     var female;
     if (this.props.pet.gender === "female") {
@@ -23,8 +26,11 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui primary button">Adopt pet</button>
-          <button className="ui disabled button">Already adopted</button>
+          {this.props.isAdopted ? (
+            <button className="ui disabled button">Already adopted</button>
+          ) : (
+            <button className="ui primary button" onClick={this.handleClick} >Adopt pet</button>
+          )}
         </div>
       </div>
     );
