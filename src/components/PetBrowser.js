@@ -18,7 +18,7 @@ class PetBrowser extends React.Component {
           <Pet
           isAdopted= {true}
           pet={pet}
-          onAdoptPet={this.handlePetAdoption}
+          onAdoptPet={this.props.onAdoptPet}
           />
         );
       } else {
@@ -26,7 +26,7 @@ class PetBrowser extends React.Component {
           <Pet
           isAdopted= {false}
           pet={pet}
-          onAdoptPet={this.handlePetAdoption}
+          onAdoptPet={this.props.onAdoptPet}
           />
         );
       }
