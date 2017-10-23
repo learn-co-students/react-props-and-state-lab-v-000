@@ -30,7 +30,9 @@ class App extends React.Component {
 
   onChangeType = (type) => {
     this.setState({
-      filters: {type: type}
+      filters: Object.assign({}, this.state.filters, {
+        type: type,
+      })
     })
   }
 
