@@ -16,6 +16,19 @@ class App extends React.Component {
     };
   }
 
+  handleChangeType = (event) => {
+    this.setState({
+      filters: {
+        type: event.target.value
+      }
+    });
+    debugger
+  }
+
+  handleFindPetsClick = (event) => {
+    debugger
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -25,10 +38,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFindPetsClick} filters={this.state.filters} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} />
             </div>
           </div>
         </div>
