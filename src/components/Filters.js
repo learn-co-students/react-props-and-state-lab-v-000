@@ -5,17 +5,20 @@ class Filters extends React.Component {
     super();
   }
 
-  handleFindPetsButton = (e) => {
-    debugger
+  handleFilterChange = (e) => {
+    this.props.onChangeType(e.target.value)
   }
 
+  handleFindPetsClick = () => {
+    this.props.onFindPetsClick()
+  }
 
   render() {
     return (
       <div className="ui form">
         <h3>Animal type</h3>
         <div className="field">
-          <select name="type" id="type" onChange={this.props.onChangeType}>
+          <select name="type" id="type" onChange={(e) => this.handleFilterChange(e)}>
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>
@@ -24,7 +27,7 @@ class Filters extends React.Component {
         </div>
 
         <div className="field">
-          <button className="ui secondary button" onClick={this.handleFindPetsButton}>Find pets</button>
+          <button className="ui secondary button" onClick={ this.handleFindPetsClick}>Find pets</button>
         </div>
       </div>
     );

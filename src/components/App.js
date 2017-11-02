@@ -16,17 +16,32 @@ class App extends React.Component {
     };
   }
 
-  handleChangeType = (event) => {
+  handleChangeType = (newValue) => {
     this.setState({
       filters: {
-        type: event.target.value
+        type: newValue
       }
     });
-    debugger
   }
 
-  handleFindPetsClick = (event) => {
-    debugger
+  handleFindPetsClick = () => {
+    const filterVariable = this.state.filters['type']
+    if (filterVariable === 'all') {
+      fetch('/api/pets')
+      .then(results => {
+        return results.json();
+      }).then(data => {
+        console.log(data)
+      })
+    } else {
+      fetch(`/api/pets?type=${filterVariable}`)
+      .then(results => {
+        return results.json();
+      }).then(data => {
+        let newAnimals = data
+        return newAnimals
+      })
+    }
   }
 
   render() {
