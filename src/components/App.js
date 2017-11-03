@@ -2,6 +2,7 @@ import React from 'react';
 
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
+// import { getAll } from '../data/pets';
 
 class App extends React.Component {
   constructor() {
@@ -16,6 +17,21 @@ class App extends React.Component {
     };
   }
 
+  handleFindPetsClick = () => {
+    // console.log('I am in handleFindPetsClick')
+    const type = this.state.filters.type;
+    if ( type === 'all') {
+      //console.log('I am in all')
+      fetch('/api/pets')
+        .then(response => console.log('Response: ', response))
+        .catch(error => console.log(error))//'The right API URL is not being fetched when finding pets.')
+    } else if ( type ==='dog' || type === 'cat' || type === 'micropig') {
+      fetch(`/api/pets?type=${type}`)
+      .then(response => console.log('Response: ', response))
+      .catch(error => console.log(error))
+    }
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -25,10 +41,17 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters
+                onChangeType={inputType => this.setState({
+                  filters: {
+                    type: inputType
+                  }})}
+                onFindPetsClick={this.handleFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser onAdoptPet={id => this.setState({
+                adoptedPets: [...this.state.adoptedPets, id]
+              })}/>
             </div>
           </div>
         </div>
