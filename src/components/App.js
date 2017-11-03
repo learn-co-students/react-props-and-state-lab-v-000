@@ -2,6 +2,7 @@ import React from 'react';
 
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
+import { getAll } from '../data/pets';
 
 class App extends React.Component {
   constructor() {
@@ -16,6 +17,12 @@ class App extends React.Component {
     };
   }
 
+  handleFindPetsClick = () => {
+    this.setState({
+      pets: getAll()
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -25,7 +32,12 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters
+                onChangeType={inputType => this.setState({
+                  filters: {
+                    type: inputType
+                  }})}
+                onFindPetsClick={this.handleFindPetsClick}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser />
