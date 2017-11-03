@@ -2,7 +2,7 @@ import React from 'react';
 
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
-import { getAll } from '../data/pets';
+// import { getAll } from '../data/pets';
 
 class App extends React.Component {
   constructor() {
@@ -18,9 +18,18 @@ class App extends React.Component {
   }
 
   handleFindPetsClick = () => {
-    this.setState({
-      pets: getAll()
-    })
+    // console.log('I am in handleFindPetsClick')
+    const type = this.state.filters.type;
+    if ( type === 'all') {
+      //console.log('I am in all')
+      fetch('/api/pets')
+        .then(response => console.log('Response: ', response))
+        .catch(error => console.log(error))//'The right API URL is not being fetched when finding pets.')
+    } else if ( type ==='dog' || type === 'cat' || type === 'micropig') {
+      fetch(`/api/pets?type=${type}`)
+      .then(response => console.log('Response: ', response))
+      .catch(error => console.log(error))
+    }
   }
 
   render() {
@@ -40,7 +49,9 @@ class App extends React.Component {
                 onFindPetsClick={this.handleFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser onAdoptPet={id => this.setState({
+                adoptedPets: [...this.state.adoptedPets, id]
+              })}/>
             </div>
           </div>
         </div>
