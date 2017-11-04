@@ -45,8 +45,14 @@ class App extends React.Component {
     }
   }
 
-  handlePetAdoption = (e) => {
-    this.state.adoptedPets.push(e)
+  handlePetAdoption = (id) => {
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, id]
+    })
+  }
+
+  handleIsAdopted = () => {
+    debugger
   }
 
   render() {
@@ -61,7 +67,7 @@ class App extends React.Component {
               <Filters onChangeType={this.handleChangeType} onFindPetsClick={(e) => this.handleFindPetsClick(e)} filters={this.state.filters} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdoptPet={this.handlePetAdoption} />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.handlePetAdoption} adoptedPets={this.state.adoptedPets} />
             </div>
           </div>
         </div>
