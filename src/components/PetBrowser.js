@@ -10,6 +10,7 @@ class PetBrowser extends React.Component {
           return (
             <Pet
               pet={pet}
+              key={pet.id}
               onAdoptPet={this.props.onAdoptPet}
               isAdopted= {!!this.props.adoptedPets.find(id => {
                 return id === pet.id;

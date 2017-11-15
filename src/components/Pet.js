@@ -1,9 +1,6 @@
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
-  }
 
   handleClick = () => {
     this.props.onAdoptPet(this.props.pet.id);
