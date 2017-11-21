@@ -29,13 +29,13 @@ class App extends React.Component {
       }
   }
 
-    onChangeType = (type) => {
-       this.setState({
-            filters:{
-              ...this.state.filters, type: type,
-            }
-          })
-        }
+  onChangeType = (type) => {
+      this.setState({
+          filters:{
+            ...this.state.filters, type: type,
+          }
+        })
+      }
 
   onAdoptPet = (petId) => {
     this.setState({adoptedPets : [...this.state.adoptedPets, petId]
