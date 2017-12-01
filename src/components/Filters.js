@@ -1,29 +1,56 @@
 import React from 'react';
 
 class Filters extends React.Component {
-  constructor() {
-    super();
-  }
+//   constructor(props) {
+//     super(props);
+//     this.state = {typeSelected: };
+//
+//     this.onChangeType = onChangeType.bind(this);
+//     this.onFindPetsClick = this.onFindPetsClick.bind(this);
+//   }
+//
+//   onChangeType(event) {
+//     console.log(event)
+//     this.setState({value: event.target.value});
+//   }
+//
+//   onFindPetsClick(event) {
+//     event.preventDefault();
+//   }
+// }
+
+onFindPetsClick = event =>
+  console.log(this.props.onChangeType(event.target.value))
 
   render() {
     return (
-      <div className="ui form">
-        <h3>Animal type</h3>
-        <div className="field">
-          <select name="type" id="type">
-            <option value="all">All</option>
-            <option value="cat">Cats</option>
-            <option value="dog">Dogs</option>
-            <option value="micropig">Micropigs</option>
-          </select>
-        </div>
 
-        <div className="field">
-          <button className="ui secondary button">Find pets</button>
-        </div>
-      </div>
+    <div className="filterbox">
+
+      <select
+        value={this.props.filters.type}
+        onChange={this.onChangeType}
+      >
+      <option value="all">All</option>
+      <option value="Cat">Cat</option>
+      <option value="Dog">Dog</option>
+      <option value="Micropig">Coconut</option>
+      </select>
+
+
+      <button
+           className="submitbutton"
+           onClick={this.props.onFindPetsClick}
+         >
+           Find pets
+      </button>
+
+
+    </div>
+
     );
   }
 }
 
-export default Filters;
+
+export default Filters

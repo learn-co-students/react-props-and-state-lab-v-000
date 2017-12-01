@@ -1,63 +1,48 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class Pet extends React.Component {
-  constructor(props) {
-    super();
 
-    this.state = {
-      isAdopted: false,
-    }
+  handleAdoptPet(){
+    this.props.onAdoptPet(this.props.pet.id)
   }
 
-  onAdoptPet = () => {
-    this.setState({
-      isAdopted: true,
-    });
+  whatGender(gender) {
+    const renderFemale = <h3> ♀ </h3>
+    const renderMale = <h3> ♂ </h3>
+    return gender === 'male' ? renderMale : renderFemale
   }
 
 render() {
-  const gender
+  const { pet } = this.props;
 
-  // whatGender = () => {
-  //   if(this.props.gender === male) {
-  //     gender = " ♂ "
-  //   }else{
-  //     gender = " ♀ "
-  //   }
-  //   return "<p> {gender} </p>"
-  // }
-  
     return (
       <div className="card">
         <div className="content">
           <a className="header">
-            <p> this.props.name </p>
-            whatGender()
+            <h3> {pet.name} </h3>
+            {this.whatGender(pet.gender)}
           </a>
           <div className="meta">
             <span className="date">Pet type</span>
           </div>
           <div className="description">
-            <p>Age: this.props.age </p>
-            <p>Weight: this.props.weight</p>
+            <p>Type: {pet.type} </p>
+            <p>Age: {pet.age} </p>
+            <p>Weight: {pet.weight} </p>
           </div>
         </div>
         <div className="extra content">
-          <button className="ui primary button">Adopt pet</button>
-          <button className="ui disabled button">Already adopted</button>
+          {this.props.isAdopted ?
+            <button className="ui disabled button">Already adopted</button> :
+            <button className="ui primary button" onClick={this.handleAdoptPet.bind(this)}>Adopt pet</button>
+          }
         </div>
       </div>
     );
+
   }
 }
 
-Pet.propTypes = {
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  gender: PropTypes.oneOf(['male','female']).isRequired,
-  age: PropTypes.number.isRequired,
-  weight: PropTypes.number.isRequired,
-};
 
 export default Pet;
