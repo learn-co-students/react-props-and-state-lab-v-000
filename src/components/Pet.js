@@ -1,31 +1,35 @@
+
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
-  }
-
-  handleClick = () => {
-    this.props.onAdoptPet(this.props.pet.id)
-  }
+  
+  handleAdoptPet = () => this.props.onAdoptPet(this.props.pet.id) // this function is set in < App /> passed to <Pets /> through <PetBrowser />
 
   render() {
+    const { pet: { name, type, gender, age, weight }, isAdopted } = this.props;
+
     return (
       <div className="card">
         <div className="content">
-          <a className="header">Name: {this.props.pet.name} Gender: {this.props.pet.gender === "male" ? "♂" : "♀"})</a>
+          <a className="header">{name} {gender === 'male' ? '♂' : '♀'}</a>
           <div className="meta">
-            <span className="date">{this.props.pet.type}</span>
+            <span className="date">{type}</span>
           </div>
           <div className="description">
-            <p>Age: {this.props.pet.age} </p>
-            <p>Weight: {this.props.pet.weight} </p>
+            <p>Age: {age}</p>
+            <p>Weight: {weight}</p>
           </div>
         </div>
         <div className="extra content">
-          {this.props.isAdopted ? 
-            <button className="ui disabled button">Already adopted</button> :
-            <button className="ui primary button" onClick={this.handleClick}>Adopt pet</button>
+          {isAdopted ?
+            <button className="ui disabled button">Already adopted</button>
+            :
+            <button 
+              className="ui primary button" 
+              onClick={this.handleAdoptPet}
+            >
+              Adopt pet
+            </button>
           }
         </div>
       </div>

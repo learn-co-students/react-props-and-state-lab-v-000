@@ -14,38 +14,33 @@ class App extends React.Component {
         type: 'all',
       }
     };
-
-    this.handleChangeType = this.handleChangeType.bind(this);
-    this.handleAdoptPet = this.handleAdoptPet.bind(this);
-    this.fetchPets = this.fetchPets.bind(this)
   }
 
-  handleChangeType(type) {
-    this.setState({
-      filters: {
-        ...this.state.filters,
+  fetchPets = () => {
+    let url = '/api/pets';
+
+    if (this.state.filters.type !== 'all') {
+      url += `?type=${this.state.filters.type}`;
+    }
+
+    fetch(url)
+      .then(res => res.json())
+      .then(pets => this.setState({ pets }));
+  }
+
+  handleChangeFilterType = type => { //this function is passed to <Filter /> as a prop. Needs a type arg
+    this.setState({                  //which it recieves inside <Filter /> when the onChange event occurs.
+      filters: Object.assign({}, this.state.filters, {
         type: type,
-      },
-    })
+      })
+    });
   }
 
-  handleAdoptPet(petId) {
-  this.setState({
-    adoptedPets: [...this.state.adoptedPets, petId],
-  });
-}
-
-fetchPets() {
-  let url = '/api/pets';
-
-  if (this.state.filters.type !== 'all') {
-    url += `?type=${this.state.filters.type}`;
+  handleAdoptPet = petId => {
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, petId],
+    });
   }
-
-  fetch(url)
-    .then(res => res.json())
-    .then(pets => this.setState({ pets }));
-}
 
   render() {
     return (
@@ -56,10 +51,18 @@ fetchPets() {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters filters={this.state.filters.type} onChangeType={this.handleChangeType} onFindPetsClick={this.fetchPets}/>
+              <Filters // uses the filter component...
+                filters={this.state.filters} // this prop becomes the value of <Filters />
+                onChangeType={this.handleChangeFilterType} // don't understand code here ** see above ** ???
+                onFindPetsClick={this.fetchPets}
+              />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.handleAdoptPet} />
+              <PetBrowser
+                 pets={this.state.pets} // sends the state of all pets as a prop to <PetBrowser />
+                 adoptedPets={this.state.adoptedPets} // list of adoptedPets ids
+                 onAdoptPet={this.handleAdoptPet} // adds pet id to the adoptedPets state
+              />
             </div>
           </div>
         </div>
