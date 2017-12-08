@@ -31,6 +31,7 @@ class App extends React.Component {
 
     if(filterVal !== "all") {
       url += `?type=${filterVal}`
+
     }
 
     fetch(url)

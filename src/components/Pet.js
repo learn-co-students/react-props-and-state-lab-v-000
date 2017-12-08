@@ -1,14 +1,14 @@
+
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
-  }
+  
+  handleAdoptPet = () => this.props.onAdoptPet(this.props.pet.id) // this function is set in < App /> passed to <Pets /> through <PetBrowser />
 
   handleAdoptPet = () => {this.props.onAdoptPet(this.props.pet.id)}
 
   render() {
-    const { pet: { name, gender, type, age, weight }, isAdopted } = this.props
+    const { pet: { name, type, gender, age, weight }, isAdopted } = this.props;
 
     return (
       <div className="card">
@@ -28,8 +28,6 @@ class Pet extends React.Component {
             :
             <button className="ui primary button" onClick={this.handleAdoptPet}>Adopt pet</button>
           }
-          
-          
         </div>
       </div>
     );
