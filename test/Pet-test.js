@@ -30,7 +30,9 @@ const GENDER_ICON_FEMALE = '♀';
 
 describe('<Pet />', () => {
   describe('Rendering props', () => {
+    debugger
     it('should render the name', () => {
+
       const wrapper = shallow(<Pet pet={MALE_DOG} />);
       expect(wrapper.text().includes(MALE_DOG.name)).to.be.true;
     });
