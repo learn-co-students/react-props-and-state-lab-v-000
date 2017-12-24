@@ -5,7 +5,7 @@ import PetBrowser from './PetBrowser';
 
 class App extends React.Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       pets: [],
@@ -13,9 +13,17 @@ class App extends React.Component {
       filters: {
         type: 'all'
       }
-    };
+    }
+
+  this.handleAdoptPet = this.handleAdoptPet.bind(this)
+
   }
 
+  handleAdoptPet(value){
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets,value]
+    })
+  }
   handleChangeType = (value) => {
     this.setState({
       filters: {
@@ -35,12 +43,6 @@ class App extends React.Component {
       .then(res => res.json())
       .then(newPets => this.setState({pets: newPets}))
     }
-  }
-
-  handleAdoptPet = (value) => {
-    this.setState({
-      adoptedPets: [...this.state.adoptedPets,value]
-    })
   }
 
   render() {

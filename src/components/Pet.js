@@ -1,14 +1,13 @@
-import React from 'react';
+import React from 'react'
 
 class Pet extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props)
   }
 
-  handleAdoptPet = () => {
+  handleAdoptPet() {
     this.props.onAdoptPet(this.props.pet.id)
   }
-
   render() {
     return (
       <div className="card">
@@ -23,14 +22,14 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          {this.props.pet.isAdopted ?
+          {this.props.isAdopted ?
             <button className="ui disabled button">Already adopted</button> :
-            <button className="ui primary button" onClick={this.handleAdoptPet}>Adopt Pet</button> 
+            <button className="ui primary button" onClick={event => this.handleAdoptPet()}>Adopt Pet</button> 
           }
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Pet;
+export default Pet
