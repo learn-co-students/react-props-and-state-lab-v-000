@@ -5,6 +5,8 @@ import Pet from './Pet';
 class PetBrowser extends React.Component {
 
   render() {
+    let adopted = this.props.adoptedPets
+    debugger
     let allPets = this.props.pets.map((thisPet) =>
       <Pet
       id = {thisPet.id}
@@ -13,7 +15,7 @@ class PetBrowser extends React.Component {
       age = {thisPet.age}
       gender = {thisPet.gender}
       weight = {thisPet.weight}
-      isAdopted = {this.props.adoptedPets.includes(thisPet.id)}
+      isAdopted = {adopted.includes(thisPet.id)}
       onAdoptPet = {this.props.onAdoptPet}
       />
     )

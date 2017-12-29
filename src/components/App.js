@@ -40,11 +40,12 @@ class App extends React.Component {
   }
 
   adoptPet = (petId)=>{
-    debugger
     let currentPets = this.state.adoptedPets
+    debugger
+    currentPets.push(petId)
     this.setState({
-      adoptedPets: currentPets.push(petId)
-    })
+      adoptedPets: currentPets
+    }, ()=>{console.log(this.state)})
   }
 
   render() {

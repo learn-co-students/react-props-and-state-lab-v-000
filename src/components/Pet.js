@@ -8,7 +8,7 @@ class Pet extends React.Component {
   }
 
   handleAdoption = (event) => {
-    debugger
+
     this.props.onAdoptPet(this.props.id)
   }
   render() {
