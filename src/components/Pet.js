@@ -8,24 +8,23 @@ class Pet extends React.Component {
   }
 
   handleAdoption = (event) => {
-
-    this.props.onAdoptPet(this.props.id)
+    this.props.onAdoptPet(this.props.pet.id)
   }
   render() {
 
-    let gender = this.props.gender === "male" ? '♂' : '♀'
+    let gender = this.props.pet.gender === "male" ? '♂' : '♀'
     let adoptButton = this.props.isAdopted ? <button className="ui disabled button">Already adopted</button> :
     <button className="ui primary button" onClick={this.handleAdoption.bind(this)}>Adopt pet</button>
     return (
       <div className="card">
         <div className="content">
-          <a className="header">Pet name: {this.props.name} {gender}</a>
+          <a className="header">Pet name: {this.props.pet.name} {gender}</a>
           <div className="meta">
-            <span className="date">Pet type {this.props.type}</span>
+            <span className="date">Pet type {this.props.pet.type}</span>
           </div>
           <div className="description">
-            <p>Age: {this.props.age}</p>
-            <p>Weight: {this.props.weight}</p>
+            <p>Age: {this.props.pet.age}</p>
+            <p>Weight: {this.props.pet.weight}</p>
           </div>
         </div>
         <div className="extra content">

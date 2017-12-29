@@ -10,6 +10,7 @@ class Filters extends React.Component {
   }
 
   render() {
+    debugger
     return (
       <div className="ui form">
         <h3>Animal type</h3>
