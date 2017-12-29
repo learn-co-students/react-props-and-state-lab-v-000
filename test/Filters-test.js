@@ -15,7 +15,7 @@ describe('<Filters />', () => {
   describe('Animal type', () => {
     it('should set the value of the animal type select to the right filter value', () => {
       const wrapper = shallow(<Filters filters={Object.assign({}, FILTERS_STATE, { type: 'micropig' })}/>);
-
+      expect(wrapper.find('select').props().value).to.equal('micropig');
     });
 
     it('should call the `onChangeType` prop callback when the animal type select changes', () => {
