@@ -40,6 +40,7 @@ class App extends React.Component {
   }
 
   adoptPet = (petId)=>{
+    debugger
     let currentPets = this.state.adoptedPets
     this.setState({
       adoptedPets: currentPets.push(petId)
@@ -58,7 +59,7 @@ class App extends React.Component {
               <Filters onChangeType={this.changeType.bind(this)} onFindPetsClick={this.fetchPets.bind(this)} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdoptPet={this.adoptPet.bind(this)} />
+              <PetBrowser adoptedPets={this.state.adoptedPets} pets={this.state.pets} onAdoptPet={this.adoptPet.bind(this)} />
             </div>
           </div>
         </div>
