@@ -1,26 +1,21 @@
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {
-      isAdopted: false
-    }
   }
 
-  onAdoptPet = (id) => {
-    this.setState({
-      isAdopted: true
-    })
+  handleClick = (e) => {
+    this.props.onAdoptPet(this.props.pet.id);
   }
 
   render() {
     let button;
-    if (this.state.isAdopted) {
+    if (this.props.isAdopted) {
        button = <button className="ui disabled button">Already adopted</button>;
     } else {
-       button = <button className="ui primary button" onClick={this.onAdoptPet}>Adopt pet</button>;
+       button = <button className="ui primary button" onClick={this.handleClick}>Adopt pet</button>;
     }
 
     return (
