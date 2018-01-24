@@ -3,12 +3,12 @@ import React from 'react';
 class Filters extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.filters
+    this.state = {type: this.props.filters}
   }
 
   handleChange = (e) => {
     this.props.onChangeType(e.target.value)
-    this.setState({ value: e.target.value })
+    this.setState({ type: e.target.value })
   }
 
   handleClick = () => {

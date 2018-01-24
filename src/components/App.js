@@ -52,10 +52,18 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters filters={this.state.filters} onChangeType={this.handlePetChange} onFindPetsClick={this.fetchPets}/>
+              <Filters
+              filters={this.state.filters}
+              onChangeType={this.handlePetChange}
+              onFindPetsClick={this.fetchPets}
+              />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} adoptedPets={this.state.adoptedPets} onAdoptPet={this.adoptPet}/>
+              <PetBrowser
+              pets={this.state.pets}
+              adoptedPets={this.state.adoptedPets}
+              onAdoptPet={this.adoptPet}
+              />
             </div>
           </div>
         </div>

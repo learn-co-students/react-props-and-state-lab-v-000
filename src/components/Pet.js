@@ -1,9 +1,6 @@
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
-  }
 
   handleClick = () => {
     this.props.onAdoptPet(this.props.pet.id)
@@ -13,7 +10,7 @@ class Pet extends React.Component {
     return (
       <div className="card">
         <div className="content">
-          <a className="header">Pet name: {this.props.pet.name} ({this.props.pet.gender === 'male' ? "♂" : "♀"}</a>
+          <a className="header">Pet name: {this.props.pet.name} {this.props.pet.gender === 'male' ? "♂" : "♀"}</a>
           <div className="meta">
             <span className="date">Pet type: {this.props.pet.type}</span>
           </div>
