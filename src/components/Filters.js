@@ -11,8 +11,8 @@ class Filters extends React.Component {
     this.setState({ value: e.target.value })
   }
 
-  handleClick = (e) => {
-    this.props.onFindPetsClick(e)
+  handleClick = () => {
+    this.props.onFindPetsClick()
   }
 
   render() {
