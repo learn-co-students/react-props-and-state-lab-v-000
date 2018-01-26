@@ -35,8 +35,12 @@ class App extends React.Component {
     }
   }
 
-  adoptedPetID = () => {
-
+  adoptedPetID = (value) => {
+    let petIdsArray = this.state.adoptedPets
+    petIdsArray.push(value)
+    this.setState({
+      adoptedPets: petIdsArray
+    })
   }
 
   render() {
