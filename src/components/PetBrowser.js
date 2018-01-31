@@ -3,13 +3,21 @@ import React from 'react';
 import Pet from './Pet';
 
 class PetBrowser extends React.Component {
+
   render() {
-    return (
-      <div className="ui cards">
-        <code>&lt;Pet /&gt;</code> &nbsp; components should go here
-      </div>
-    );
+    const renderPetComponents = this.props.pets.map(pet => {
+        const adopted = this.props.adoptedPets.includes(pet.id)
+        return (
+          <Pet pet={pet} isAdopted={adopted} onAdoptPet={this.props.onAdoptPet}/>
+        )
+      });
+
+      return (
+        <div className="ui cards">
+          {renderPetComponents}
+        </div>
+      );
+    }
   }
-}
 
 export default PetBrowser;
