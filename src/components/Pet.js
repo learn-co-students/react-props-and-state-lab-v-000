@@ -1,12 +1,14 @@
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAdopted: props.isAdopted,
+    }
   }
 
   render() {
-    // debugger;
     return (
       <div className="card">
         <div className="content">
@@ -20,8 +22,12 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui primary button">Adopt pet</button>
-          <button className="ui disabled button">Already adopted</button>
+          { !this.state.isAdopted &&
+            <button className="ui primary button">Adopt pet</button>
+          }
+          { this.state.isAdopted &&
+            <button className="ui disabled button">Already adopted</button>
+          }
         </div>
       </div>
     );
