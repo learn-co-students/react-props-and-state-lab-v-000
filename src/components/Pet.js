@@ -1,22 +1,11 @@
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isAdopted: props.isAdopted,
-    }
-    this.handleClick = this.handleClick.bind(this);
+
+  handleAdoptPet = () => {
+    this.props.onAdoptPet(this.props.pet.id)
+    // 1. okay this is <Pet /> component existing in PetBrowser class's render function's problem now
   }
-
-  handleClick = () => {
-    // debugger;
-    // this.setState({
-    //   isAdopted: true,
-    // })
-  }
-
-
 
   render() {
     return (
@@ -32,10 +21,10 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          { !this.state.isAdopted &&
-            <button className="ui primary button" onClick={this.handleClick}>Adopt pet</button>
+          { !this.props.isAdopted &&
+            <button className="ui primary button" onClick={this.handleAdoptPet}>Adopt pet</button>
           }
-          { this.state.isAdopted &&
+          { this.props.isAdopted &&
             <button className="ui disabled button">Already adopted</button>
           }
         </div>

@@ -12,7 +12,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      pets: [],
+      pets: ALL_PETS,
       adoptedPets: [],
       filters: {
         type: 'all',
@@ -20,8 +20,16 @@ class App extends React.Component {
     };
   }
 
+ //4 okay, so the petId we received way underneath from Pet class instance...
+ // shove that into the App's state of adoptedPets array.
+  handleAdoptPet = (petId) => {
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, petId],
+    });
+  }
+
   render() {
-    debugger;
+    // debugger;
     return (
       <div className="ui container">
         <header>
@@ -33,7 +41,14 @@ class App extends React.Component {
               <Filters />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={ALL_PETS} onAdoptPet={false}/>
+              <PetBrowser
+                pets={this.state.pets}
+                adoptedPets={this.state.adoptedPets}
+                onAdoptPet={this.handleAdoptPet}
+                // 3. okay we've been foisted long enough...
+                // let's deal with this with our own (App's) instance method
+                // handleAdoptPet.
+              />
             </div>
           </div>
         </div>
