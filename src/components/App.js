@@ -51,6 +51,7 @@ class App extends React.Component {
               <Filters
                 onChangeType={this.handleFilterChange}
                 onFindPetsClick={this.handlePetsClick}
+                filters={this.state.filters}
               />
             </div>
             <div className="twelve wide column">
