@@ -19,6 +19,8 @@ class App extends React.Component {
       }
     };
   this.handleFilterChange = this.handleFilterChange.bind(this);
+  this.handlePetsClick = this.handlePetsClick.bind(this);
+
   }
 
  //4 okay, so the petId we received way underneath from Pet class instance...
@@ -36,6 +38,10 @@ class App extends React.Component {
         type: type,
       }
     })
+  }
+
+  handlePetsClick() {
+    debugger;
   }
 
   render() {
