@@ -3,6 +3,10 @@ import React from 'react';
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
 
+//line 7 manually put in
+import { getAll } from '../data/pets';
+const ALL_PETS = getAll();
+
 class App extends React.Component {
   constructor() {
     super();
@@ -17,6 +21,7 @@ class App extends React.Component {
   }
 
   render() {
+    debugger;
     return (
       <div className="ui container">
         <header>
@@ -28,7 +33,7 @@ class App extends React.Component {
               <Filters />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={ALL_PETS} onAdoptPet={false}/>
             </div>
           </div>
         </div>
