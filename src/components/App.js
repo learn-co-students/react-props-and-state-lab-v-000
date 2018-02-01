@@ -47,7 +47,11 @@ class App extends React.Component {
     }
     //imaginary api get requests...I can only imagine what the response would be...
     fetch(url).then(res => res.json()).then(pets => this.setState({pets}))
-
+    //I send a get request to some url...
+    //then I get a res (string) that looks like a json hash...
+    //officially convert it to json hash by doing res.json()
+    //which I assume will look something like:
+    // pets on left side of arrow most likely looks like:  pets: [{},{},{}]
   }
 
   render() {
