@@ -4,15 +4,15 @@ import Filters from './Filters';
 import PetBrowser from './PetBrowser';
 
 //line 7 manually put in
-import { getAll } from '../data/pets';
-const ALL_PETS = getAll();
+// import { getAll } from '../data/pets';
+// const ALL_PETS = getAll();
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      pets: ALL_PETS,
+      pets: [],
       adoptedPets: [],
       filters: {
         type: 'all',
@@ -32,7 +32,6 @@ class App extends React.Component {
   }
 
   handleFilterChange(type) {
-    // debugger;
     this.setState({
       filters: {
         type: type,
@@ -41,11 +40,17 @@ class App extends React.Component {
   }
 
   handlePetsClick() {
-    debugger;
+    //imaginary api get requests...
+    const type = this.state.filters.type;
+    let url = "/api/pets";
+    if (type !== 'all') {
+      url += "?type=" + type;
+    }
+    fetch(url).then(res => res.json()).then(pets => this.setState({pets}))
+
   }
 
   render() {
-    // debugger;
     return (
       <div className="ui container">
         <header>
