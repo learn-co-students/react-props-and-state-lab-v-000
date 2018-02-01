@@ -18,6 +18,7 @@ class App extends React.Component {
         type: 'all',
       }
     };
+  this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
  //4 okay, so the petId we received way underneath from Pet class instance...
@@ -26,6 +27,15 @@ class App extends React.Component {
     this.setState({
       adoptedPets: [...this.state.adoptedPets, petId],
     });
+  }
+
+  handleFilterChange(type) {
+    // debugger;
+    this.setState({
+      filters: {
+        type: type,
+      }
+    })
   }
 
   render() {
@@ -38,7 +48,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters
+                onChangeType={this.handleFilterChange}
+                onFindPetsClick={this.handlePetsClick}
+              />
             </div>
             <div className="twelve wide column">
               <PetBrowser
