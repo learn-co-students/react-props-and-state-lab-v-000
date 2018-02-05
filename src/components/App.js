@@ -3,17 +3,55 @@ import React from 'react';
 import Filters from './Filters';
 import PetBrowser from './PetBrowser';
 
+//line 7 manually put in
+import { getAll } from '../data/pets';
+const ALL_PETS = getAll();
+
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      pets: [],
+      pets: ALL_PETS,
       adoptedPets: [],
       filters: {
         type: 'all',
       }
     };
+  this.handleFilterChange = this.handleFilterChange.bind(this);
+  this.handlePetsClick = this.handlePetsClick.bind(this);
+
+  }
+
+ //4 okay, so the petId we received way underneath from Pet class instance...
+ // shove that into the App's state of adoptedPets array.
+  handleAdoptPet = (petId) => {
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, petId],
+    });
+  }
+
+  handleFilterChange(type) {
+    this.setState({
+      filters: {
+        type: type,
+      }
+    })
+  }
+
+  handlePetsClick() {
+    const type = this.state.filters.type;
+    let url = "/api/pets";
+    if (type !== 'all') {
+      url += "?type=" + type;
+    }
+    //imaginary api get requests...I can only imagine what the response would be...
+    fetch(url).then(res => res.json()).then(pets => this.setState({pets}))
+    //I send a get request to some url...
+    //then I get a res (string) that looks like a json hash...
+    //officially convert it to json hash by doing res.json()
+    //which I assume will look something like:
+    // pets on left side of arrow most likely looks like:  pets: [{},{},{}]
   }
 
   render() {
@@ -25,10 +63,21 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters
+                onChangeType={this.handleFilterChange}
+                onFindPetsClick={this.handlePetsClick}
+                filters={this.state.filters}
+              />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser
+                pets={this.state.pets}
+                adoptedPets={this.state.adoptedPets}
+                onAdoptPet={this.handleAdoptPet}
+                // 3. okay we've been foisted long enough...
+                // let's deal with this with our own (App's) instance method
+                // handleAdoptPet.
+              />
             </div>
           </div>
         </div>
