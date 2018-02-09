@@ -21,7 +21,9 @@ class App extends React.Component {
   }
 
   handleAdoption = id => {
-    this.state.adoptedPets.push(id)
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, id]
+    })
   }
 
   handleSelect = (filter) => {
