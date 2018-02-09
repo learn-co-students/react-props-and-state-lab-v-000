@@ -2,10 +2,29 @@ import React from 'react';
 import Pet from './Pet';
 
 class PetBrowser extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      adoptions: 0
+    }
+
+    this.handleAdoptions = this.handleAdoptions.bind(this)
+  }
+
+  handleAdoptions = id => {
+    this.setState({
+      adoptions: this.state.adoptions + 1,
+    });
+
+    this.callPropFn(id);
+  }
+
+  callPropFn = id => this.props.onAdoptPet(id)
 
   render() {
 
-    const adoptFn = this.props.onAdoptPet;
+    const adoptFn = this.handleAdoptions;
     const adoptStatus = (id) => this.props.adoptedPets.includes(id);
 
     const petComps = this.props.pets.map(pet => {
