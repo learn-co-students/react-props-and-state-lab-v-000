@@ -16,7 +16,28 @@ class App extends React.Component {
     };
   }
 
+  clickFilter = () => {
+
+    switch(this.state.filters.type) {
+      case "all":
+        fetch('/api/pets').then(list => {return list.json()}).then(jsonList => {
+          this.setState({pets: [...this.state.pets, jsonList]})})
+        break;
+      case "cat":
+      case "dog":
+      case "micropig":
+        fetch(`/api/pets?type=${this.state.filters.type}`).then(list => {return list.json()}).then(jsonList => {
+          this.setState({pets: [...this.state.pets, jsonList]})})
+        break;
+      default:
+        fetch('/api/pets').then(list => {return list.json()}).then(jsonList => {
+          this.setState({pets: [...this.state.pets, jsonList]})})
+        break;
+    }
+  }
+
   render() {
+
     return (
       <div className="ui container">
         <header>
@@ -25,10 +46,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters filters={this.state.filters} onFindPetsClick={this.clickFilter} onChangeType={(eventValue) => {this.setState({filters: {...this.state.filters, type: `${eventValue}`}})}} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser onAdoptPet={(petId) => {this.setState({adoptedPets: [...this.state.adoptedPets, petId]})}} pets={this.state.pets} adoptedPets={this.state.adoptedPets} />
             </div>
           </div>
         </div>
