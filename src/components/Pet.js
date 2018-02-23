@@ -1,30 +1,42 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
-  }
+
+handleClick = () => {
+  this.props.onAdoptPet(this.props.pet.id)
+}
 
   render() {
     return (
       <div className="card">
         <div className="content">
-          <a className="header">Pet name (gender: ♂ or ♀)</a>
+          <a className="header">Pet name: {this.props.pet.name} (gender: {this.props.pet.gender === "male" ? '♂' : '♀'})</a>
           <div className="meta">
-            <span className="date">Pet type</span>
+            <span className="date">Pet type: {this.props.pet.type}</span>
           </div>
           <div className="description">
-            <p>Age: </p>
-            <p>Weight: </p>
+            <p>Age:  {this.props.pet.age} </p>
+            <p>Weight: {this.props.pet.weight} </p>
           </div>
         </div>
         <div className="extra content">
-          <button className="ui primary button">Adopt pet</button>
-          <button className="ui disabled button">Already adopted</button>
+          <button className={(this.props.isAdopted === false) ? "ui primary button" : "ui disabled button"}
+                  onClick={(this.props.isAdopted === false) ? this.handleClick : null}>
+                  {(this.props.isAdopted === false) ? "Adopt Pet" : "Already Adopted"}
+          </button>
         </div>
       </div>
     );
   }
+}
+
+Pet.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number,
+  weight: PropTypes.number,
+  isAdopted: PropTypes.bool,
+  type: PropTypes.string
 }
 
 export default Pet;
