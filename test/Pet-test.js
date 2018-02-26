@@ -47,7 +47,7 @@ describe('<Pet />', () => {
 
     it('should render the pet type', () => {
       const wrapper = shallow(<Pet pet={FEMALE_CAT} />);
-      expect(wrapper.text().includes(FEMALE_CAT.type)).to.be.true;
+      expect(wrapper.text().includes(FEMALE_CAT.type.charAt(0).toUpperCase() + FEMALE_CAT.type.substr(1).toLowerCase())).to.be.true;
     });
 
     it('should render the pet age', () => {
