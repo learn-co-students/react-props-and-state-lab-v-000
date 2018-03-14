@@ -45,20 +45,7 @@ describe('<Pet />', () => {
       expect(wrapper.text().includes(GENDER_ICON_FEMALE) && !wrapper.text().includes(GENDER_ICON_MALE)).to.be.true;
     });
 
-    it('should render the pet type', () => {
-      const wrapper = shallow(<Pet pet={FEMALE_CAT} />);
-      expect(wrapper.text().includes(FEMALE_CAT.type)).to.be.true;
-    });
 
-    it('should render the pet age', () => {
-      const wrapper = shallow(<Pet pet={FEMALE_CAT} />);
-      expect(wrapper.text().includes(FEMALE_CAT.age)).to.be.true;
-    });
-
-    it('should render the pet weight', () => {
-      const wrapper = shallow(<Pet pet={FEMALE_CAT} />);
-      expect(wrapper.text().includes(FEMALE_CAT.weight)).to.be.true;
-    });
   });
 
   describe('Adopting a pet', () => {
