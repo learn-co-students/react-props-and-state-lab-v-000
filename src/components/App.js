@@ -16,6 +16,13 @@ class App extends React.Component {
     };
   }
 
+  onChangeType = (val)=> {
+    this.setState({filters: {type: val}})
+    this.state.pets.filter(pet=> pet.type == val)
+  }
+  onFindPetsClick = ()=> {}
+  handleAdoption = (pet_id)=> {this.setState({adoptedPets: this.state.adoptedPets.push(pet_id)})}
+
   render() {
     return (
       <div className="ui container">
@@ -25,10 +32,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.handleAdoption} adoptedPets={this.state.adoptedPets} />
             </div>
           </div>
         </div>
