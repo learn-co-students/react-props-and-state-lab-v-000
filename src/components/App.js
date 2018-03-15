@@ -25,7 +25,6 @@ class App extends React.Component {
   }
 
   onAdoptPet = petId => {
-    console.log(petId)
     this.setState({
       adoptedPets: [...this.state.adoptedPets, petId]
     })
@@ -53,10 +52,7 @@ class App extends React.Component {
       .then(function(response) {
         return response.json()
       })
-      .then(function(pets) {
-        console.log(pets)
-        this.setState({ pets: pets })
-      })
+      .then(pets => this.setState({ pets: pets }))
   }
 
   render() {
@@ -71,7 +67,7 @@ class App extends React.Component {
               <Filters
                 onChangeType={this.onChangeType}
                 onFindPetsClick={this.onFindPetsClick}
-                type={this.state.filters.type}
+                filters={this.state.filters}
               />
             </div>
             <div className="twelve wide column">
