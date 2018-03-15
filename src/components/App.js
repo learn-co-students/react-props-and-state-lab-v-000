@@ -1,19 +1,62 @@
-import React from 'react';
+import React from "react"
 
-import Filters from './Filters';
-import PetBrowser from './PetBrowser';
+import Filters from "./Filters"
+import PetBrowser from "./PetBrowser"
 
 class App extends React.Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       pets: [],
       adoptedPets: [],
       filters: {
-        type: 'all',
+        type: "all"
       }
-    };
+    }
+
+    this.onFindPetsClick = this.onFindPetsClick.bind(this)
+    this.onChangeType = this.onChangeType.bind(this)
+    this.onAdoptPet = this.onAdoptPet.bind(this)
+  }
+
+  onChangeType = e => {
+    this.setState({ filters: { type: e } }, () => console.log(this.state))
+  }
+
+  onAdoptPet = petId => {
+    console.log(this)
+    console.log(petId)
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, petId]
+    })
+  }
+
+  // onFindPetsClick = e => {
+
+  onFindPetsClick = () => {
+    let url = "/api/pets"
+    switch (this.state.filters.type) {
+      case "cat":
+        url = "/api/pets?type=cat"
+        break
+      case "dog":
+        url = "/api/pets?type=dog"
+        break
+      case "micropig":
+        url = "/api/pets?type=micropig"
+        break
+      default:
+        url = "/api/pets"
+    }
+
+    fetch(url)
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(pets) {
+        this.setState({ pets: pets })
+      })
   }
 
   render() {
@@ -25,16 +68,24 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters
+                onChangeType={this.onChangeType}
+                onFindPetsClick={this.onFindPetsClick}
+                type={this.state.filters.type}
+              />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser
+                pets={this.state.pets}
+                adoptedPets={this.state.adoptedPets}
+                onAdoptPet={this.onAdoptPet}
+              />
             </div>
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
