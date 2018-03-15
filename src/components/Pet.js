@@ -6,7 +6,6 @@ class Pet extends React.Component {
   }
 
   handleAdopt = () => {
-    console.log(this.props.pet.id)
     this.props.onAdoptPet(this.props.pet.id)
   }
 

@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   onChangeType = e => {
-    this.setState({ filters: { type: e } }, () => console.log(this.state))
+    this.setState({ filters: { type: e } })
   }
 
   onAdoptPet = petId => {
@@ -54,6 +54,7 @@ class App extends React.Component {
         return response.json()
       })
       .then(function(pets) {
+        console.log(pets)
         this.setState({ pets: pets })
       })
   }
