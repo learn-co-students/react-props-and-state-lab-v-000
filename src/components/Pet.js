@@ -5,7 +5,7 @@ class Pet extends React.Component {
     super(props)
   }
 
-  handleChange = e => {
+  handleAdopt = e => {
     console.log(this.props.pet.id)
     this.props.onAdoptPet(this.props.pet.id)
   }
@@ -33,7 +33,7 @@ class Pet extends React.Component {
           ) : (
             <button
               className="ui primary button"
-              onClick={this.props.onAdoptPet}>
+              onClick={this.props.handleAdopt}>
               Adopt pet
             </button>
           )}
