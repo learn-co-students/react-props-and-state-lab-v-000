@@ -5,7 +5,7 @@ class Pet extends React.Component {
     super(props)
   }
 
-  handleAdopt = e => {
+  handleAdopt = () => {
     console.log(this.props.pet.id)
     this.props.onAdoptPet(this.props.pet.id)
   }

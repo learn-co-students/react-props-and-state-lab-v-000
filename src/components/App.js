@@ -25,7 +25,6 @@ class App extends React.Component {
   }
 
   onAdoptPet = petId => {
-    console.log(this)
     console.log(petId)
     this.setState({
       adoptedPets: [...this.state.adoptedPets, petId]
