@@ -34,7 +34,6 @@ class App extends React.Component {
 
     fetch(url)
       .then(res => res.json())
-      //.then(pets => console.log(pets))
       .then(pets => this.setState({ pets }))
   }
 
