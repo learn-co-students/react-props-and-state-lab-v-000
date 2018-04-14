@@ -1,14 +1,13 @@
 import React from 'react';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
     const pet = this.props.pet
-    const gender = (pet.gender == 'male' ? '♂' : '♀')
-
+    const gender = (pet.gender === 'male' ? '♂' : '♀')
 
     return (
       <div className="card">
@@ -23,11 +22,22 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui primary button">Adopt pet</button>
-          <button className="ui disabled button">Already adopted</button>
+          {this.adoptButton()}          
         </div>
       </div>
     );
+  }
+
+  handleAdopt = event => {
+    this.props.onAdoptPet(this.props.pet.id)
+  }
+
+  adoptButton() {
+    if (this.props.isAdopted) {
+      return <button className="ui disabled button">Already adopted</button>
+    } else {
+      return <button className="ui primary button" onClick={this.handleAdopt} >Adopt pet</button>
+    }
   }
 }
 
