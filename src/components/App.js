@@ -16,6 +16,46 @@ class App extends React.Component {
     };
   }
 
+  handleChangeType = (event) => {
+    this.setState({
+        filters: {
+          type: event,
+       },
+    });
+  }
+  
+  handleFetch = () => {
+    if (this.state.filters.type === 'all') {
+      fetch('/api/pets')
+        .then(function(response) {
+          this.setState({
+            pets: response,
+          });
+        })
+    } else if (this.state.filters.type === 'cat') {
+      fetch('/api/pets?type=cat')
+        .then(function(response) {
+          this.setState({
+            pets: response,
+          });
+        })
+    } else if (this.state.filters.type === 'dog') {
+       fetch('/api/pets?type=dog')
+        .then(function(response) {
+          this.setState({
+            pets: response,
+          });
+        })
+    } else if (this.state.filters.type === 'micropig') {
+       fetch('/api/pets?type=micropig')
+        .then(function(response) {
+          this.setState({
+            pets: response,
+          });
+        })
+    }
+  }
+  
   render() {
     return (
       <div className="ui container">
@@ -25,7 +65,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFetch}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser />

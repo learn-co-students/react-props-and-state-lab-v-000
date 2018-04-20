@@ -5,6 +5,15 @@ class Filters extends React.Component {
     super();
   }
 
+  // handleChangeType= () => {
+  //   this.props.onChangeType();
+  // }
+  
+  // const onChangeType = this.props.pets.map(pet => 
+  //     <Pet key={pet.id} onAdoptPet={this.props.onAdoptPet} isAdopted={this.props.adoptedPets.includes(pet.id)}/>
+  // )
+    
+  
   render() {
     return (
       <div className="ui form">
