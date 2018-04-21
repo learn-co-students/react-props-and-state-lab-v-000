@@ -16,45 +16,58 @@ class App extends React.Component {
     };
   }
 
-  handleChangeType = (event) => {
+
+
+  handleChangeType = (value) => {
     this.setState({
-        filters: {
-          type: event,
-       },
+        filters: Object.assign({}, this.state.filters, {
+          type: value,
+        })
     });
+    
   }
   
+  
+  
   handleFetch = () => {
+    // console.log("click");
+    // debugger
     if (this.state.filters.type === 'all') {
       fetch('/api/pets')
         .then(function(response) {
           this.setState({
             pets: response,
           });
-        })
+        }.bind(this))
     } else if (this.state.filters.type === 'cat') {
       fetch('/api/pets?type=cat')
         .then(function(response) {
+          console.log(response)
           this.setState({
             pets: response,
           });
-        })
+        }.bind(this))
     } else if (this.state.filters.type === 'dog') {
        fetch('/api/pets?type=dog')
         .then(function(response) {
           this.setState({
             pets: response,
           });
-        })
+        }.bind(this))
     } else if (this.state.filters.type === 'micropig') {
        fetch('/api/pets?type=micropig')
         .then(function(response) {
           this.setState({
             pets: response,
           });
-        })
+        }.bind(this))
     }
   }
+  
+  handleAppAdoption = () => {
+    this.state.adoptedPets
+  }
+  
   
   render() {
     return (
@@ -65,10 +78,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFetch}/>
+              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFetch.bind(this)}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} handleAdoption={this.handleAppAdoption}/>
             </div>
           </div>
         </div>
