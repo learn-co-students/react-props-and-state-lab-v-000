@@ -34,40 +34,37 @@ class App extends React.Component {
     // debugger
     if (this.state.filters.type === 'all') {
       fetch('/api/pets')
-        .then(function(response) {
-          this.setState({
-            pets: response,
-          });
-        }.bind(this))
+        .then(response => response.json())
+        .then(pets => this.setState({pets}))
+        //   this.setState({
+        //     pets: response.json(),
+        //   });
+        // }.bind(this))
     } else if (this.state.filters.type === 'cat') {
       fetch('/api/pets?type=cat')
-        .then(function(response) {
-          console.log(response)
-          this.setState({
-            pets: response,
-          });
-        }.bind(this))
+        .then(response => response.json())
+        .then(pets => this.setState({pets}))
     } else if (this.state.filters.type === 'dog') {
        fetch('/api/pets?type=dog')
-        .then(function(response) {
-          this.setState({
-            pets: response,
-          });
-        }.bind(this))
+        .then(response => response.json())
+        .then(pets => this.setState({pets}))
     } else if (this.state.filters.type === 'micropig') {
        fetch('/api/pets?type=micropig')
-        .then(function(response) {
-          this.setState({
-            pets: response,
-          });
-        }.bind(this))
+        .then(response => response.json())
+        .then(pets => this.setState({pets}))
     }
   }
   
-  handleAppAdoption = () => {
-    this.state.adoptedPets
+  onAdoptPet = (id) => {
+    this.setState({
+      adoptedPets: [
+        ...this.state.adoptedPets,
+        id
+      ]
+    })
   }
   
+
   
   render() {
     return (
@@ -78,10 +75,14 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFetch.bind(this)}/>
+              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFetch.bind(this)} filters={this.state.filters}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} handleAdoption={this.handleAppAdoption}/>
+              <PetBrowser 
+                pets={this.state.pets}
+                onAdoptPet={this.onAdoptPet}
+                adoptedPets={this.state.adoptedPets}
+              />
             </div>
           </div>
         </div>
