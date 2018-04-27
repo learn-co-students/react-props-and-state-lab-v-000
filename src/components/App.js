@@ -36,7 +36,9 @@ class App extends React.Component {
   }
 
   onAdoptPet = id => {
-    this.state.adoptedPets.push(id)
+    this.setState({
+      pets: this.state.adoptedPets.push(id)
+    })
   }
 
   render() {
