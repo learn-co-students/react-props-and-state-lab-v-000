@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Pet extends React.Component {
-  constructor() {
-    super();
 
-  }
   handleAdopt = () => {this.props.onAdoptPet(this.props.pet.id)}
   render() {
     return (

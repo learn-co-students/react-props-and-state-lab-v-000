@@ -24,14 +24,16 @@ class App extends React.Component {
     }
 
     fetch(url)
-      .then(res => res.json())
-      .then(pets => this.setState({ pets }));
+      .then(response => response.json())
+      .then(parsedJSON => this.setState({ parsedJSON  }))
+      .catch(error => console.log('parsing failed', error))
+      ;
   }
 
-  handleChangeFilterType = type => {
+  handleChangeFilterType = (event) => {
     this.setState({
       filters: Object.assign({}, this.state.filters, {
-        type: type,
+        type: event,
       })
     });
   }

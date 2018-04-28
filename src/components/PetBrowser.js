@@ -1,12 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Pet from './Pet';
 
 class PetBrowser extends React.Component {
-  constructor() {
-    super();
-  };
 
   render() {
     const renderPets = this.props.pets.map(pet =>
