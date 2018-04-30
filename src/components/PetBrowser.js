@@ -6,7 +6,15 @@ class PetBrowser extends React.Component {
   render() {
     return (
       <div className="ui cards">
-        <code>&lt;Pet /&gt;</code> &nbsp; components should go here
+      {this.props.pets.map(function(x) {
+        let adoptionStatus
+        if (this.props.adoptedPets.includes(x.id)) {
+          adoptionStatus = true
+      } else {
+        adoptionStatus = false
+      }
+        return <Pet pet={x} onAdoptPet={this.props.onAdoptPet} isAdopted={adoptionStatus} />
+      }.bind(this))}
       </div>
     );
   }
