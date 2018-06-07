@@ -15,6 +15,38 @@ class App extends React.Component {
       }
     };
   }
+// how come i don't need to write e.target.value below?
+  handleChangeFilter = type => {
+    // debugger;
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        type: type,
+      })
+    });
+  }
+
+// how does this below function know to grab the petId?
+  handleAdoption = petId => {
+    debugger;
+    this.setState({
+      adoptedPets: [...this.state.adoptedPets, petId]
+    });
+  }
+
+  fetchPets = () => {
+    let apiEndpoint = '/api/pets';
+
+    if (this.state.filters.type !== 'all') {
+      apiEndpoint += `?type=${this.state.filters.type}`;
+    }
+
+    fetch(apiEndpoint)
+      .then(res => res.json())
+      .then(pets => {
+        // debugger;
+        this.setState({pets})
+      });
+  }
 
   render() {
     return (
@@ -25,10 +57,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters filters={this.state.filters} onChangeType={this.handleChangeFilter} onFindPetsClick={this.fetchPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.handleAdoption} adoptedPets={this.state.adoptedPets}/>
             </div>
           </div>
         </div>
