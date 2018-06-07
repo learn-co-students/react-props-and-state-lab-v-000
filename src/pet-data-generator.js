@@ -47,7 +47,21 @@ const FEMALE_PET_NAMES = [
   "Shy",
   "Ham",
   "Feta",
-  "Hennessy", "Flurry", "Babs", "Miles", "Silent", "Brook", "Maia", "Dori", "Vanilla", "Zelda", "Peekaboo", "Elsa", "Cherry", "Silent", "Mickey"
+  "Hennessy", 
+  "Flurry", 
+  "Babs", 
+  "Miles", 
+  "Silent", 
+  "Brook", 
+  "Maia", 
+  "Dori", 
+  "Vanilla", 
+  "Zelda", 
+  "Peekaboo", 
+  "Elsa", 
+  "Cherry", 
+  "Silent", 
+  "Mickey"
 ];
 
 const ANIMAL_TYPES = ['cat', 'cat', 'cat', 'cat', 'dog', 'dog', 'dog', 'dog', 'micropig'];
