@@ -6,7 +6,6 @@ import PetBrowser from './PetBrowser';
 class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
       pets: [],
       adoptedPets: [],
@@ -14,6 +13,36 @@ class App extends React.Component {
         type: 'all',
       }
     };
+  }
+
+  onChangeType = value => {
+
+    this.setState({
+      filters:
+      { ...this.state.filters, type: value }
+    });
+  }
+
+  fetchPets = () => {
+    let endpoint = '/api/pets'
+
+    if (this.state.filters.type !== 'all') {
+     endpoint += `?type=${this.state.filters.type}`;
+   }
+
+   fetch(endpoint)
+     .then(res => res.json())
+     .then(pets => this.setState({ pets }));
+  }
+
+  onAdoptPet = (id) => {
+    const pets = this.state.pets.map(p => {
+      return p.id === id ? { ...p, isAdopted: true } : p;
+    });
+
+    this.setState(prevState => ({
+      adoptedPets: [...prevState.adoptedPets, id]
+    }))
   }
 
   render() {
@@ -25,10 +54,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.onChangeType} filters={this.state.filters} onFindPetsClick={this.fetchPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser onAdoptPet={this.onAdoptPet} pets={this.state.pets} adoptedPets={this.state.adoptedPets}/>
             </div>
           </div>
         </div>
