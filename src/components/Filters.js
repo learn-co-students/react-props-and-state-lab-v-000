@@ -3,7 +3,6 @@ import React from 'react'
 class Filters extends React.Component {
 
   handleChange = (e) => {
-    e.persist()
     this.props.onChangeType(e.target.value)
   }
 

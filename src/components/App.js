@@ -15,6 +15,13 @@ class App extends React.Component {
     }
   }
 
+  adoptPet = (id) => {
+    const thisPet = this.state.pets.filter(function(pet){
+      return pet.id === id
+    })
+    thisPet[0].isAdopted = true
+  }
+
   changeType = (value) => {
     this.setState({
       filters: Object.assign({}, {type: value})
