@@ -8,7 +8,7 @@ class PetBrowser extends React.Component {
   	console.log(`from petBrowser, what is pet`, this.props.pets[0])
     
     let pets = this.props.pets.map(pet => { 
-    	return <div className="ui cards"><Pet id={pet.id} gender={pet.gender} age={pet.age} weight={pet.weight} isAdopted={pet.isAdopted} name={pet.name} type={pet.type} /></div>
+    	return <div className="ui cards"><Pet onAdoptPet={this.props.onAdoptPet} id={pet.id} gender={pet.gender} age={pet.age} weight={pet.weight} isAdopted={pet.isAdopted} name={pet.name} type={pet.type} /></div>
     }) 
    
     return (
