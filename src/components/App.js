@@ -16,6 +16,7 @@ class App extends React.Component {
 
     this.onChangeType = this.onChangeType.bind(this);
     this.onFindPetsClick = this.onFindPetsClick.bind(this);
+    this.onAdoptPet = this.onAdoptPet.bind(this);
   }
 
   onChangeType = e => {
@@ -25,7 +26,10 @@ class App extends React.Component {
   }
 
   onFindPetsClick = () => {
-    const petsUrl = (this.state.filters.type === 'all' ? '/api/pets' : `/api/pets?=${this.state.filters.type}`)
+    let petsUrl = '/api/pets'
+    if (this.state.filters.type !== 'all') {
+      petsUrl += `?type=${this.state.filters.type}`
+    }
     fetch(petsUrl)
       .then( res => res.json() )
       .then( pets => this.setState({pets}))
