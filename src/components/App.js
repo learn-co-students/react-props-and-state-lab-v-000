@@ -20,10 +20,6 @@ class App extends React.Component {
     this.setState({...this.state, filters: {type: petType}});
   }
 
-  updatePets = (petJSON) => {
-    this.setState({ pets: petJSON});
-  }
-
   onFindPetsClick = () => {
     let url;
     if (this.state.filters.type === 'all') {
@@ -31,16 +27,17 @@ class App extends React.Component {
     } else {
       url = `/api/pets?type=${this.state.filters.type}`;
     }
-    fetch(url).then(resp => resp.json()).then(json => this.updatePets(json));
+    fetch(url).then(resp => resp.json()).then(json => this.setState({ pets: json}));
   }
 
   onAdoptPet = (id) => {
     let petsCopy = this.state.pets;
-    petsCopy.map((pet) => {
+    for(let pet of petsCopy){
       if (pet.id === id){
         pet.isAdopted = true;
       }
-    });
+    }
+    
     this.setState({...this.state, pets: petsCopy});
   }
 

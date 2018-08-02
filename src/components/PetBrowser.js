@@ -4,16 +4,16 @@ import Pet from './Pet'
 
 class PetBrowser extends React.Component {
   renderPets = () => {
-    for (let pet of this.props.pets) {
-      return <Pet key={pet.id} pet={pet} />
-    }
+    return this.props.pets.map(petData => <Pet pet={petData} key={petData.id} onAdoptPet={this.props.onAdoptPet}/>)
   }
+
+  
 
   render() {
     
     return (
       <div className="ui cards">
-        { this.props.children }
+        { this.renderPets() }
       </div>
     )
   }
