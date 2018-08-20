@@ -14,6 +14,59 @@ class App extends React.Component {
       }
     }
   }
+  
+  // Function for updating filters type
+  onChangeType = (event) => {
+    console.log('app change filter type : ', event)
+      this.setState({
+        filters: {
+          ...this.state.filters,
+          type: event,
+        },
+      }, () => {console.log(this.state.filters.type)})
+  }
+  
+  // Fetch pet data
+  fetchData = (url) => {
+    return fetch(url).then((response) =>
+      this.setState({
+          pets: response
+        }, () => {console.log('fetch response : ', response)}))
+  }
+    
+  // Function for fetching pets
+  onFindPetsClick = () => {
+    console.log('fetch pets')
+
+
+    // Determine which url to fetch
+    switch(this.state.filters.type) {
+      case 'all':
+          console.log('fetch all pets')
+          this.fetchData('/api/pets')
+          break;
+      case 'cat':
+          console.log('fetch all cats')
+          this.fetchData('/api/pets?type=cat')
+          break;
+      case 'dog':
+          console.log('fetch all dogs')
+          this.fetchData('/api/pets?type=dog')
+          break;
+      case 'micropig':
+          console.log('fetch all micropigs')
+          this.fetchData('/api/pets?type=micropig')
+          break;
+      default:
+          console.log('switch default')
+    }
+  }
+
+  // Function for pet props
+  onAdoptPet = () => {
+    
+  }
+  
 
   render() {
     return (
@@ -24,7 +77,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={(event) => {this.onChangeType(event)}} onFindPetsClick={(event) => {this.onFindPetsClick(event)}} />
             </div>
             <div className="twelve wide column">
               <PetBrowser />
