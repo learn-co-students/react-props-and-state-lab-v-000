@@ -1,6 +1,21 @@
 import React from 'react'
 
 class Pet extends React.Component {
+  
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      name: this.props.name,
+      type: this.props.type,
+      age: this.props.age,
+      weight: this.props.weight,
+      gender: this.props.gender
+    }
+  }
+  
+
+  
   render() {
     return (
       <div className="card">
