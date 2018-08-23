@@ -15,6 +15,16 @@ class App extends React.Component {
     }
   }
 
+  fetchPets = () => {
+    fetch('/api/pets')
+    .then(res => res.json())
+    .then(pets => this.setState({pets}))
+  }
+
+  onChangeType = ({target: {value}}) => {
+    this.setState({filters: {...this.state.fiteres, type: value}})
+  }
+
   render() {
     return (
       <div className="ui container">
