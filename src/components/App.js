@@ -30,18 +30,8 @@ class App extends React.Component {
         ...this.state,
         pets: json
       }))
-    } else if (this.state.filters.type === 'cat') {
-      fetch('/api/pets?type=cat').then(json => this.setState({
-        ...this.state,
-        pets: json
-      }))
-    } else if (this.state.filters.type === 'dog') {
-      fetch('/api/pets?type=dog').then(json => this.setState({
-        ...this.state,
-        pets: json
-      }))
-    } else if (this.state.filters.type === 'micropig') {
-      fetch('/api/pets?type=micropig').then(json => this.setState({
+    } else {
+      fetch(`/api/pets?type=${this.state.filters.type}`).then(res => res.json()).then(json => this.setState({
         ...this.state,
         pets: json
       }))
