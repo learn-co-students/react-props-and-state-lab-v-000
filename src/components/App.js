@@ -15,6 +15,10 @@ class App extends React.Component {
     }
   }
 
+  onChangeType = () => this.setState({...this.state.filters, type: ""})
+
+  onFindPetsClick = () => fetch(this.state.filters.type === "all" ? "/api/pets" : `/api/pets?type${this.state.type}`).then((petsFetched) => this.setState({pets: petsFetched}))
+
   render() {
     return (
       <div className="ui container">
