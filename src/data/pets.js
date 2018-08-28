@@ -313,7 +313,7 @@ const allPets = [
     weight: 2,
     name: 'Hennessy',
     isAdopted: false,
-  },
+  }
 ];
 
 export const getAll = () => allPets;
