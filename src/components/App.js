@@ -9,7 +9,7 @@ class App extends React.Component {
 
     this.state = {
       pets: [],
-      adoptedPets: [],
+      //adoptedPets: [],
       filters: {
         type: 'all'
       }
@@ -39,10 +39,17 @@ class App extends React.Component {
   }
 
   onAdoptPet = petId => {
-    this.setState({
-      adoptedPets: [...this.state.adoptedPets, petId],
-    });
+    const pets = this.state.pets.map(pet => {
+      return pet.id === petId ? { ...pet, isAdopted: true } : pet
+    })
+    this.setState({ pets })
   }
+
+  //  onAdoptPet = petId => {
+  //   this.setState({
+  //     adoptedPets: [...this.state.adoptedPets, petId],
+  //   });
+  // }
 
   render() {
     return (
