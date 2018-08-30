@@ -36,8 +36,16 @@ class App extends React.Component {
 
 
   fetchPetsOnClick = () => {
-    let selection = this.state.filters.type, uri = '/api/pets'
-    debugger;
+    let selection = this.state.filters.type 
+    let url = '/api/pets'
+
+    if (selection !== 'all') {
+      url += `?type=${selection}`
+    }
+
+    fetch(url)
+    .then(resp => resp.json())
+    .then(pets => this.setState({pets}))
   }
 
 
@@ -53,7 +61,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.fetchPetsOnClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet} />
             </div>
           </div>
         </div>
