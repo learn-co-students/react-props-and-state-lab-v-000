@@ -16,7 +16,6 @@ class App extends React.Component {
   }
 
   onChangeType = ({target: {value}}) => {
-    debugger;
     this.setState({
       filters: {
         ...this.state.filters,
@@ -36,6 +35,12 @@ class App extends React.Component {
   // }
 
 
+  fetchPetsOnClick = () => {
+    let selection = this.state.filters.type, uri = '/api/pets'
+    debugger;
+  }
+
+
   render() {
     return (
       <div className="ui container">
@@ -45,7 +50,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onChangeType={this.onChangeType} />
+              <Filters onChangeType={this.onChangeType} onFindPetsClick={this.fetchPetsOnClick} />
             </div>
             <div className="twelve wide column">
               <PetBrowser />
