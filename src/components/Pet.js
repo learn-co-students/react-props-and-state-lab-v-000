@@ -4,7 +4,7 @@ class Pet extends React.Component {
   constructor(props) {
     super (props)
     this.state = {
-      adoptedStatus: this.props.isAdopted
+      adoptedStatus: this.props.pet.isAdopted,
     }
   }
   gender = (petGender) => {
@@ -15,17 +15,9 @@ class Pet extends React.Component {
     }
   }
 
-  renderAdoptButton = (adoptedStatus) => {
-    if (this.state.adoptedStatus == true) {
-      $('.ui.primary.button').hide()
-    } else {
-      $('.ui.disabled.button').hide()
-    }
-  }
-
-  handleChange = (event) => {
+  changeAdoptStatus = (event) => {
     this.setState({
-      adoptedStatus: true
+      adoptedStatus: true,
     })
   }
 
@@ -46,8 +38,11 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content" >
-          <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button" onClick={this.props.onAdoptPet}>Adopt pet</button>
+          <button className="ui disabled button"
+            className={ this.state.adoptedStatus ? '' : 'hidden' }>Already adopted</button>
+          <button className="ui primary button"
+            className={ this.state.adoptedStatus ? 'hidden' : '' }
+            onClick={this.changeAdoptStatus}>Adopt pet</button>
         </div>
       </div>
     )
