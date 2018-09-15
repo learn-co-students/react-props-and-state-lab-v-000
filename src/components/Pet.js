@@ -3,16 +3,16 @@ import React from 'react'
 class Pet extends React.Component {
 
   pickGender = () => {
-    if (this.props.gender === "female") {
+    if (this.props.pet.gender === "female") {
        return '♀'
     } else {return '♂'}
   }
 
   decideButton = () => {
-    if (this.props.isAdopted === "false") {
+    if (this.props.pet.isAdopted === true) {
       return <button className="ui disabled button">Already adopted</button>
     } else {
-        return <button className="ui primary button">Adopt pet</button>
+        return <button className="ui primary button" onClick={() => this.props.onAdoptPet(this.props.pet.id)}>Adopt pet</button>
       }
   }
 
@@ -22,14 +22,14 @@ class Pet extends React.Component {
         <div className="content">
           <a className="header">
             {this.pickGender()}
-            {this.props.name}
+            {this.props.pet.name}
           </a>
           <div className="meta">
-            <span className="date">{this.props.type}</span>
+            <span className="date">{this.props.pet.type}</span>
           </div>
           <div className="description">
-            <p>Age: {this.props.age}</p>
-            <p>Weight: {this.props.weight}</p>
+            <p>Age: {this.props.pet.age}</p>
+            <p>Weight: {this.props.pet.weight}</p>
           </div>
         </div>
         <div className="extra content">

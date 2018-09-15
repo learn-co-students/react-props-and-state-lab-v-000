@@ -6,16 +6,10 @@ class PetBrowser extends React.Component {
   listPets = () => {
       return this.props.pets.map((value, index) =>
       <Pet
-      isAdopted={value['isAdopted']}
-      key= {index}
-      // onAdoptPet={this.props.onAdoptPet}
-      name={value['name']}
-      type={value['type']}
-      age={value['age']}
-      weight={value['weight']}
-      gender={value['gender']}
-      id={value['id']}/>
-  )}
+      pet = {value}
+      key = {index}
+      onAdoptPet={this.props.onAdoptPet}/>
+    )}
 
   render() {
     return (
