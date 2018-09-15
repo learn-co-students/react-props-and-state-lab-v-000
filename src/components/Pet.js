@@ -5,6 +5,7 @@ class Pet extends React.Component {
     super (props)
     this.state = {
       adoptedStatus: this.props.pet.isAdopted,
+      onAdoptPet: ''
     }
   }
   gender = (petGender) => {
@@ -16,12 +17,24 @@ class Pet extends React.Component {
   }
 
   changeAdoptStatus = (event) => {
+    this.props.onAdoptPet(this.props.pet.id)
     this.setState({
       adoptedStatus: true,
     })
   }
 
   render() {
+
+    const isAdopted = this.state.adoptedStatus
+    let button
+
+    if (isAdopted == true) {
+      button = <button className="ui disabled button">Already adopted</button>
+    } else {
+      button = <button className="ui primary button"
+        onClick={this.changeAdoptStatus}>Adopt pet</button>
+    }
+
     return (
       <div className="card">
         <div className="content">
@@ -38,11 +51,7 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content" >
-          <button className="ui disabled button"
-            className={ this.state.adoptedStatus ? '' : 'hidden' }>Already adopted</button>
-          <button className="ui primary button"
-            className={ this.state.adoptedStatus ? 'hidden' : '' }
-            onClick={this.changeAdoptStatus}>Adopt pet</button>
+          {button}
         </div>
       </div>
     )
