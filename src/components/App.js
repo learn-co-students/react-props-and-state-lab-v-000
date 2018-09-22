@@ -30,7 +30,7 @@ class App extends React.Component {
   //This callback needs to update <App />'s state.filters.type
   onChangeType = newType => {
     this.setState({
-      filters: {type: newType }
+      filters: { ...this.state.filters, type: value }
     })
   }
 
