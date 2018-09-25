@@ -14,7 +14,7 @@ const MALE_DOG = {
   age: 8,
   weight: 6,
   name: 'Kennedy',
-  isAdopted: false,
+  isAdopted: false
 };
 
 const FEMALE_CAT = {
@@ -24,7 +24,7 @@ const FEMALE_CAT = {
   age: 7,
   weight: 6,
   name: 'Cuddles',
-  isAdopted: false,
+  isAdopted: false
 };
 
 const GENDER_ICON_MALE = '♂';
@@ -40,14 +40,16 @@ describe('<Pet />', () => {
     it('should render the correct gender icon for male pets', () => {
       const wrapper = shallow(<Pet pet={MALE_DOG} />);
       expect(
-        wrapper.text().includes(GENDER_ICON_MALE) && !wrapper.text().includes(GENDER_ICON_FEMALE)
+        wrapper.text().includes(GENDER_ICON_MALE) &&
+          !wrapper.text().includes(GENDER_ICON_FEMALE)
       ).to.be.true;
     });
 
     it('should render the correct gender icon for female pets', () => {
       const wrapper = shallow(<Pet pet={FEMALE_CAT} />);
       expect(
-        wrapper.text().includes(GENDER_ICON_FEMALE) && !wrapper.text().includes(GENDER_ICON_MALE)
+        wrapper.text().includes(GENDER_ICON_FEMALE) &&
+          !wrapper.text().includes(GENDER_ICON_MALE)
       ).to.be.true;
     });
 
@@ -95,7 +97,9 @@ describe('<Pet />', () => {
 
     describe('Pet is already adopted', () => {
       it('should only show the already adopted button', () => {
-        const wrapper = shallow(<Pet pet={{ ...FEMALE_CAT, isAdopted: true }} />);
+        const wrapper = shallow(
+          <Pet pet={{ ...FEMALE_CAT, isAdopted: true }} />
+        );
         expect(
           wrapper.find('button.ui.disabled.button').length === 1 &&
             wrapper.find('button.ui.primary.button').length === 0
@@ -104,7 +108,9 @@ describe('<Pet />', () => {
 
       it('should not call the `onAdoptPet` callback prop when the button is clicked', () => {
         const spy = sinon.spy();
-        const wrapper = shallow(<Pet pet={{ ...FEMALE_CAT, isAdopted: true }} onAdoptPet={spy} />);
+        const wrapper = shallow(
+          <Pet pet={{ ...FEMALE_CAT, isAdopted: true }} onAdoptPet={spy} />
+        );
         wrapper.find('button.ui.disabled.button').simulate('click');
         expect(spy.called).to.be.false;
       });
