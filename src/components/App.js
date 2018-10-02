@@ -36,9 +36,8 @@ class App extends React.Component {
       fetch(`/api/pets?type=${this.state.filters.type}`).then(resp => resp.json()).then(pets => this.setState({pets}));
     }
     else {
-      fetch('/api/pets')
+      fetch('/api/pets').then(resp => resp.json()).then(pets => this.setState({pets}));
     }
-    console.log(this.state.pets)
   }
 
   render() {
