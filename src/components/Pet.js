@@ -10,6 +10,14 @@ class Pet extends React.Component {
     }
   }
 
+  whichButton = () => {
+    if (this.props.pet.isAdopted === 'false'){
+      return <button className="ui primary button">Adopt pet</button>
+    } else {
+      return <button className="ui primary button">Adopt pet</button>
+    }
+  }
+
   render() {
     return (
       <div className="card">
@@ -27,8 +35,7 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-
-          <button className="ui primary button">Adopt pet</button>
+          { this.whichButton() }
         </div>
       </div>
     )
