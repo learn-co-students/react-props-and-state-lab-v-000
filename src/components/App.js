@@ -26,6 +26,15 @@ class App extends React.Component {
 
   handleFindPetsClick = () => {
     console.log("find pets button clicked!")
+
+    const url = '/api/pets' + (this.state.filters.type === 'all' ? '' : ('?type=' + this.state.filters.type))
+
+    fetch(url).
+    then((response) => {
+      this.setState({
+        pets: response
+      })
+    })
   }
 
   render() {
@@ -40,7 +49,7 @@ class App extends React.Component {
               <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} />
             </div>
           </div>
         </div>
