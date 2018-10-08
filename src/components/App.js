@@ -15,6 +15,19 @@ class App extends React.Component {
     }
   }
 
+  adoptPet = (petId) => {
+    const newPets = this.state.pets.map((pet) => {
+      if (pet.id === petId){
+        pet.isAdopted = true;
+      }
+      return pet;
+    })
+
+    this.setState({
+      pets: newPets
+    })
+  }
+
   handleChangeType = (newType) => {
     this.setState({
       filters: {
@@ -49,7 +62,7 @@ class App extends React.Component {
               <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.adoptPet} />
             </div>
           </div>
         </div>
