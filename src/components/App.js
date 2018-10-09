@@ -25,9 +25,9 @@ class App extends React.Component {
 
   onFindPetsClick = () => {
     if (this.state.filters.type === "all") {
-      fetch('/api/pets')
+      this.setState({pets: fetch('/api/pets')})
     } else {
-      fetch('/api/pets?type=' + this.state.filters.type)
+      this.setState({pets: '/api/pets?type=' + this.state.filters.type})
     }
   }
 
@@ -47,7 +47,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser onAdoptPet={this.onAdoptPet} />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet} />
             </div>
           </div>
         </div>
