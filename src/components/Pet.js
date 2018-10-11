@@ -6,12 +6,20 @@ class Pet extends React.Component {
     super(props);
   }
 
+  genderSymbol() {
+    if (this.props.pet.gender === "female") {
+      return '♀'
+    } else {
+      return '♂'
+    }
+  }
+
   render() {
     return (
       <div className="card">
         <div className="content">
           <a className="header">
-            {/*'♀' OR '♂' */}
+            {this.genderSymbol()}
             {this.props.pet.name}
           </a>
           <div className="meta">

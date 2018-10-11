@@ -14,11 +14,9 @@ class App extends React.Component {
       }
     }
 
-    this.setState = this.setState.bind(this)
   }
 
   onChangeType = (event) => {
-    debugger;
     this.setState({
       filters: {
         type: event.target.value
@@ -26,24 +24,21 @@ class App extends React.Component {
     })
   }
 
+  fetchPets = (url) => {
+    fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then((myJson) => {
+      this.setState({pets: myJson})
+    })
+  }
+
   onFindPetsClick = () => {
-    debugger;
     if (this.state.filters.type === "all") {
-      fetch('/api/pets')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(myJson) {
-        this.setState({pets: myJson})
-      });
-    } else {
-      fetch('/api/pets?type=' + this.state.filters.type)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(myJson) {
-        this.setState({pets: myJson})
-      });
+      this.fetchPets('/api/pets');
+    } else {    
+      this.fetchPets('/api/pets?type=' + this.state.filters.type);
     }
   }
 

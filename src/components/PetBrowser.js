@@ -16,7 +16,7 @@ class PetBrowser extends React.Component {
   }
 
   makePetList = () => {
-    this.props.pets.map(pet => {
+    return this.props.pets.map(pet => {
       return <div className="ui cards"><Pet pet={pet} /></div>
     })
   }
