@@ -31,16 +31,20 @@ class App extends React.Component {
     }
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({pets: data }));
+      .then(pets => this.setState({pets}));
   }
 
   onAdoptPet = (petId) => {
-    let updatedPets = this.state.pets
-    let petToUpdate = updatedPets.findIndex( (p) => p.id === petId);
-    updatedPets[petToUpdate].isAdopted = true;
-    this.setState({
-      pets: updatedPets
-    })
+    // let updatedPets = this.state.pets
+    // let petToUpdate = updatedPets.findIndex( (p) => p.id === petId);
+    // updatedPets[petToUpdate].isAdopted = true;
+    // this.setState({
+    //   pets: updatedPets
+    // })
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? { ...p, isAdopted: true } : p;
+    });
+    this.setState({ pets }); 
   }
 
   render() {
