@@ -6,11 +6,24 @@ class Pet extends React.Component {
     super(props);
   }
 
-  genderSymbol() {
+  genderSymbol = () => {
     if (this.props.pet.gender === "female") {
       return '♀'
     } else {
       return '♂'
+    }
+  }
+
+  getID = () => {
+    return this.props.pet.id
+  }
+
+  adoptionButton = () => {
+    if (this.props.pet.isAdopted) {
+      return <button className="ui disabled button">Already adopted</button>
+    } else {
+      const id = this.props.pet.id;
+      return <button onClick={() => this.props.onAdoptPet(id)} value={this.props.pet.id} className="ui primary button">Adopt pet</button>
     }
   }
 
@@ -31,8 +44,7 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button">Adopt pet</button>
+          {this.adoptionButton()}
         </div>
       </div>
     )

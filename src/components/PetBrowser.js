@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Pet from './Pet'
+import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 class PetBrowser extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class PetBrowser extends React.Component {
 
   makePetList = () => {
     return this.props.pets.map(pet => {
-      return <div className="ui cards"><Pet pet={pet} /></div>
+      return <div className="ui cards"><Pet pet={pet} onAdoptPet={this.props.onAdoptPet} /></div>
     })
   }
 

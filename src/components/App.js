@@ -42,8 +42,12 @@ class App extends React.Component {
     }
   }
 
-  onAdoptPet = () => {
-
+  onAdoptPet = (id) => {
+    for (let pet in this.state.pets) {
+      if (this.state.pets[pet].id == id) {
+        this.state.pets[pet].isAdopted = true;
+      }
+    }
   }
 
   render() {
