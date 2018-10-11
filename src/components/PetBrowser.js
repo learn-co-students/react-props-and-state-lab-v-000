@@ -14,7 +14,7 @@ class PetBrowser extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ui cards">
         {this.generatePetCards()}
       </div>
     )
