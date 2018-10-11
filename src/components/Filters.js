@@ -11,7 +11,7 @@ class Filters extends React.Component {
       <div className="ui form">
         <h3>Animal type</h3>
         <div className="field">
-          <select name="type" id="type" onChange={this.handleTypeChange}>
+          <select name="type" id="type" onChange={this.handleTypeChange} defaultValue="all">
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>

@@ -2,13 +2,18 @@ import React from 'react'
 
 class Pet extends React.Component {
 
-  isAlreadyAdopted = () => (this.props.pet.isAdopted ? '' : 'disabled'); 
-  isNotAdopted = () => (this.props.pet.isAdopted ? 'disabled' : ''); 
   gender = () => (this.props.pet.gender === "female" ? 9792 : 9794);
   
+  handleAdopt = (event) => {
+    (this.props.onAdoptPet)(this.props.pet.id);
+  }
+  
   render() {
-    console.log("Pet",this.props);
-    console.log("Adopted",this.props.pet.isAdopted);
+    let btn;
+    if (this.props.pet.isAdopted)
+      btn = <button className="ui disabled button">Already adopted</button>
+    else
+      btn = <button className="ui primary button" onClick={this.handleAdopt}>Adopt pet</button>    
 
     return (
       <div className="card">
@@ -26,8 +31,7 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui disabled button" disabled={this.isAlreadyAdopted()}>Already adopted</button>
-          <button className="ui primary button" disabled={this.isNotAdopted()}>Adopt pet</button>
+          {btn}
         </div>
       </div>
     )
