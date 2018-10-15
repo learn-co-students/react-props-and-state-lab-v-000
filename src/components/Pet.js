@@ -13,6 +13,7 @@ class Pet extends React.Component {
     return gender === 'male' ? renderMale : renderFemale
   }
 
+
 render() {
   const { pet } = this.props;
 
