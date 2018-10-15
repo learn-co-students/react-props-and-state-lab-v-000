@@ -15,13 +15,15 @@ class PetBrowser extends React.Component {
 
 	// }
 
-	adoptIt = () => {
-
-	}
+	// onAdoptPet = (adopted) => {
+	// 	if(!adopted){
+	// 	}
+	// }
+	// () => this.onAdoptPet(x.isAdopted)
 
 	showPets = (info) => {
 		// debugger
-		return info.map((x) => <Pet key={x.id} name={x.name} type={x.type} age={x.age} weight={x.weight} gender={x.gender} status={x.isAdopted} onAdoptPet={this.adoptIt}/>);
+		return info.map((x) => <Pet key={x.id} pet={x} onAdoptPet={x.isAdopted}/>);
   	}
 
   render() {
