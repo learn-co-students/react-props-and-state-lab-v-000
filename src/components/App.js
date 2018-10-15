@@ -4,14 +4,31 @@ import Filters from './Filters'
 import PetBrowser from './PetBrowser'
 
 class App extends React.Component {
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
     this.state = {
       pets: [],
       filters: {
         type: 'all'
       }
+    }
+  }
+
+  onChangeType = (selected) => {
+    // debugger
+    // const filter = this.state.filters;
+    // filter.type = selected;
+    const filter = {type: selected.target.value};
+    this.setState({
+      filters: filter
+    });
+  }
+
+  onFindPetsClick(props){
+    if(props === 'all'){
+      return fetch(`/api/pets`).then(resp => resp.json()).then(info => this.setState({pets: info}));
+    }else{
+      return fetch(`/api/pets?type=${props}`).then(resp => resp.json()).then(info => this.setState({pets: info}));
     }
   }
 
@@ -24,10 +41,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.onChangeType} type={this.state.filters.type} onFindPetsClick={() => this.onFindPetsClick(this.state.filters.type)}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets}/>
             </div>
           </div>
         </div>
@@ -35,5 +52,11 @@ class App extends React.Component {
     )
   }
 }
+
+// App.defaultProps = {
+//   filters:{ 
+//     type: 'all'
+//   }
+// }
 
 export default App
