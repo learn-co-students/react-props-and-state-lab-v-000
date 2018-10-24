@@ -5,8 +5,8 @@ class Filters extends React.Component {
     super();
   }
 
-  handleChange = (event) => {
-    this.props.onchange(event.target.value)
+  handleChange = (e) => {
+    this.props.onChangeType(e.target.value)
   }
 
   render() {
@@ -15,7 +15,7 @@ class Filters extends React.Component {
         <h3>Animal type</h3>
         <div className="field">
           <select name="type" id="type" value={this.props.filters.type} 
-          onchange={this.handleChange}>
+          onChange={this.handleChange}>
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>

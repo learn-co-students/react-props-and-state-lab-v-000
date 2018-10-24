@@ -1,6 +1,15 @@
 import React from 'react'
 
 class Pet extends React.Component {
+
+  constructor() {
+    super();
+  }
+  
+  handleOnAdoptPet= ()=>{
+    this.props.onAdoptPet(this.props.pet.id)
+  }
+
   render() {
     const {pet, isAdopted} = this.props
     const {name, type, gender, age, weight} = pet
@@ -22,8 +31,8 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button">Adopt pet</button>
+          {!isAdopted && <button className="ui disabled button" onClick={this.onAdoptPet}>Already adopted</button>}
+          {isAdopted && <button className="ui primary button" onClick={this.onAdoptPet}>Adopt pet</button>}
         </div>
       </div>
     )
