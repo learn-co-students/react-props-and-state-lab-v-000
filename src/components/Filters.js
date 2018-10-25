@@ -19,7 +19,7 @@ class Filters extends React.Component {
   }
   
   handleFindPetsClick = state => {
-//	  debugger
+	  debugger
 	this.props.onFindPetsClick(this.state)
   }
 
@@ -29,7 +29,7 @@ class Filters extends React.Component {
       <div className="ui form">
         <h3>Animal type</h3>
         <div className="field">
-          <select name="type" id="type" onChange={this.handleFilterTypeChange} value={this.state.value}>
+          <select name="type" id="type" onChange={this.handleFilterTypeChange} value={this.props.filters.type}>
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>

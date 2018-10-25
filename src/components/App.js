@@ -2,13 +2,14 @@ import React from 'react'
 
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
+import { getAll } from '../data/pets';
 
 class App extends React.Component {
   constructor() {
     super()
-
+    
     this.state = {
-      pets: [],
+      pets: getAll(),
       filters: {
         type: 'all'
       }
@@ -27,13 +28,36 @@ class App extends React.Component {
  
   onFindPetsClick = (state) => {
     var uri = '/api/pets';
-///    debugger 
+//    debugger 
     if (state.type !== 'all' && state.type !== '') {
 	    uri += '?type=' + state;
     }
 //	debugger
     fetch(uri)
-	  .then((res) => { console.log(res)} )
+	  .then(res => res.json())
+	  .then(pets => console.log(pets))
+		 // { 
+		 // this.setState ({
+		//	  ...this.state.pets,
+		//	  pets: getAll(),
+		//  })
+	//debugger	
+	//	  console.log(res)
+	//  })
+  }
+
+  onAdoptPet = (id) => {
+    const updatePets = [...this.state.pets];
+	  updatePets.forEach((pet) => {
+                    if (pet.id === id) {
+                      pet.isAdopted = true;
+                    }
+            })
+
+	  this.setState ({
+		...this.state.pets,
+	    	pets: updatePets,
+	  })
   }
 
   render() {
@@ -51,7 +75,10 @@ class App extends React.Component {
 	      />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser 
+	        pets = {this.state.pets}
+	    	onAdoptPet = {this.onAdoptPet}
+	      />
             </div>
           </div>
         </div>
