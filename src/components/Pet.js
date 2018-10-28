@@ -1,33 +1,19 @@
 import React from 'react'
 
 class Pet extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      adopted: this.props.pet.onAdoptPet
-    }
-  }
-
-  handleClick = () => {
-    this.setState({
-      adopted: !(this.state.onAdoptPet)
-    })
-  }
-
-  getButton = (decide) => {
-    if(decide) {
-      return (<button className="ui disabled button">Already adopted</button>);
-    }else{
-      return (<button className="ui primary button" onClick={this.handleClick}>Adopt pet</button>);
-    }
+  
+  handleAdoption = event => {
+    this.props.onAdoptPet(this.props.pet.id)
   }
 
   render() {
+    //debugger
+    if (this.props.pet){
     return (
       <div className="card">
         <div className="content">
           <a className="header">
-            {this.props.pet.gender === "male" ? '♂' :'♀'}
+            {this.props.pet.gender === 'female' ? '♀' : '♂'}
             {this.props.pet.name}
           </a>
           <div className="meta">
@@ -39,11 +25,15 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          {this.getButton(this.state.adopted)}
+          {this.props.pet.isAdopted ?
+          <button className="ui disabled button">Already adopted</button> :
+          <button className="ui primary button" onClick={this.handleAdoption}>Adopt pet</button>
+          }
         </div>
       </div>
     )
   }
+}
 }
 
 export default Pet
