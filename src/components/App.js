@@ -2,62 +2,52 @@ import React from 'react'
 
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
-import { getAll } from '../data/pets';
 
 class App extends React.Component {
   constructor() {
     super()
     
     this.state = {
-      pets: getAll(),
+      pets: [],
       filters: {
         type: 'all'
       }
     }
   }
   
-  onChangeType = (event) => {
-//	  debugger
+  onChangeType = (petType) => {
     this.setState ({
       filters: {
 	...this.state.filters,
-        type: event.target.value
+        type: petType
       }
     });
   }
  
-  onFindPetsClick = (state) => {
+  onFindPetsClick = () => {
     var uri = '/api/pets';
-//    debugger 
-    if (state.type !== 'all' && state.type !== '') {
-	    uri += '?type=' + state;
+
+    if (this.state.filters.type !== 'all' && this.state.filters.type !== '') {
+    	uri += '?type=' + this.state.filters.type;
     }
-//	debugger
+
     fetch(uri)
 	  .then(res => res.json())
-	  .then(pets => console.log(pets))
-		 // { 
-		 // this.setState ({
-		//	  ...this.state.pets,
-		//	  pets: getAll(),
-		//  })
-	//debugger	
-	//	  console.log(res)
-	//  })
+	  .then(pets => {
+		this.setState({ pets })
+		console.log(this.state)	   
+	  })
   }
 
-  onAdoptPet = (id) => {
-    const updatePets = [...this.state.pets];
-	  updatePets.forEach((pet) => {
-                    if (pet.id === id) {
-                      pet.isAdopted = true;
-                    }
-            })
+  onAdoptPet = petId => {
+    const pets = this.state.pets.map(pet => pet.id === petId ? {...pet, isAdopted: true} : pet)
+		  
+  	this.setState ({
+		pets
+	})
 
-	  this.setState ({
-		...this.state.pets,
-	    	pets: updatePets,
-	  })
+	  console.log(pets);
+	  console.log(this.state);
   }
 
   render() {
@@ -70,6 +60,7 @@ class App extends React.Component {
           <div className="ui grid">
             <div className="four wide column">
               <Filters 
+	    	filters = {this.state.filters}
 	    	onChangeType ={this.onChangeType}
 		onFindPetsClick ={this.onFindPetsClick}	        
 	      />
