@@ -2,8 +2,8 @@ import React from 'react'
 
 class Filters extends React.Component {
 
-  handlePetsClick = (event)=> {
-    this.props.onFindPetsClick(event.target.value)
+  handlePetsClick = ()=> {
+    this.props.onFindPetsClick()
   }
 
   handleChangeType = (event) => {
