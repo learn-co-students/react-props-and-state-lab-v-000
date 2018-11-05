@@ -10,6 +10,10 @@ class Pet extends React.Component {
     }
   }
 
+  handleAdopt = (petId) => {
+    petId = this.props.onAdoptPet(this.props.pet.id)
+  }
+
   render() {
     return (
       <div className="card">
@@ -29,7 +33,7 @@ class Pet extends React.Component {
         </div>
         <div className="extra content">
           <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button">Adopt pet</button>
+          <button className="ui primary button" onClick={this.handleAdopt}>Adopt pet</button>
         </div>
       </div>
     )

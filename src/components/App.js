@@ -31,7 +31,11 @@ class App extends React.Component {
       }
     }
 
-      onAdoptPet = () => {
+      onAdoptPet = (petId) => {
+        var pet = this.state.pets.filter(pet => pet.id === petId)
+      }
+
+      isAdopted = () => {
 
       }
 
@@ -51,7 +55,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.petsArray()}/>
+              <PetBrowser pets={this.petsArray()} onAdoptPet={this.onAdoptPet} isAdopted={this.isAdopted}/>
             </div>
           </div>
         </div>
