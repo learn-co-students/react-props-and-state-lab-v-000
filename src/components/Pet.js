@@ -22,7 +22,6 @@ class Pet extends React.Component {
   handleAdopt = (event, petId) => {
     console.log(this)
     petId = this.props.onAdoptPet(this.props.pet.id)
-    this.setState({notAdopted: 'none', alreadyAdopted: 'inline-block'})
   }
 
   checkAdopted = (petId) => {
@@ -47,8 +46,9 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui disabled button" style={{display: this.state.alreadyAdopted}}>Already adopted</button>
-          <button className="ui primary button" onClick={this.handleAdopt} style={{display: this.state.notAdopted}}>Adopt pet</button>
+        {this.props.pet.isAdopted ?
+          (<button className="ui disabled button">Already adopted</button>) :
+          (<button className="ui primary button" onClick={this.handleAdopt}>Adopt pet</button>)}
         </div>
       </div>
     )
