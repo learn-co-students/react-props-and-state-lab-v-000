@@ -42,7 +42,6 @@ class App extends React.Component {
           myJson.forEach(pet => petArray.push(pet))
         });
     }
-    console.log(this.state.pets)
   }
 
   render() {
@@ -57,7 +56,7 @@ class App extends React.Component {
               <Filters onClick={this.onFindPetsClick} onChange={this.onChangeType}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets = {this.state.pets} />
             </div>
           </div>
         </div>

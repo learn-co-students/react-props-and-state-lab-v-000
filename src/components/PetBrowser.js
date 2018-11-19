@@ -3,8 +3,13 @@ import React from 'react'
 import Pet from './Pet'
 
 class PetBrowser extends React.Component {
+
+
   render() {
-    return <div className="ui cards"><Pet /></div>
+    const renderPets = this.props.pets.map( pet =>
+        { return <Pet pet={pet}/>}
+    )
+    return (<div className="ui cards">{renderPets}</div>)
   }
 }
 
