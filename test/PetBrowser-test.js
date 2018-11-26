@@ -24,7 +24,9 @@ describe('<PetBrowser />', () => {
       wrapper
         .find(Pet)
         .getElements()
-        .every(node => node.props.onAdoptPet === noop)
+        .every(node => {
+            return node.props.onAdoptPet === noop
+        })
     ).to.be.true;
   });
 });
