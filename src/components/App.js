@@ -42,8 +42,20 @@ class App extends React.Component {
   };
 
 
-  changePetStatus = (event) => {
-    return null
+  changePetStatus = (petId) => {
+
+    let pet = this.state.pets.find((pet)=> {
+      return pet.id === petId
+    })
+
+    let petsNew = this.state.pets.filter((pet)=> {
+      return pet.id !== petId
+    })
+
+    if (pet.isAdopted === false){
+      pet.isAdopted = true
+      this.setState({ pets: [...petsNew, pet] })
+      }
   }
 
 

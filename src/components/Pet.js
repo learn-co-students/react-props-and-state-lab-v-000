@@ -11,11 +11,17 @@ class Pet extends React.Component {
     }
   }
 
+  handleClickAdopt = (petId) => {
+    //debugger;
+    console.log(petId);
+    this.props.onAdoptPet(petId);
+  }
+
   displayAdoptStatus = () => {
     if (this.props.pet.isAdopted === true) {
-      return <button className="ui disabled button">Already adopted</button>
+      return <button className="ui disabled button" >Already adopted</button>
     } else {
-      return <button className="ui primary button">Adopt pet</button>
+      return <button className="ui primary button" onClick={this.handleClickAdopt(this.props.pet.id)} >Adopt pet</button>
     }
   }
 
