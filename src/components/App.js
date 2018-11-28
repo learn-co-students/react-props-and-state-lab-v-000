@@ -42,48 +42,6 @@ class App extends React.Component {
   };
 
 
-  findPets = (event) => {
-    debugger;
-    console.log(event)
-    console.log(this.state.filters.type)
-    //debugger;
-    //console.log(target.)
-
-    if (this.state.filters.type === "All") {
-      //fetch('/api/pets')
-      //debugger;
-      const pets = fetch('/api/pets').then((resp) => resp.json())
-      console.log(pets);
-      //debugger;
-      this.setState({
-        pets: [fetch('/api/pets').then((resp) => resp.json())],
-        filters: {
-          type: 'all'
-        }
-      })
-      //const filterType = this.state.filters.type
-      debugger;
-    } else if (this.state.filters.type === "Cats") {
-      debugger;
-      fetch('/api/pets?type=cat')
-      this.setState({
-        pets: ['cats']
-      })
-    } else if (this.state.filters.type ===  "Dogs" ) {
-      debugger;
-      fetch('/api/pets?type=dog')
-      this.setState({
-        pets: ['dog']
-      })
-    } else if (this.state.filters.type === "Micropigs") {
-      debugger;
-      fetch('/api/pets?type=micropig')
-      this.setState({
-        pets: ['micropig']
-      })
-    }
-  }
-
   changePetStatus = (event) => {
     return null
   }
