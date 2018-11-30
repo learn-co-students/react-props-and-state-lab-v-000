@@ -14,6 +14,7 @@ const ALL_PETS = getAll();
 describe('<PetBrowser />', () => {
   it('should render Pet components based on its props', () => {
     const wrapper = shallow(<PetBrowser pets={ALL_PETS} />);
+    console.log('wrapper', wrapper)
     expect(wrapper.find(Pet).length).to.equal(ALL_PETS.length);
   });
 
