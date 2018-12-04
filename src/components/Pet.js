@@ -1,30 +1,27 @@
 import React from 'react'
-
-class Pet extends React.Component {
-  render() {
-    return (
-      <div className="card">
-        <div className="content">
-          <a className="header">
-            {this.props.pet.gender === 'male' && '♂'}
-            {this.props.pet.gender === 'female' && '♀'}
-          </a>
-          <div className="meta">
-            <span className="date">{this.props.pet.type}</span>
-          </div>
-          <div className="description">
-            <p>Name: {this.props.pet.name}</p>
-            <p>Age: {this.props.pet.age}</p>
-            <p>Weight: {this.props.pet.weight}</p>
-          </div>
-        </div>
-        <div className="extra content">
-          {this.props.pet.isAdopted && <button className="ui disabled button">Already adopted</button>}
-          {!this.props.pet.isAdopted && <button className="ui primary button" onClick={() => this.props.onAdoptPet(this.props.pet.id)}>Adopt pet</button>}
-        </div>
-      </div>
-    )
-  }
-}
-
+// destructure props to make pet and onAdopt function directly accessible
+const Pet = ( { pet, onAdoptPet } ) => (
+  <div className="card">
+    <div className="content">
+      <a className="header">
+        {pet.gender === 'male' && '♂'}
+        {pet.gender === 'female' && '♀'}
+      </a>
+    <div className="meta">
+      <span className="date">{pet.type}</span>
+    </div>
+    <div className="description">
+      <p>Name: {pet.name}</p>
+      <p>Age: {pet.age}</p>
+      <p>Weight: {pet.weight}</p>
+    </div>
+  </div>
+  <div className="extra content">
+    {/* conditional rendering will display correct button */}
+    {pet.isAdopted && <button className="ui disabled button">Already adopted</button>}
+    {/* callback function takes id argument and updates state.pets in App to reflect change of pet status */}
+    {!pet.isAdopted && <button className="ui primary button" onClick={() => onAdoptPet(pet.id)}>Adopt pet</button>}
+  </div>
+</div>
+)
 export default Pet
