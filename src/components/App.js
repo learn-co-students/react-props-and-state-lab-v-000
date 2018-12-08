@@ -15,7 +15,7 @@ class App extends React.Component {
     }
   }
 
-  fetchPets = () => {
+  onFindPetsClick = () => {
     let url = '/api/pets';
 
     if (this.state.filters.type !== 'all') {
@@ -48,7 +48,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onChangeType={this.onChangeType} onFindPetsClick={this.fetchPets}/>
+              <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
