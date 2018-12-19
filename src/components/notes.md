@@ -19,3 +19,19 @@ Filters
   -recieves a onFindPetsClick cb prop, called when a user clicks Find pets button. 
 
 PetBrowser
+ -- receive a pets prop-- an array of pets that the component uses to render <Pet /> components. App filters which pets are in it. 
+ -- should recieve an onAdoptPet prop as cb prop, gets passed to Pet children components 
+
+Pet 
+ -- receives a pet Prop (child of PetBrowser). Use attributes in the prop to render data on the pet card. name type age weight. Based on gender, it gets a male or female symbol. 
+
+ -- receives an isAdopted prop, use it to render the correct button on the card. if adopted, show disabled button. if note, show the primary button. 
+
+ -- receives an onAdoptPet cb prop. Gets called with pet's id when user clicks the adopt pet button, but not if they click the disabled button. 
+
+App 
+    -Filters
+    --PetBrowser
+        Pet
+ 
+ 256 -- seth, 
