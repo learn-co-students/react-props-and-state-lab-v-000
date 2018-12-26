@@ -45,9 +45,9 @@ onAdoptPet= (id) => {
   // let newPetArray = this.state.pets.map((pet) => {
   //   return id === pet.id ? {...pet, isAdopted: true} : pet
   // })
-  debugger
+  
   this.setState({
-    adoptedPets: {...this,state.adoptedPets, id}
+    adoptedPets: {...this.state.adoptedPets, id}
   })
 } 
   
@@ -64,7 +64,7 @@ onAdoptPet= (id) => {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
+              <PetBrowser adoptedPets={this.state.adoptedPets} pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
