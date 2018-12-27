@@ -44,7 +44,7 @@ onAdoptPet= (id) => {
   let newPetArray = this.state.pets.map((pet) => {
     return id === pet.id ? {...pet, isAdopted: true} : pet
   })
-  debugger
+  
   this.setState({
     pets: newPetArray
   })
