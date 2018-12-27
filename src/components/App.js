@@ -9,7 +9,6 @@ class App extends React.Component {
 
     this.state = {
       pets: [],
-      adoptedPets: [],
       filters: {
         type: 'all'
       }
@@ -42,13 +41,14 @@ class App extends React.Component {
 
 onAdoptPet= (id) => {
 
-  // let newPetArray = this.state.pets.map((pet) => {
-  //   return id === pet.id ? {...pet, isAdopted: true} : pet
-  // })
-  
-  this.setState({
-    adoptedPets: {...this.state.adoptedPets, id}
+  let newPetArray = this.state.pets.map((pet) => {
+    return id === pet.id ? {...pet, isAdopted: true} : pet
   })
+  debugger
+  this.setState({
+    pets: newPetArray
+  })
+  
 } 
   
 
@@ -64,7 +64,7 @@ onAdoptPet= (id) => {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser adoptedPets={this.state.adoptedPets} pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
