@@ -21,7 +21,7 @@ class App extends React.Component {
         ...this.state.filters,
         type: event.target.value
       }
-    }, console.log(this.state.type))
+    })
   }
 
 
@@ -35,7 +35,7 @@ class App extends React.Component {
   setPets = (pets) => {
     this.setState({
       pets: pets
-    }, console.log(this.state.pets))
+    })
   }
 
   onFindPetsClick = () => {
@@ -45,8 +45,10 @@ class App extends React.Component {
   }
 
   onAdoptPet = (id) => {
+    console.log("fired onAdoptPet")
+    const newPets = this.state.pets.map(pet => { return pet.id === id ? {...pet, isAdopted: true } : pet });
     this.setState({
-      pets: this.state.pets.map(pet => { return pet.id === id ? {...pet, adoptStatus: true } : pet })
+      pets: newPets
     })
   }
 
