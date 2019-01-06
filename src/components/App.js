@@ -15,14 +15,16 @@ class App extends React.Component {
     }
   }
 
-  onChangeType = (type) => {
+  onChangeType = (event) => {
     this.setState({
       filters: {
         ...this.state.filters,
-        type: type
+        type: event.target.value
       }
-    })
+    }, console.log(this.state.type))
   }
+
+
 
   getPets = () => {
     let typeChoice;
@@ -33,13 +35,17 @@ class App extends React.Component {
   setPets = (pets) => {
     this.setState({
       pets: pets
-    })
+    }, console.log(this.state.pets))
   }
 
   onFindPetsClick = () => {
     this.getPets()
     .then(pets =>
-      this.setPets)
+      this.setPets(pets))
+  }
+
+  onAdoptPet = () => {
+
   }
 
   render() {
@@ -54,7 +60,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets}/>
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
