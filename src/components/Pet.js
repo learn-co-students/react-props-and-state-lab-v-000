@@ -7,7 +7,7 @@ class Pet extends React.Component {
   }
 
   renderButton = () => {
-    if(this.props.adoptStatus === true) {
+    if(this.props.pet.isAdopted === true) {
         return <button className="ui disabled button">Already adopted</button>
       } else { return <button className="ui primary button" onClick={this.handleButtonClick}>Adopt pet</button> }
   }
