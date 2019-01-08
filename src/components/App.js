@@ -15,6 +15,14 @@ class App extends React.Component {
     }
   }
 
+  handleChange = (pet) => {
+    this.setState({
+      filters: {
+        type: pet.value
+      }
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
