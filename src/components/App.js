@@ -15,12 +15,16 @@ class App extends React.Component {
     }
   }
 
-  handleChange = (pet) => {
+  handlePetChange = (pet) => {
     this.setState({
       filters: {
         type: pet.value
       }
     })
+  }
+
+  onFindPetsClick = () => {
+
   }
 
   render() {
