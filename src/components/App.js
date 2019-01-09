@@ -24,7 +24,15 @@ class App extends React.Component {
   }
 
   onFindPetsClick = () => {
+    let url = '/api/pets'
 
+    if (this.state.filters.type !== 'all') {
+      url += `?type=${this.state.filters.type}`
+    }
+
+    fetch(url)
+      .then(res => res.json())
+      .then(pets => this.setState({ pets }))
   }
 
   render() {
