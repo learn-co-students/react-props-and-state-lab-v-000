@@ -16,9 +16,17 @@ class App extends React.Component {
     }
   }
 
-  onChangeType = ({ target: { value } }) => {
-    this.setState({ filters: { ...this.state.filters, type: value } },() => console.log("*** Pet:", value))
+  onChangeType = (pets) => {
+    this.setState({
+      filters:{
+        type: pets.value 
+      }
+    },() => console.log("*** Pet:", pets))
   }
+
+  // onChangeType = ({ target: { value } }) => {
+  //   this.setState({ filters: { ...this.state.filters, type: value } },() => console.log("*** Pet:", value))
+  // }
 
   onFindPetsClick = () => {
     let url = '/api/pets'
