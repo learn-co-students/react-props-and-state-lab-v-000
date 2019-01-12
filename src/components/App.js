@@ -9,7 +9,6 @@ class App extends React.Component {
 
     this.state = {
       pets: [],
-      adoptedPets: [],
       filters: {
         type: 'all'
       }
@@ -40,10 +39,11 @@ class App extends React.Component {
 
 
   handleAdoptPet = petId => {
-    this.setState({
-      adoptedPets: [...this.state.adoptedPets, petId]
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? {...p, isAdopted: true} : p;
     })
-  }
+    this.setState({ pets });
+  };
 
   render() {
     return (
@@ -60,7 +60,6 @@ class App extends React.Component {
             </div>
             <div className="twelve wide column">
               <PetBrowser pets={this.state.pets}
-                adoptedPets = {this.state.adoptedPets}
                 onAdoptPet={this.handleAdoptPet}
                 />
             </div>
