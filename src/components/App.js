@@ -1,13 +1,12 @@
 
 import React from 'react'
-
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
 
 class App extends React.Component {
   constructor() {
     super()
-
+    // Set initial state
     this.state = {
       pets: [],
       filters: {
@@ -16,34 +15,35 @@ class App extends React.Component {
     }
   }
 
-  onChangeType = (pets) => {
+  onChangeType = ({target: { value }}) => {
+    // update <App />'s state.filters.type
     this.setState({
       filters:{
-        type: pets.value 
+        type: value 
       }
-    },() => console.log("*** Pet:", pets))
+    })
   }
 
-  // onChangeType = ({ target: { value } }) => {
-  //   this.setState({ filters: { ...this.state.filters, type: value } },() => console.log("*** Pet:", value))
-  // }
-
   onFindPetsClick = () => {
-    let url = '/api/pets'
+    // fetch a list of pets using fetch()
 
+    let url = '/api/pets' // All pets
+   
     if (this.state.filters.type !== 'all') {
-      url += `?type=${this.state.filters.type}`
+      url += `?type=${this.state.filters.type}` // A specific pet type; e.g. /api/pets?type=cat
     }
 
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({ pets: data.pets }))
+      .then(pets => this.setState({ pets },() => console.log("*** pets:", pets)))
   }
 
   onAdoptPet = petId => {
     const pets = this.state.pets.map(pet => {
+      // Set isAdopted to true for the adopted pet
       return pet.id === petId ? { ...pet, isAdopted: true } : pet
     })
+    // Update the pets array
     this.setState({ pets })
   }
 
