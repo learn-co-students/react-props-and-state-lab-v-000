@@ -26,36 +26,22 @@ class App extends React.Component {
       })
     }
 
-  onFindPetsClick= ()=>{
-    let type = this.state.filters.type
-    console.log(type)
-    if(type === 'all'){
-       fetch('/api/pets').then(response=> response.json()).then(data=>{
-         this.setState({pets: data})
+    onFindPetsClick=()=>{
+      let url= '/api/pets'
+      let type= this.state.filters.type
+      if(type === 'all'){
+        fetch(url).then(response=> response.json()).then(data=>{
+          this.setState({pets: data})
 
-     })
+      })}else{
+        url += `?type=${type}`
+        fetch(url).then(response=> response.json()).then(data=>{
+          this.setState({pets: data})
+
+      })
     }
-
-    if(type === 'cat'){
-     fetch('/api/pets?type=cat').then(response=> response.json()).then(data=>{
-       this.setState({pets: data})
-
-   })
   }
-    if(type === 'dog'){
-      fetch('/api/pets?type=dog').then(response=> response.json()).then(data=>{
-        this.setState({pets: data})
 
-    })
-   }
-    if(type === 'micropig'){
-       fetch('/api/pets?type=micropig').then(response=> response.json()).then(data=>{
-         this.setState({pets: data})
-
-     })
-    }
-
-  }
 
   onAdoptPet = (id)=>{
     let adoptedPets = this.state.adoptedPets
