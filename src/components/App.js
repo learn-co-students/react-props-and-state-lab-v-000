@@ -15,21 +15,27 @@ class App extends React.Component {
     }
   }
 
-  onFindPetsClick() {
-    let url='api/pets';
+  onFindPetsClick=()=> {
+    let url='/api/pets';
     if(this.state.filters.type !== 'all') {
-      endpoint += `?type=${this.state.filters.type}`;
+      url += `?type=${this.state.filters.type}`;
     }
-    fetch(url).then(res => res.json()).then(pets => this.setState({pets})).catch(err=> console.log("Error"));
+    fetch(url)
+    .then(res => res.json())
+    .then(pets => this.setState({pets}))
+    .catch(err => console.error("Error"));
   }
 
   onChangeType=(event)=> {
     this.setState({filters: {...this.state.filters, type: event.target.value }});
   }
 
-  // onAdoptPet(){
-  //   this.setState({})
-  // }
+  onAdoptPet=(iD)=>{
+    const newPets = this.state.pets.map(pet => (
+      pet.id===iD ? {...pet, isAdopted: true } : pet
+    ))
+    this.setState({pets: newPets});
+  }
   
   render() {
     return (
