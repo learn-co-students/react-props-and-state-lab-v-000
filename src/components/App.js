@@ -33,8 +33,8 @@ class App extends React.Component {
       });
   }
 
-  onAdoptPet = (petID, e) => {
-    console.log("onAdoptPet was called and the event is: ", e)
+  onAdoptPet = (petID) => {
+    console.log("it fired")
     this.setState({
       pets: this.state.pets.map((aPet)=>{
         if(petID === aPet.id){
