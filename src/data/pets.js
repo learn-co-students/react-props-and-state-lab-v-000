@@ -51,7 +51,7 @@ const allPets = [
     age: 10,
     weight: 5,
     name: 'Wisdom',
-    isAdopted: false,
+    isAdopted: true,
   },
   {
     id: '9750e959-f8ef-465f-9e13-16323454dc1f',
@@ -69,7 +69,7 @@ const allPets = [
     age: 9,
     weight: 4,
     name: 'Radar',
-    isAdopted: false,
+    isAdopted: true,
   },
   {
     id: '18854fc7-00c9-4d6a-b3c6-bfd9a06ce1e7',
@@ -96,7 +96,7 @@ const allPets = [
     age: 6,
     weight: 2,
     name: 'Max',
-    isAdopted: false,
+    isAdopted: true,
   },
   {
     id: '20f15086-7952-4ead-bee4-bd8d8f990738',
@@ -114,7 +114,7 @@ const allPets = [
     age: 8,
     weight: 4,
     name: 'Sprout',
-    isAdopted: false,
+    isAdopted: true,
   },
   {
     id: '1a56b25a-008f-4c00-bdb7-9302ca608964',
@@ -132,7 +132,7 @@ const allPets = [
     age: 1,
     weight: 3,
     name: 'Teasle',
-    isAdopted: false,
+    isAdopted: true,
   },
   {
     id: 'a0afc449-6705-4c7e-8b96-efcfc997dc86',
@@ -159,7 +159,7 @@ const allPets = [
     age: 6,
     weight: 5,
     name: 'Ivy',
-    isAdopted: false,
+    isAdopted: true,
   },
   {
     id: '103bf0d9-00a3-41d4-b980-a2f3518a6b15',
@@ -177,7 +177,7 @@ const allPets = [
     age: 8,
     weight: 3,
     name: 'Spiral',
-    isAdopted: false,
+    isAdopted: true,
   },
   {
     id: '9e7cc723-d7f5-440d-8ead-c311e68014ee',
@@ -213,7 +213,7 @@ const allPets = [
     age: 5,
     weight: 1,
     name: 'Radar',
-    isAdopted: false,
+    isAdopted: true,
   },
   {
     id: 'a7ea570c-275f-4a4d-aa71-fdd1f72a2c02',
