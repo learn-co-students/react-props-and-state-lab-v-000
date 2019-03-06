@@ -32,7 +32,7 @@ class App extends React.Component {
   pclick = () => {
 
     const filter = this.getFilterType()
-    if (filter == 'all') {
+    if (filter === 'all') {
     fetch(`/api/pets`)
    .then(response => response.json())
    .then(data => this.setState({ pets: data }));
