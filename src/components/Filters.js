@@ -4,12 +4,14 @@ class Filters extends React.Component {
 
 
   handleChange = event => {
-    event.preventDefault()
   const temp = event.target.value
   return this.props.onChangeType(temp)
   }
 
-
+  handleClick = event => {
+    const temp1 = event
+    return this.props.onFindPetsClick()
+  }
 
 
 
@@ -27,7 +29,8 @@ class Filters extends React.Component {
         </div>
 
         <div className="field">
-          <button className="ui secondary button">Find pets</button>
+          <button className="ui secondary button"
+            onClick={event => this.handleClick(event)}>Find pets</button>
         </div>
       </div>
     )
