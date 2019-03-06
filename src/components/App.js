@@ -44,8 +44,8 @@ class App extends React.Component {
     console.log(this.state.pets)
   }
 
-  onAdoptPet = () => {
-    console.log('adopt pet');
+  onAdoptPet = (petid) => {
+    console.log('petid');
   }
 
   render() {
