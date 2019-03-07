@@ -15,7 +15,44 @@ class App extends React.Component {
     }
   }
 
+  ctype = (typenew) => {
+    console.log('changing type');
+    const new1 = typenew
+        this.setState({
+          filters: {
+            ...this.state.filters,
+            type: new1,
+          }
+        });
+  };
+
+  getFilterType = () => (this.state.filters.type)
+  getpets = () => (this.state.pets)
+
+  pclick = () => {
+
+    const filter = this.getFilterType()
+    if (filter === 'all') {
+    fetch(`/api/pets`)
+   .then(response => response.json())
+   .then(data => this.setState({ pets: data }));
+    } else {
+      fetch(`/api/pets?type=${filter}`)
+     .then(response => response.json())
+     .then(data => this.setState({ pets: data }));
+    }
+    console.log(this.state.pets)
+  }
+
+  onAdoptPet = (petid) => {
+    console.log(this.state.pets);
+    let petcopy = [...this.state.pets];
+    const newstatus = petcopy.map(obj => (obj.id == petid)? {...obj,isAdopted: true}:(obj))
+    const adopted = this.setState({ pets: newstatus })
+  }
+
   render() {
+    console.log(this.state.pets)
     return (
       <div className="ui container">
         <header>
@@ -24,11 +61,12 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.ctype} onFindPetsClick={this.pclick} getFilterType={this.getFilterType}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
+            <h3>{this.state.filters.type}</h3>
           </div>
         </div>
       </div>
