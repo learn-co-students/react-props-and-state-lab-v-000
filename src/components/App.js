@@ -45,7 +45,10 @@ class App extends React.Component {
   }
 
   onAdoptPet = (petid) => {
-    console.log('petid');
+    console.log(this.state.pets);
+    let petcopy = [...this.state.pets];
+    const newstatus = petcopy.map(obj => (obj.id == petid)? {...obj,isAdopted: true}:(obj))
+    const adopted = this.setState({ pets: newstatus })
   }
 
   render() {
