@@ -26,27 +26,22 @@ class App extends React.Component {
 
   onFindPetsClick = (event) => {
     event.preventDefault()
-
+    let url
+    let petData
     const petType = this.state.filters.type
 
-    if (this.state.filters.type === 'all') {
-      fetch('/api/pets')
-      .then(function(response) {
-        return response.json()
-      })
-      .then(function(myJson) {
-        const petData = JSON.stringify(myJson)
-      })
-      // [{"id":"9750e959-f8ef-465f-9e13-16323454dc1f","type":"micropig","gender":"male","age":4,"weight":5,"name":"Hemingway","isAdopted":false}
-    }else{
-      fetch(`/api/pets?type=${petType}`)
-      .then(function(response) {
-        return response.json()
-      })
-      .then(function(myJson) {
-        const petData = JSON.stringify(myJson)
-      })
-    }
+    if (this.state.filters.type === 'all') { url = '/api/pets' }
+    else { url = `/api/pets?type=${petType}` }
+
+    fetch(url)
+    .then(function(response) {
+      return response.json()
+    })
+    .then(function(myJson) {
+      petData = JSON.stringify(myJson)
+
+    })
+    return petData
   }
 
   onAdoptPet = (event) => {
@@ -55,7 +50,6 @@ class App extends React.Component {
   }
 
   render() {
-
     return (
       <div className="ui container">
         <header>
