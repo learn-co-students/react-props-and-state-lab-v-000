@@ -8,8 +8,13 @@ class App extends React.Component {
     super()
 
     this.state = {
+      // results of your fetch request so you can pass the pet data down as props to <PetBrowser />
+      // pet data received should include information on individual pets and their adoption status.
       pets: [],
+      // The URL of the API is /api/pets with an optional query parameter
       filters: {
+        // If the type is 'all', send a request to /api/pets
+        // If.../api/pets?type=cat
         type: 'all'
       }
     }
@@ -24,7 +29,8 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              // update state.filters.type // fetch a list of pets using fetch()
+              <Filters onChangeType={this.onChangeType} onFindPetClick={this.onFindPetClick}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser />
