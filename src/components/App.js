@@ -26,7 +26,7 @@ class App extends React.Component {
 
   onFindPetsClick = (event) => {
     event.preventDefault()
-    // fetch
+    // fetch setup and fetch
     let url
     const petType = this.state.filters.type
 
@@ -35,7 +35,7 @@ class App extends React.Component {
 
     fetch(url)
     .then((resp) => resp.json())
-    .then((data) => JSON.stringify(data))
+    // .then((data) => JSON.stringify(data))
     .then((data) => this.setState({ pets: data }))
   }
 
