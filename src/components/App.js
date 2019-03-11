@@ -20,6 +20,16 @@ class App extends React.Component {
     }
   }
 
+  onChangeType = (event) => {
+    event.preventDefault()
+    const type = event.target.value
+    console.log("update this.filters.type!!!!")
+    console.log(type)
+    // setState({
+    //
+    // })
+  }
+
   render() {
     return (
       <div className="ui container">
