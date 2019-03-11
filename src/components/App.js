@@ -26,21 +26,17 @@ class App extends React.Component {
 
   onFindPetsClick = (event) => {
     event.preventDefault()
+    // fetch
     let url
-    let petData
     const petType = this.state.filters.type
 
     if (this.state.filters.type === 'all') { url = '/api/pets' }
     else { url = `/api/pets?type=${petType}` }
 
-    petData = fetch(url)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(myJson) {
-      console.log(JSON.stringify(myJson));
-    })
-    console.log(petData)
+    fetch(url)
+    .then((resp) => resp.json())
+    .then((data) => JSON.stringify(data))
+    .then((data) => this.setState({ pets: data }))
   }
 
   onAdoptPet = (event) => {
