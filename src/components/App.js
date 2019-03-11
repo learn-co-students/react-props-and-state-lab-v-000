@@ -39,16 +39,16 @@ class App extends React.Component {
     event.preventDefault()
     console.log("You clicked the BUTTON!")
     // FETCH
-    // if (this.state.filters.type === 'all')
-    //
-    // fetch('/api/pets')
-    // .then(function(response) {
-    //   return response.json()
-    // })
-    // .then(function(myJson) {
-    //   console.log(JSON.stringify(myJson))
-    // })
+    if (this.state.filters.type === 'all') {
 
+      fetch('/api/pets')
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(myJson) {
+        console.log(JSON.stringify(myJson))
+      })
+    }
   }
 
   onAdoptPet = (event) => {
