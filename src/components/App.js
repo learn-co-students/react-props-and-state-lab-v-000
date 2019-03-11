@@ -25,9 +25,7 @@ class App extends React.Component {
     const petType = event.target.value
     console.log(petType)
     this.setState({
-      filters: {
-        type: petType
-      }
+      filters: { type: petType }
     })
   }
 
@@ -45,7 +43,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetClick={this.onFindPetClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets}/>
             </div>
           </div>
         </div>
