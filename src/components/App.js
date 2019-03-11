@@ -29,6 +29,11 @@ class App extends React.Component {
     })
   }
 
+  onAdoptPet = (event) => {
+    event.preventDefault()
+    console.log("")
+  }
+
   render() {
     console.log(this.state.filters)
     return (
@@ -43,7 +48,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetClick={this.onFindPetClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets}/>
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
