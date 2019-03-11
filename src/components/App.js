@@ -22,15 +22,17 @@ class App extends React.Component {
 
   onChangeType = (event) => {
     event.preventDefault()
-    const type = event.target.value
-    console.log("update this.filters.type!!!!")
-    console.log(type)
-    // setState({
-    //
-    // })
+    const petType = event.target.value
+    console.log(petType)
+    this.setState({
+      filters: {
+        type: petType
+      }
+    })
   }
 
   render() {
+    console.log(this.state.filters)
     return (
       <div className="ui container">
         <header>
