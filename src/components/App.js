@@ -33,15 +33,14 @@ class App extends React.Component {
     if (this.state.filters.type === 'all') { url = '/api/pets' }
     else { url = `/api/pets?type=${petType}` }
 
-    fetch(url)
+    petData = fetch(url)
     .then(function(response) {
-      return response.json()
+      return response.json();
     })
     .then(function(myJson) {
-      petData = JSON.stringify(myJson)
-
+      console.log(JSON.stringify(myJson));
     })
-    return petData
+    console.log(petData)
   }
 
   onAdoptPet = (event) => {
