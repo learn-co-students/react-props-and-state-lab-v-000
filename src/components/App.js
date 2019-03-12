@@ -35,13 +35,12 @@ class App extends React.Component {
 
     fetch(url)
     .then((resp) => resp.json())
-    // .then((data) => JSON.stringify(data))
     .then((data) => this.setState({ pets: data }))
   }
 
   onAdoptPet = (event) => {
     event.preventDefault()
-    console.log("")
+    alert("you've adopted this pet!!!")
   }
 
   render() {
