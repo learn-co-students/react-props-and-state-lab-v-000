@@ -25,7 +25,6 @@ class App extends React.Component {
   }
 
   onFindPetsClick = (event) => {
-    event.preventDefault()
     // fetch setup and fetch
     let url
     const petType = this.state.filters.type
@@ -38,9 +37,16 @@ class App extends React.Component {
     .then((data) => this.setState({ pets: data }))
   }
 
-  onAdoptPet = (event) => {
-    event.preventDefault()
-    alert("you've adopted this pet!!!")
+  onAdoptPet = (petId) => {
+    const pets = this.state.pets.map( (pet) => {
+      // '{}' tells Javascript that we want to create a new object
+      // the '...pet' says that we want that new object to contain all the same contents as the pet object
+      // return new pet object that isAdopted/update the adopted pet's adoption status
+      // OR return the current pet
+      return pet.id === petId ? { ...pet, isAdopted: true } : pet
+    })
+    // reset pets array state to previously filtered pets
+    this.setState({ pets })
   }
 
   render() {
