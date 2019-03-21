@@ -3,9 +3,10 @@ import React from 'react'
 class Pet extends React.Component {
 
   handleSubmit = (event) => {
-    this.props.pet.isAdopted(this.props.id)
+    this.props.onAdoptPet(this.props.pet.id)
   }
 
+  
   render() {
     return (
       <div className="card">
@@ -23,8 +24,7 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui disabled button" >Already adopted</button>
-          <button className="ui primary button" onClick={event => this.handleSubmit(event)} >Adopt pet</button>
+          {this.props.pet.isAdopted ? <button className="ui disabled button" >Already adopted</button> : <button className="ui primary button" onClick={event => this.handleSubmit(event)} >Adopt pet</button>}
         </div>
       </div>
     )

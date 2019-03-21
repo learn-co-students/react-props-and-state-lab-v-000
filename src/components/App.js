@@ -51,7 +51,6 @@ class App extends React.Component {
         petArray[j].isAdopted = true
       }
     }
-   
     this.setState({
       pets: petArray
     });
