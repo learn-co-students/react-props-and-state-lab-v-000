@@ -53,9 +53,10 @@ class App extends React.Component {
               />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdoptPet={(pet) => {
+              <PetBrowser pets={this.state.pets} onAdoptPet={(id) => {
                 let arr = this.state.pets
-                let result = arr.find((e)=>{return e.id === pet.id})
+                let result = arr.find((e)=>{return e.id === id})
+                // debugger
                 result.isAdopted = true
                 console.log(arr)
                 this.setState({
