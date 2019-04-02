@@ -15,33 +15,31 @@ class App extends React.Component {
     }
   }
 
-  onChangeType = (event) => {
-    this.setState({filters: {type: event.target.value}})
-  }
+  onChangeType = (event) => this.setState({ filters: { ...this.state.filters, type: event.target.value } })
 
   onFindPetsClick = () => {
-    let query = '';
+    let query = '/api/pets';
     switch (this.state.filters.type) {
       case 'cat':
-        query = '?type=cat';
+        query += '?type=cat';
         break;
       case 'dog':
-        query = '?type=dog';
+        query += '?type=dog';
         break;
       case 'micropig':
-        query = '?type=micropig';
+        query += '?type=micropig';
         break;
       default:
-        query = '';
+        query += '';
     }
-    fetch('/api/pets' + query)
-      .then((response) => response.json())
-      .then((response) => this.setState({response}));
+    fetch(query)
+      .then(response => response.json())
+      .then(response => this.setState({pets: response}));
   }
 
   onAdoptPet = (id) => {
-    let pets = this.state.pets;
-    this.setState({pets})
+    let pets = this.state.pets.map( pet => pet.id === id ? { ...pet, isAdopted: true } : pet );
+    this.setState({pets: pets});
   }
 
   render() {

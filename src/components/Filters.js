@@ -8,14 +8,13 @@ class Filters extends React.Component {
     }
   }
 
-  handleChange = (event) => (this.setState({value: event.target.value}))
 
   render() {
     return (
       <div className="ui form">
         <h3>Animal type</h3>
         <div className="field">
-          <select name="type" id="type" value={this.state.value} onChange={this.handleChange}>
+          <select name="type" id="type" onChange={this.props.onChangeType}>
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>
