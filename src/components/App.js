@@ -38,6 +38,13 @@ findPets = () => {
   })
 }
 
+onAdoptPet = (petId) => {
+  let pets = this.state.pets.map(p => {
+    return p.id === petId ? {...p, isAdopted: true} : p;
+  })
+  return this.setState({pets})
+}
+
   render() {
     return (
       <div className="ui container">
@@ -50,7 +57,7 @@ findPets = () => {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.findPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} />
+              <PetBrowser onAdoptPet={this.onAdoptPet} pets={this.state.pets} />
             </div>
           </div>
         </div>
