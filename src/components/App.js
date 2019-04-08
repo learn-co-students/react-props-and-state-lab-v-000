@@ -15,6 +15,38 @@ class App extends React.Component {
     }
   }
 
+  onChangeType = event => {
+    event.persist()
+    this.setState(
+      {
+        filters: {
+          ...this.state.filters,
+          type: event.target.value
+        }
+      },
+      ()=>console.log('updated state: ', this.state.filters) // to test to see if state changed
+    )
+  }
+
+  listPets = () => {
+    let url = '/api/pets'
+    if (this.state.filters.type !== 'all') {
+      url += `?type=${this.state.filters.type}`
+    }
+    console.log('this is the value to use on with the fetch call: ', url)
+    fetch(url)
+      .then(resp=>resp.json())
+      .then(pets=> this.setState({
+        pets
+      }, () => console.log('this is the revised state after updating with the search field: ', this.state))
+      )
+    
+  }
+
+  adoptPet = () => {
+    // need to update state, etc. on this.... pass instructions to update UI.
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,10 +56,15 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters 
+                onChangeType={this.onChangeType}
+                onFindPetsClick={this.listPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser 
+                pets={this.state.pets}
+                onAdopt={this.adoptPet}
+              />
             </div>
           </div>
         </div>
