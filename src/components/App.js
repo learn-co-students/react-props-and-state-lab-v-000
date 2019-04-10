@@ -15,18 +15,9 @@ class App extends React.Component {
     }
   }
 
-  onChangeType = event => {
-    event.persist()
-    this.setState(
-      {
-        filters: {
-          ...this.state.filters,
-          type: event.target.value
-        }
-      },
-      ()=>console.log('updated state: ', this.state.filters) // to test to see if state changed
-    )
-  }
+  onChangeType = ({target: {value}}) => {
+    this.setState({ filters: {...this.state.filters, type: value }});
+  };
 
   listPets = () => {
     let url = '/api/pets'
