@@ -13,10 +13,15 @@ class App extends React.Component {
         type: 'all'
       }
     };
+
+    // use bind: this.onChangeType is context-bound to 'this'
+    this.onChangeType = this.onChangeType.bind(this)
   };
 
-  onChangeType = ({ target: { value } }) => {
-    this.setState({ filters: { ...this.state.filters, type: value} });
+  // onChangeType = ({ target: { value } }) => {
+    // this.setState({ filters: { ...this.state.filters, type: value} });
+  onChangeType = function (event) {
+    this.setState({ filters: { ...this.state.filters, type: event.target.value} });
   };
 
   onAdoptPet = petId => {
