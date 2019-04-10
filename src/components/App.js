@@ -50,7 +50,7 @@ class App extends React.Component {
                 onFindPetsClick={this.listPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdopt={this.adoptPet} />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.adoptPet} />
               {console.log(this.state.pets)}
             </div>
           </div>
