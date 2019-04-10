@@ -36,9 +36,7 @@ class App extends React.Component {
     console.log('this is the value to use on with the fetch call: ', url)
     fetch(url)
       .then(resp=>resp.json())
-      .then(pets=> this.setState({
-        pets
-      }, () => console.log('this is the revised state after updating with the search field: ', this.state))
+      .then(pets=> this.setState({pets}, () => console.log('this is the revised state after updating with the search field: ', this.state))
       )
     
   }
@@ -61,10 +59,8 @@ class App extends React.Component {
                 onFindPetsClick={this.listPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser 
-                pets={this.state.pets}
-                onAdopt={this.adoptPet}
-              />
+              <PetBrowser pets={this.state.pets} onAdopt={this.adoptPet} />
+              {console.log(this.state.pets)}
             </div>
           </div>
         </div>
