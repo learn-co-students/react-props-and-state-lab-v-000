@@ -16,6 +16,9 @@ class Filters extends React.Component {
 
         <div className="field">
           <button 
+            // add onClick attribute to the button
+            // it is an event listener to attach in react, 
+            // assign the prop to pass down 'this.props.onFindPetsClick', to be the callback function for a click event on this button
             onClick={this.props.onFindPetsClick}
             className="ui secondary button">
             Find pets

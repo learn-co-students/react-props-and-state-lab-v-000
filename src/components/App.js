@@ -14,13 +14,14 @@ class App extends React.Component {
       }
     };
 
-    // use bind: this.onChangeType is context-bound to 'this'
+    // use bind to explicitly bind 'this' to the class: this.onChangeType is context-bound to 'this'
     this.onChangeType = this.onChangeType.bind(this)
   };
 
   // onChangeType = ({ target: { value } }) => {
     // this.setState({ filters: { ...this.state.filters, type: value} });
-  onChangeType = function (event) {
+  onChangeType(event) {
+    console.log(event.target.value)
     this.setState({ filters: { ...this.state.filters, type: event.target.value} });
   };
 
@@ -31,6 +32,8 @@ class App extends React.Component {
     this.setState({ pets });
   }
 
+  // arrow function automatically binds 'this'
+  // implictly bind this base on the surrounding context by using arrow function
   onFindPetsClick = () => {
     let url = '/api/pets';
 
@@ -38,9 +41,14 @@ class App extends React.Component {
       url += `?type=${this.state.filters.type}`
     };
 
+    // .then(console.log) is same as .then(resp => console.log(resp))
+    // .setState is asynchronos, so put console log in second argument of setState: this waits for setState to resolve, the record finishes to console.log
+    // .then( petsJSON => this.setState({
+    //  pets: petsJSON
+    // }, () console.log("after fetching, this.state is ", this.state))
     fetch(url)
     .then(res => res.json())
-    .then(pets => this.setState({ pets }));
+    .then( pets => this.setState({ pets }) );
   };
   
   render() {
@@ -53,6 +61,7 @@ class App extends React.Component {
           <div className="ui grid">
             <div className="four wide column">
               <Filters 
+                // property key = property value
                 onChangeType={this.onChangeType}
                 onFindPetsClick={this.onFindPetsClick}
               />
