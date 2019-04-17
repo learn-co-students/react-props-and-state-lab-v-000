@@ -17,7 +17,7 @@ class App extends React.Component {
 
   onChangeType = (event) => {
     this.setState({
-      filters: {...this.state.filters, type: event.target.value}
+      filters: {type: event.target.value}
     })
   }
 
@@ -28,8 +28,8 @@ class App extends React.Component {
     }
     fetch(url)
     .then(response =>response.json())
-    .then(data => console.log(data))
-    .then(data => this.setState({data}))
+    // .then(data => console.log(data))
+    .then(data => this.setState({pets: data}))
   }
 
   adoptPet = (id) => {
