@@ -7,8 +7,7 @@ class Filters extends React.Component {
         <h3>Animal type</h3>
         <div className="field">
           <select
-            onChange={this.props.onChangeType}
-             name="type" id="type">
+             name="type" id="type" onChange={this.props.onChangeType}>
             <option value="all">All</option>
             <option value="cat">Cats</option>
             <option value="dog">Dogs</option>
