@@ -31,7 +31,14 @@ class App extends React.Component {
         this.setState({pets})
    }
 
-
+   onChangeType = (event) => {
+    this.setState({
+     filters: {
+        type: event.target.value
+         }
+      })
+     }
+  
   render() {
     return (
       <div className="ui container">
@@ -42,8 +49,8 @@ class App extends React.Component {
           <div className="ui grid">
             <div className="four wide column">
 
-              <Filters onFindPetsClick = {this.fetchPets} />
-
+              <Filters onFindPetsClick = {this.fetchPets} onChangeType = {this.onChangeType} />
+              
             </div>
             <div className="twelve wide column">
               <PetBrowser onAdoptPet = {this.adoptedStatus} pets = {this.state.pets} />
@@ -54,6 +61,8 @@ class App extends React.Component {
       </div>
     )
   }
-}
+ }
+
+
 
 export default App
