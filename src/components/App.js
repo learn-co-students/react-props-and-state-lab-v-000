@@ -37,7 +37,6 @@ class App extends React.Component {
       })
   }
 
-
     onAdoptPet = (petId) => {
       const pets = this.state.pets.map(pet => {
         return pet.id === petId ? {...pet, isAdopted: true} : pet
