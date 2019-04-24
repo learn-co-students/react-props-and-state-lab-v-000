@@ -4,9 +4,9 @@ class Pet extends React.Component {
   render() {
     return (
       <div className="card">
-        <div className="content">
+        <div className='content'>
           <a className="header">
-            {/*'♀' OR '♂' */} 
+            {/* '♀' OR '♂' */} 
            
           
             
@@ -37,9 +37,14 @@ class Pet extends React.Component {
 
           </div>
         </div>
+
+
         <div className="extra content">
-          <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button">Adopt pet</button>
+          {this.props.pet.isAdopted ? 
+          <button className="ui disabled button">Already adopted</button> :
+          // line 46 is an example of  callback Arrow function take no argument.
+               <button className="ui primary button" onClick = {() => this.props.onAdoptPet(this.props.pet.id)}>Adopt pet</button>
+          }
         </div>
       </div>
     )
