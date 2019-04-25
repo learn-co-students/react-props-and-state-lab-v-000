@@ -44,11 +44,30 @@ class App extends React.Component {
 
   }
 
+  // my way below changes the adopted value but never upates the state so the App never knows of it.
+  // onAdoptPet = (petId) => {
+  //   for(const pet of this.state.pets) {
+  //     if (pet.id === petId){
+  //       pet.isAdopted = true
+  //
+  //       })
+  //     }
+  //   }
+  // }
+
+  onAdoptPet = petId => {
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? { ...p, isAdopted: true } : p;
+    });
+    this.setState({ pets });
+  };
+
   render() {
     return (
       <div className="ui container">
         <header>
           <h1 className="ui dividing header">React Animal Shelter</h1>
+          <div>{this.state.filters.matchingPet}</div>
         </header>
         <div className="ui container">
           <div className="ui grid">
@@ -59,7 +78,9 @@ class App extends React.Component {
                 />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser
+                pets={this.state.pets}
+                onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
