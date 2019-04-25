@@ -22,6 +22,16 @@ You'll have a much better time seeing the results in the browser.
 
 Call `npm i && npm start` to run this project in your browser
 
+// {this.props.pet.isAdopted ? (
+//   <button className="ui disabled button">Already adopted</button>
+// ) : (
+//   <button
+//     onClick={() => this.props.onAdoptPet(this.props.pet.id)}
+//     className="ui primary button">
+//     Adopt pet
+//   </button>
+// )}
+
 ## Instructions
 
 On a high level, you will be working on several components that form the UI of
