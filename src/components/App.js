@@ -44,7 +44,7 @@ class App extends React.Component {
 		const pet = petsArrayCopy.find((p) => p.id === id);
 		console.log(pet, 'is the same of ', pet.id === id);
 		pet.isAdopted = true;
-		// console.log(this.state.pets);
+		console.log(this.state.pets);
 		this.setState({
 			pets: petsArrayCopy
 		});
