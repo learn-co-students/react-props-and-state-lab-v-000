@@ -2,6 +2,7 @@ import React from 'react';
 
 class Pet extends React.Component {
 	render() {
+		// Deconstruct this.props.pet
 		const { name, age, type, gender, weight, isAdopted, id } = this.props.pet;
 		return (
 			<div className="card">
