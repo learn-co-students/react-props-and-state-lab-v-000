@@ -4,8 +4,9 @@ class Pet extends React.Component {
 
 
   render() {
-    const {pet, isAdotpted} = this.props
-    const {name, type, gender, age, weight} = pet
+    // const {pet, isAdotpted} = this.props
+    const {name, type, gender, age, weight, id, isAdopted} = this.props.pet
+    const {onAdoptPet} = this.props
     return (
       <div className="card">
         <div className="content">
@@ -19,15 +20,16 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          {this.props.pet.isAdopted ? (
+          { isAdopted
+            ?
             <button className="ui disabled button">Already adopted</button>
-          ) : (
+           :
             <button
-              onClick={() => this.props.onAdoptPet(this.props.pet.id)}
+              onClick={() => onAdoptPet(id)}
               className="ui primary button">
               Adopt pet
             </button>
-          )}
+          }
 
         </div>
       </div>
