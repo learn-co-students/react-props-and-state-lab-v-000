@@ -13,7 +13,28 @@ class App extends React.Component {
         type: 'all'
       }
     }
+		
+		this.updatePets()
   }
+	
+	onChangeType = (type) => {
+			this.setState({filters: {
+											...this.state.filters,
+											type: type							
+			}})
+		}
+
+	updatePets = () => {
+		let url = '/api/pets'
+		const type = this.state.filters.type
+ 
+		if (type !== 'all') {
+			url = url + '?type=' + type 
+		}
+
+		fetch(url).then(response => response.json()).then(res => {this.setState({pets: res})})
+
+	}
 
   render() {
     return (
@@ -24,10 +45,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.onChangeType} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets}/>
             </div>
           </div>
         </div>
