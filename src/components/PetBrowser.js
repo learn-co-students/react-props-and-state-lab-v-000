@@ -9,10 +9,9 @@ class PetBrowser extends React.Component {
 						<div className="wrapper">
 							<div className="cards"> 
 								{this.props.pets.map((el) => { 
-									return <Pet pet={el} />
+									return <Pet onAdoptPet={this.props.onAdoptPet} pet={el} />
 								})}
 							</div>
-							{<div className="test-2">{this.props.pets.length}</div>}
 					 </div>
 					)
   }

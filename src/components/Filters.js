@@ -6,9 +6,8 @@ class Filters extends React.Component {
 		this.props.onFindPetsClick()
 	}
 	
-	updateType = () => {
-		const selection = document.getElementById("type").value
-		this.props.onChangeType(selection)	
+	updateType = (e) => {
+		this.props.onChangeType(e.target.value)	
 	}
 
   render() {
