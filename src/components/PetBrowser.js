@@ -5,10 +5,13 @@ import Pet from './Pet'
 class PetBrowser extends React.Component {
 
   render() {
+    let pets = []
+    for (let i=0; i < this.props.pets.length; i++) {
+      pets.push(<Pet key={i} pet={this.props.pet} isAdopted={false} onAdoptPet={this.props.onAdoptPet}/>)
+    }
     return (
       <div className="ui cards">
-        this.props.pet.map((pet, key) => <li> key={pet.id}>{pet.name}</li>)
-        <Pet pet={this.props.pet} isAdopted={false} onAdoptPet={this.onAdoptPet}/>
+        {pets}
       </div>
     )
   }
