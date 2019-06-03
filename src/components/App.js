@@ -38,8 +38,16 @@ class App extends React.Component {
       })
   }
 
-  onAdoptPet = () => {
+  onAdoptPet = (id) => {
+    let updatedPets = this.state.pets
+    let pet = updatedPets.find(function(e) {
+      return e.id === id
+    })
+    pet.isAdopted = true
 
+    this.setState({
+      pets: updatedPets
+    })
   }
 
   render() {
