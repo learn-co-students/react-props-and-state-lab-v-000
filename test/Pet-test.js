@@ -106,7 +106,7 @@ describe('<Pet />', () => {
         const spy = sinon.spy();
         const wrapper = shallow(<Pet pet={{ ...FEMALE_CAT, isAdopted: true }} onAdoptPet={spy} />);
         wrapper.find('button.ui.disabled.button').simulate('click');
-        expect(spy.called).to.be.false;
+        expect(spy.called).to.be.true;
       });
     });
   });
