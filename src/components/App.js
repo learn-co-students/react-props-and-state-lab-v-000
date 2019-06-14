@@ -16,24 +16,31 @@ export default class App extends React.Component {
     }
   }
 
-  changeFilterType = ({newFilter}) => {
-    // alert("you changed the filter type")
+  changeFilterType = (newFilter) => {
     this.setState({
       filters: {
-        // ...this.state.filters,
+        ...this.state.filters,
         type: newFilter
       }
     })
-    console.log(this.state)
   }
 
   findPets = () => {
-    fetch(`/api/pets.json`, this.state.filters.type)
-    .then(res => res.json())
-    .then(pets => {
-      console.log(pets)
-    })
-  }
+    let endpoint = '/api/pets';
+    if (this.state.filters.type !== 'all') {
+      endpoint += `?type=${this.state.filters.type}`;
+    }
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(pets => this.setState({ pets }));
+  };
+
+  onAdoptPet = (petId) => {
+    const pets = this.state.pets.map(pet => {
+      return pet.id === petId ? { ...pet, isAdopted: true } : p;
+    });
+    this.setState({ pets });
+  };
 
   render() {
     return (
@@ -47,7 +54,7 @@ export default class App extends React.Component {
               <Filters onFindPetsClick={this.findPets} onChangeType={this.changeFilterType}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>

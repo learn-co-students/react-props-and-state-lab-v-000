@@ -12,7 +12,6 @@ class Filters extends React.Component {
 
 
   render() {
-
     return (
       <div className="ui form">
         <h3>Animal type</h3>
