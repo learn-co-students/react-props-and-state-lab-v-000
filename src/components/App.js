@@ -2,8 +2,9 @@ import React from 'react'
 
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
+import allPets from "../data/pets.js";
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor() {
     super()
 
@@ -15,6 +16,25 @@ class App extends React.Component {
     }
   }
 
+  changeFilterType = ({newFilter}) => {
+    // alert("you changed the filter type")
+    this.setState({
+      filters: {
+        // ...this.state.filters,
+        type: newFilter
+      }
+    })
+    console.log(this.state)
+  }
+
+  findPets = () => {
+    fetch(`/api/pets.json`, this.state.filters.type)
+    .then(res => res.json())
+    .then(pets => {
+      console.log(pets)
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,7 +44,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onFindPetsClick={this.findPets} onChangeType={this.changeFilterType}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser />
@@ -35,5 +55,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default App
