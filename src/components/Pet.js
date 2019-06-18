@@ -11,7 +11,9 @@ class Pet extends React.Component {
       isAdopted,
       id
      } = this.props.pet 
+
      const { onAdoptPet } = this.props
+
     return (
       <div className="card">
         <div className="content">

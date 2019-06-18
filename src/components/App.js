@@ -4,6 +4,7 @@ import Filters from './Filters'
 import PetBrowser from './PetBrowser'
 
 class App extends React.Component {
+
   constructor() {
     super()
 
@@ -14,7 +15,7 @@ class App extends React.Component {
       }
     }
   }
-}
+
 
   onChangeType = (event) => {
     this.setState({
@@ -42,7 +43,7 @@ class App extends React.Component {
 
   onAdoptPet = (id) => {
     let petsArrayCopy = [...this.state.pets]
-    let thePet = petsArrayCopy.find(p => p.id == id)
+    let thePet = petsArrayCopy.find(p => p.id === id)
     thePet.isAdopted = true
     this.setState({
       pets: petsArrayCopy
