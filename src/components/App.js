@@ -15,6 +15,20 @@ class App extends React.Component {
     }
   }
 
+
+  handleChangeFilterType = (type) => {
+    this.setState({filters: Object.assign({},
+    this.state.filters, {type: type})
+  });
+  }
+
+  onFindPetsClick = () => {
+    let url = "/api/pets"
+    if(this.state.filters.type !== "all"){url += "?type=" + this.state.filters.type}
+    fetch(url)
+  }
+
+
   render() {
     return (
       <div className="ui container">
