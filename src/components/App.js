@@ -29,6 +29,13 @@ class App extends React.Component {
       .then(pets => this.setState({ pets }))
   }
 
+  setAdoptionStatus = (petId) => {
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? { ...p, isAdopted: true} : p
+    });
+    this.setState({ pets });
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -41,7 +48,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.fetchPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets}/>
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.setAdoptionStatus}/>
             </div>
           </div>
         </div>
