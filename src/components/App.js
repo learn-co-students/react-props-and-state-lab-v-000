@@ -24,7 +24,7 @@ class App extends React.Component {
 
     fetch(url)
       .then(res => res.json())
-      .then(pets => this.setState(pets))
+      .then(pets => this.setState({pets}))
   };
 
   onChangeType = ({target: {value}}) => {
