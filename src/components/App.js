@@ -51,7 +51,9 @@ class App extends React.Component {
               />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser
+                pets={this.state.pets}
+              />
             </div>
           </div>
         </div>
