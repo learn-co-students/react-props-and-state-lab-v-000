@@ -15,6 +15,29 @@ class App extends React.Component {
     }
   }
 
+  onChangeType = (newType) => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        type: newType
+      }
+    })
+  }
+
+  onFetchPets = () => {
+    debugger
+    // if the type is all, fetch('/api/pets')
+    // if the type is cat, fetch(/api/pets?type=cat)
+    // if the type is dog, fetch(/api/pets?type=dog)
+    // if the type is micropig, fetch(/api/pets?type=micropig)
+    // // fetch('/api/pets')
+    fetch('/api/pets?type=cat')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,7 +47,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters 
+              onChangeType={this.onChangeType}
+              onFetchPets={this.onFetchPets}
+              />
             </div>
             <div className="twelve wide column">
               <PetBrowser />
