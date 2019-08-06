@@ -2,18 +2,6 @@ import React from 'react'
 
 class Filters extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {value: ''};
-  }
-
-  handleClick = event => {
-    this.setState({
-      value: event.target.value
-    })
-    {this.props.onFetchPets}
-  }
-
   render() {
     return (
       <div className="ui form">
@@ -28,7 +16,11 @@ class Filters extends React.Component {
         </div>
 
         <div className="field">
-          <button className="ui secondary button" onClick={this.props.onFetchPets}>Find pets</button>
+          <button 
+            className="ui secondary button" 
+            onClick={this.props.onFindPetsClick}>
+              Find pets
+          </button>
         </div>
       </div>
     )

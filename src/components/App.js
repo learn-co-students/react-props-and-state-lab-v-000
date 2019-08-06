@@ -15,28 +15,36 @@ class App extends React.Component {
     }
   }
 
-  onChangeType = (newType) => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        type: newType
-      }
-    })
+  onChangeType = ({ target: { value } }) => {
+    this.setState({ filters: {
+       ...this.state.filters, 
+       type: value } })
   }
 
-  onFetchPets = () => {
-    debugger
+  onFindPetsClick = () => {
+    let url = '/api/pets';
+
+    if (this.state.filters.type !== 'all') {
+      url += `?type=${this.state.filters.type}`;
+    }
+
+    fetch(url)
+      .then(res => res.json())
+      .then(pets => this.setState({ pets }));
+      
     // if the type is all, fetch('/api/pets')
     // if the type is cat, fetch(/api/pets?type=cat)
     // if the type is dog, fetch(/api/pets?type=dog)
     // if the type is micropig, fetch(/api/pets?type=micropig)
     // // fetch('/api/pets')
-    fetch('/api/pets?type=cat')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-    })
+    // fetch('/api/pets?type=cat')
+    // .then(response => response.json())
+    // .then(data => {
+    //   console.log(data)
+    //setState state.pets pass the pet data down as props to <PetBrowser />
+    // })
   }
+
 
   render() {
     return (
@@ -49,7 +57,9 @@ class App extends React.Component {
             <div className="four wide column">
               <Filters 
               onChangeType={this.onChangeType}
-              onFetchPets={this.onFetchPets}
+              // onFetchPets={this.onFetchPets}
+              onFindPetsClick={this.onFindPetsClick}
+
               />
             </div>
             <div className="twelve wide column">
