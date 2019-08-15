@@ -22,4 +22,5 @@ class Filters extends React.Component {
   }
 }
 
+
 export default Filters
