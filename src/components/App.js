@@ -15,100 +15,42 @@ class App extends React.Component {
     }
   }
 
-  // onAdoptPet = (pets) => {
-  //   this.state.pets.map( (p) => {
-  //     if ( p.isAdopted ) {
-  //       this.setState({
-  //         isAdopted: false
-  //       })
-  //     }
-  //   })
-  // }
-  
-  selectedPets = (p) => {
-    this.setState({
-      pets: p
-    })
-  }
+  onAdoptPet = petId => {
 
-  fetchPets = () => {
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? { ...p, isAdopted: true } : p;
+    });
+    // why do we need the id here?
+    // notice the slick use of the ternary operator, and notice how we can just return that
+    // the spread operator is used with ...p because its setting state for just isAdopted and not meant to overwrite the other properties in the given object from the array
+     
+    this.setState({ pets });
 
-    let petType = this.state.filters.type;
-
-    let returnFetch; 
-
-    //refactor with switch case statement
-
-    if ( petType === "all" ) {
-      returnFetch = fetch('/api/pets')
-    };
-
-    if ( petType === "cat" ) {
-      returnFetch = fetch('/api/pets?type=cat')
-    };
-
-    if ( petType === "dog" ) {
-      returnFetch = fetch('/api/pets?type=dog')
-    };
-
-    if ( petType === "micropig" ) {
-      returnFetch = fetch('/api/pets?type=micropig')
-    };
-
-    returnFetch
-      .then(response => response.json)
-      .then(
-        (petList) => {
-          this.selectedPets(petList)
-        }
-      )
-  }
-
-  // My function above worked! but you should use the solution as a guide to refactoring
-
-  // fetchPets = () => {
-  //   let endpoint = '/api/pets';
-
-  //   if (this.state.filters.type !== 'all') {
-  //     endpoint += `?type=${this.state.filters.type}`;
-  //   }
-
-  //   fetch(endpoint)
-  //     .then(res => res.json())
-  //     .then(pets => this.setState({ pets }));
-  // };
-  
-
-  // onChangeType = (newType) => {
-  //   this.setState({
-  //     type: {
-  //       ...this.state.filters,
-  //       type: newType
-  //     }
-  //   })
-  // }
-
-
-  // Here I didn't take into consideration that onChangeType is an event that changes the pet type based on what is selected in App ... because it's an event, the input expected has a "target" property and the specific type of the pet chosen
-
-  onChangeType = ({ target: { value } }) => {
-    this.setState({ 
-      filters: { ...this.state.filters, 
-        type: value } }
-    );
+    // notice how recursion is used here
   };
 
 
-  // Notice that you can set state on a property within a property, just like the lesson shows :)
+
+  fetchPets = () => {
+    let endpoint = '/api/pets';
+
+    if (this.state.filters.type !== 'all') {
+      endpoint += `?type=${this.state.filters.type}`;
+    }
+
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(pets => this.setState({ pets }));
+  };
+
+
   
+  onChangeType = ({ target: { value } }) => {
+    this.setState({ 
+      filters: { ...this.state.filters, 
+        type: value } });
+  };
 
-  // changePetType = () => <Filters onChangeType={ this.props.onChangeType }/>
-
-  // Here I didn't take into consideration that the change of pet type should be passed to Filters in the render/return statement, not directly in the element. onChangeType be passed to a variable and this.variable could be called in the render/return? Try it later
-  // so I didn't take into consideration onChangeType going in the render/return ... try it later
-  
-
-  // passSelectedPets = () => <Filters onFindPetsClick={ this.fetchPets } />
 
   render() {
     return (
@@ -126,15 +68,14 @@ class App extends React.Component {
               <Filters 
                 onChangeType={this.onChangeType}
                 onFindPetsClick={this.fetchPets} 
-                // onFindPetsClick={ this.props.onFindPetsClick } 
-                // no need for '.props' when setting the prop :)
               />
               
             </div>
             <div className="twelve wide column">
 
               <PetBrowser 
-
+                pets={ this.state.pets }
+                onAdoptPet={ this.onAdoptPet }
               />
 
             </div>
