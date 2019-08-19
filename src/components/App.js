@@ -15,6 +15,32 @@ class App extends React.Component {
     }
   }
 
+    // App should pass a callback prop, onChangeType, to <Filters />. This callback needs to update <App />'s state.filters.type
+  onChangeType = ( {target: { value } } ) => {
+    console.log("onChangeType was called")
+    this.setState({ filters: { ...this.state.filters, type: value } });
+  }
+  
+  // <Filters /> needs a callback prop, onFindPetsClick. When the <Filters /> component calls onFindPetsClick, <App /> should fetch a list of pets using fetch().
+  fetchPets = () => {
+      let endpoint = '/api/pets'
+      if (this.state.filters.type !== "all") {
+        endpoint += `?type=${this.state.filters.type}`
+      }
+      
+      fetch(endpoint)
+        .then(response => response.json())
+        .then(pets => this.setState({ pets }))
+  } 
+    
+  onAdoptPet = petID => {
+    const pets = this.state.pets.map(pet => {
+      return pet.id === petID ? { ...pet, isAdopted: true} : pet;
+    });
+
+    this.setState({ pets })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,10 +50,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.onChangeType} onFindPetsClick={this.fetchPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
