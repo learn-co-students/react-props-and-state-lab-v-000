@@ -21,7 +21,6 @@ class App extends React.Component {
         type: filterType
       }
     })
-    console.log(this.state.filters.type)
   };
 
   onFindPetsClick = (filterType) => {
