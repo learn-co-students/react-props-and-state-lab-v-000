@@ -30,7 +30,6 @@ class App extends React.Component {
   }
 
   onFindPetsClick = () => {
-
     let petUrl; 
 
     if (this.state.filters.type === "all") {
@@ -40,6 +39,10 @@ class App extends React.Component {
     }
 
     fetch(petUrl).then(response => this.setResponseState(response));
+  };
+
+  adoptPet = () => {
+    console.log("got adopted")
   };
 
   render() {
@@ -54,7 +57,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.adoptPet}/>
             </div>
           </div>
         </div>
