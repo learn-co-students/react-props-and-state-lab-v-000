@@ -1,13 +1,19 @@
 import React from 'react'
 
 class Pet extends React.Component {
+
+  handleClick = (event) => {
+    this.props.onAdoptPet()
+  }
+
   render() {
     return (
       <div className="card">
         <div className="content">
           <a className="header">
             {/*'♀' OR '♂' */}
-            PET NAME
+            PET NAME: {this.props.pet}
+            console.log(this.props.pet)
           </a>
           <div className="meta">
             <span className="date">PET TYPE</span>
@@ -19,7 +25,7 @@ class Pet extends React.Component {
         </div>
         <div className="extra content">
           <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button">Adopt pet</button>
+          <button className="ui primary button" onClick={this.handleClick}>Adopt pet</button>
         </div>
       </div>
     )
