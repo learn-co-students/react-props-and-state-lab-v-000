@@ -3,9 +3,18 @@ import React from 'react'
 import Pet from './Pet'
 
 class PetBrowser extends React.Component {
+
+  
   render() {
+    // let petsArray = this.props.pets; 
+    // let petsArrayList = petsArray.map(function(petFromArray){
+    //   return <Pet pet={petFromArray} onAdoptPet={this.props.onAdoptPet}/>;
+    // }); 
+
     return <div className="ui cards">
-    <Pet pet={this.props.pets[0]} onAdoptPet={this.props.onAdoptPet}/>
+      {this.props.pets.map((pet) =>
+        <Pet pet={pet} onAdoptPet={this.props.onAdoptPet} />
+      )}
     </div>
   }
 }
