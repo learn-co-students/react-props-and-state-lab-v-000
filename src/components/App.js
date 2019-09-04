@@ -23,8 +23,23 @@ class App extends React.Component {
     })
   };
 
-  onFindPetsClick = (filterType) => {
+  setResponseState = (response) => {
+    this.setState({
+      pets: response, 
+    })
+  }
 
+  onFindPetsClick = () => {
+
+    let petUrl; 
+
+    if (this.state.filters.type === "all") {
+      petUrl = "/api/pets"
+    } else {
+      petUrl = "/api/pets?type=" + this.state.filters.type
+    }
+
+    fetch(petUrl).then(response => this.setResponseState(response));
   };
 
   render() {
