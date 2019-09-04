@@ -10,8 +10,7 @@ class Pet extends React.Component {
   }
 
   handleClick = (event) => {
-    this.props.onAdoptPet()
-    console.log(this.props.pet)
+    this.props.onAdoptPet(this.props.pet.id)
   }
 
   renderButton() {

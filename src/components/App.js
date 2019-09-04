@@ -41,8 +41,12 @@ class App extends React.Component {
     fetch(petUrl).then(response => this.setResponseState(response));
   };
 
-  adoptPet = () => {
-    console.log("got adopted")
+  adoptPet = (id) => {
+    this.setState({
+      pets: [
+        ...this.state.pets
+      ], 
+    })
   };
 
   render() {
