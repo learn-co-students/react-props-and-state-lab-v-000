@@ -4,6 +4,7 @@ class Pet extends React.Component {
 
   handleClick = (event) => {
     this.props.onAdoptPet()
+    console.log(this.props.pet)
   }
 
   render() {
@@ -13,7 +14,6 @@ class Pet extends React.Component {
           <a className="header">
             {/*'♀' OR '♂' */}
             PET NAME: {this.props.pet}
-            console.log(this.props.pet)
           </a>
           <div className="meta">
             <span className="date">PET TYPE</span>

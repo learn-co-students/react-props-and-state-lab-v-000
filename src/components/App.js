@@ -27,6 +27,7 @@ class App extends React.Component {
     this.setState({
       pets: response, 
     })
+    console.log(response)
   }
 
   onFindPetsClick = () => {
