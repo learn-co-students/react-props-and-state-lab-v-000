@@ -41,12 +41,11 @@ class App extends React.Component {
     fetch(petUrl).then(response => this.setResponseState(response));
   };
 
-  adoptPet = (id) => {
-    this.setState({
-      pets: [
-        ...this.state.pets
-      ], 
-    })
+  adoptPet = (petId) => {
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? { ...p, isAdopted: true } : p;
+    });
+    this.setState({ pets });
   };
 
   render() {
