@@ -5,7 +5,7 @@ class Pet extends React.Component {
     super()
 
     this.state = {
-      isAdopted = false, 
+      isAdopted: false, 
     }
   }
 
@@ -14,11 +14,11 @@ class Pet extends React.Component {
     console.log(this.props.pet)
   }
 
-  let petGender = "♀"; 
-
-  if (this.props.pet.gender === "male") {petGender = "♂"}
-
   render() {
+
+    let petGender = "♀"; 
+
+    if (this.props.pet.gender === "male") {petGender = "♂"}
 
     return (
       <div className="card">
