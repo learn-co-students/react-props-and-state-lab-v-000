@@ -13,7 +13,6 @@ import React from 'react'
 // the pet's id when the user clicks the adopt pet button — not when they click the disabled button!
 
 class Pet extends React.Component {
-  handleAdoptClick = () => this.props.onAdoptPet(this.props.pet.id)
 
   render() {
     const pet = this.props.pet
@@ -33,7 +32,16 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          {pet.isAdopted ? <button className="ui disabled button">Already adopted</button> : <button className="ui primary button" onClick={() => this.handleAdoptClick(pet.id)}>Adopt pet</button>}
+          {pet.isAdopted ? <button className="ui disabled button">Already adopted</button> : <button className="ui primary button" onClick={() => this.props.onAdoptPet(this.props.pet.id)}>Adopt pet</button>}
+          { // for comment below
+          //   or could do something like this:
+          // {this.props.pet.isAdopted ? (
+          //       <button className="ui disabled button">Already adopted</button>
+          //   ) : (
+          //       <button className="ui primary button" onClick={() => this.props.onAdoptPet(this.props.pet.id)} >Adopt pet</button>
+          //   )
+          } //close comment
+        }
         </div>
       </div>
     )

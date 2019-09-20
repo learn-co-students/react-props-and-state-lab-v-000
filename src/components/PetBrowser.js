@@ -8,11 +8,18 @@ import Pet from './Pet'
 
 // Has an onAdoptPet prop from Parent App. This callback prop gets passed to its <Pet /> children
 
+
 class PetBrowser extends React.Component {
+
   render() {
+
+    const petCards = this.props.pets.map(pet => (
+        <Pet pet={pet} key={pet.id} onAdoptPet={this.props.onAdoptPet} />
+      ));
+      
     return (
       <div className="ui cards">
-        {this.props.pets.map((pet, i) => <Pet key={i} pet={pet} isAdopted={pet.isAdopted} onAdoptPet={this.props.onAdoptPet}/>)}
+        {petCards}
       </div>
     )
   }

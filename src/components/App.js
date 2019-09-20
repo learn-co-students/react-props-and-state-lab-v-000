@@ -4,8 +4,8 @@ import Filters from './Filters'
 import PetBrowser from './PetBrowser'
 
 // App should pass a callback prop, onChangeType, to <Filters />.
-//This callback prop gets called whenever the value of the <select> element
-//changes with the value of the <select>
+// This callback prop gets called whenever the value of the <select> element
+// changes with the value of the <select>
 
 // <Filters /> needs a callback prop, onFindPetsClick.
 // This callback prop gets called when the user clicks the 'Find pets' button.
@@ -16,21 +16,22 @@ import PetBrowser from './PetBrowser'
 // components.
 
 class App extends React.Component {
-  constructor() {
-    super()
-
-    this.state = {
+  // constructor() {
+  //   super()
+  //
+  //   this.
+    state = {
       pets: [],
       filters: {
         type: 'all'
       }
     }
-  }
+  // }
 
   //This callback needs to update <App />'s state.filters.type
-  onChangeType = newType => {
+  onChangeType = event => {
     this.setState({
-      filters: { ...this.state.filters, type: value }
+      filters: { type: event.target.value }
     })
   }
 
@@ -54,9 +55,18 @@ class App extends React.Component {
 
 
   onAdoptPet = (petId) => {
-    const pets = this.state.pets.map(pet =>  pet.id === petId ? { ...pet, isAdopted: true } : pet )
+    const pets = this.state.pets.map(pet =>  {
+      if (pet.id === petId) {
+        pet.isAdopted = true;
+        return pet
+      } else {
+        return pet
+      }
+    })
     this.setState({ pets: pets })
   }
+
+
 
   render() {
     return (
