@@ -3,11 +3,6 @@ import React from 'react'
 class Filters extends React.Component {
 
 
-  onFindPetsClick = event => {
-    this.setState({
-
-    })
-  }
 
   render() {
     return (
