@@ -23,8 +23,12 @@ class App extends React.Component {
     })
   }
 
+  onAdoptPet = () => {
+   }
+
+
   onFindPetsClick = () => {
-    fetch('/api/pets?type=${type}')
+    fetch('/api/pets')
       .then(response => response.json())
       .then(data => this.setState({ data }));
   }
