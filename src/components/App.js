@@ -33,11 +33,7 @@ class App extends React.Component {
 
     fetch(url)
       .then(res => res.json())
-      .then(pets =>
-        this.setState({
-          pets: pets
-        })
-      );
+      .then(pets => this.setState({ pets }));
   };
 
   onAdoptPet = petId => {
