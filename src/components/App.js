@@ -15,15 +15,6 @@ class App extends React.Component {
     };
   }
 
-  onChangeType = ({ target: value }) => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        type: value
-      }
-    });
-  };
-
   onFindPetsClick = () => {
     let url = "/api/pets";
 
@@ -34,6 +25,16 @@ class App extends React.Component {
     fetch(url)
       .then(res => res.json())
       .then(pets => this.setState({ pets }));
+  };
+
+  onChangeType = ({ target: { value } }) => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        type: value
+      }
+    });
+    console.log(this.state);
   };
 
   onAdoptPet = petId => {
