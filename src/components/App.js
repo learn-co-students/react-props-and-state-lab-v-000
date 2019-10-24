@@ -20,16 +20,21 @@ class App extends React.Component {
   };
 
   onFindPetsClick = () => {
-    let endpoint = '/api/pets';
+    let apiURL = '/api/pets';
 
     if (this.state.filters.type !== 'all') {
-      endpoint += `?type=${this.state.filters.type}`;
+      apiURL += `?type=${this.state.filters.type}`;
     }
 
-    fetch(endpoint)
+    fetch(apiURL)
       .then(res => res.json())
-      .then(data => this.setState({ data }));
+      .then(data => this.setState(console.log({ data })));
   };
+
+  onAdoptPet = (petID) => {
+    console.log(petID)
+   
+  }
 
   
 
@@ -49,7 +54,10 @@ class App extends React.Component {
               onChangeType={this.onChangeType}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser 
+                pets={this.state.pets}
+                onAdoptPet={this.onAdoptPet}
+                />
             </div>
           </div>
         </div>
