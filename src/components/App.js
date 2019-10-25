@@ -28,11 +28,14 @@ class App extends React.Component {
 
     fetch(apiURL)
       .then(res => res.json())
-      .then(data => this.setState(console.log({ data })));
+      .then(data => this.setState(
+        data.map(animal => this.state.pets.push(animal))
+      ));
+      //console.log(this.state.pets)
   };
 
   onAdoptPet = (petID) => {
-    console.log(petID)
+    
    
   }
 
