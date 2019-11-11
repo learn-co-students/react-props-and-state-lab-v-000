@@ -34,6 +34,18 @@ class App extends React.Component {
       pets: json}))
   }
 
+  onAdoptPet = (id) => {
+    this.setState({
+      pets: this.state.pets.map(pet => {
+        if(pet.id === id){
+          Object.assign({}, pet, {isAdopted: true})
+        } else{
+           pet
+        }
+      })
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -48,7 +60,7 @@ class App extends React.Component {
                 onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets}/>
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
