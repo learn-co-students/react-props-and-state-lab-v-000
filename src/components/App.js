@@ -3,6 +3,7 @@ import React from 'react'
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
 
+const api = "/api/pets"
 class App extends React.Component {
   constructor() {
     super()
@@ -15,6 +16,40 @@ class App extends React.Component {
     }
   }
 
+  apiFilter = (filter) => (`?type=${filter}`)
+
+  handleChangeType = event => {
+    this.setState({
+      filters: {
+        type: event
+      }
+    })
+  }
+
+  handleFindPets = event => {
+    let apiToFetch =
+      this.state.filters.type === "all"
+        ? api
+        : api + this.apiFilter(this.state.filters.type);
+    fetch(apiToFetch)
+      .then(response => response.json())
+      .then(data => this.setState({ pets: data }))
+  }
+
+  handleOnAdoptPet = (id) => {
+    const newPetArray = this.state.pets.map((pet, i) => {
+      if (pet.id === id) {
+        pet.isAdopted = true
+        return pet
+      } else {
+        return pet
+      }
+    })
+    this.setState({
+      pets: newPetArray
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,10 +59,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFindPets} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser onAdoptPet={this.handleOnAdoptPet} pets={this.state.pets} />
             </div>
           </div>
         </div>
