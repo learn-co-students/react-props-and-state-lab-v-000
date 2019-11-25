@@ -13,17 +13,17 @@ class App extends React.Component {
         type: 'all'
       }
     };
-    // this.onFindPetsClick();
+    this.onFindPetsClick();
     //initial fetch call when App loads
   }
 
-  onAdoptPet = (e) => {
+  onAdoptPet = (petId) => {
     let pets = this.state.pets;
     let remainingPets = pets.filter((pet) => {
-      return pet.id != e.target.attributes[0].value
+      return pet.id != petId
     })
     let adoptedPet = pets.filter((pet, i) => {
-      return pet.id == e.target.attributes[0].value
+      return pet.id == petId
     })
     adoptedPet[0].isAdopted = true
     //adopted pets will move to to top of the listings
