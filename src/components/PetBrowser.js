@@ -5,8 +5,8 @@ import Pet from './Pet'
 class PetBrowser extends React.Component {
 	makePets = () => {
 		return this.props.pets.map(pet => {
-			let callback = () => this.props.onAdoptPet(pet.id)
-			return <Pet key={pet.id} pet={pet} onAdoptPet={callback} />
+			
+			return <Pet key={pet.id} pet={pet} onAdoptPet={this.props.onAdoptPet} />
 		} )
 	}
 
