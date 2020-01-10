@@ -48,7 +48,7 @@ class App extends React.Component {
       return pet.id === id ? {...pet, isAdopted: true} : pet
     })
     this.setState((previousState) => {
-      return {pets: [...updatedPets]}
+      return {pets: updatedPets}
     })
   }
 
