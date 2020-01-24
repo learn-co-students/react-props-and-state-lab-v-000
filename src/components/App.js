@@ -46,8 +46,16 @@ class App extends React.Component {
 
   onAdoptPet = (petId) => {
     // debugger;
-    const selectedPet = this.state.pets.find(pet => pet.id === petId)
-    selectedPet.isAdopted = true
+    // const selectedPet = this.state.pets.find(pet => pet.id === petId)
+    // selectedPet.isAdopted = true
+
+    const pets = this.state.pets.map(pet => {
+      return pet.id === petId ? { ...pet, isAdopted: true } : pet;
+    });
+    
+    this.setState({
+      pets: pets
+    });
   }
 
   render() {
