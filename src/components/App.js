@@ -15,6 +15,43 @@ class App extends React.Component {
     }
   }
 
+  handleChangeType = (event) => {
+    let pet = event.target.value
+    this.setState({
+      ...this.state,
+      filters: {
+        type: pet
+      }
+    })
+  }
+
+  handlePetsClick = () => {
+    let url = this.state.filters.type === "all" ? this.props.baseUrl : `${this.props.baseUrl}?type=${this.state.filters.type}`
+    return fetch(url)
+    .then(res => res.json())
+    .then(pets => {
+      this.setState({
+        ...this.state,
+        pets: pets
+      })
+    })
+  }
+
+  handleAdoptPet = (id) => {
+    let pets = this.state.pets
+    let pet = pets.find(p => p.id === id)
+    let index = pets.indexOf(pet)
+    pet.isAdopted = true
+    if (index > -1) {
+      pets.splice(index, 1, pet)
+    }
+
+    this.setState({
+      ...this.state,
+      pets: pets
+    })
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,16 +61,20 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handlePetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={(id) => this.handleAdoptPet(id)}/>
             </div>
           </div>
         </div>
       </div>
     )
   }
+}
+
+App.defaultProps = {
+  baseUrl: "/api/pets"
 }
 
 export default App
