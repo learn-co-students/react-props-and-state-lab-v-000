@@ -5,10 +5,14 @@ class Pet extends React.Component {
     return (
       <div className="card">
         <div className="content">
-          <a className="header">
+          <a className="header" href={this.props.pet.id}>
             {/*'♀' OR '♂' */}
+<<<<<<< HEAD
             {this.props.pet.name}{' '}
             {this.props.pet.gender === 'female' ? '♀' : '♂'}
+=======
+            {this.props.pet.name}
+>>>>>>> b71dfb577cb403723dcc14cfbe5b8b022ccc059e
           </a>
           <div className="meta">
             <span className="date">{this.props.pet.type}</span>
