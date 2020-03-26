@@ -1,5 +1,10 @@
 # React Props and State Lab
 
+## Cool Graphics
+
+An illustration of this work-space is available here that shows all of the major relationships between key elements of the program:
+<a href="https://imgur.com/LGZaz5d"><img src="https://i.imgur.com/LGZaz5d.jpg" title="React Props & State Lab" /></a>
+
 ## Overview
 
 You'll build a small React application where you'll update state in response to
