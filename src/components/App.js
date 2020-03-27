@@ -23,39 +23,24 @@ class App extends React.Component {
     })
   }
  
-  retrievePetInfo = () => {
-    if (this.state.filters.type === 'all') {
-      fetch('/api/pets')
-        .then(res => res.json())
-        .then(
-          (result) => {
-            console.log(result);
-            this.setState({
-              pets: result
-            })
-          }
-        )
-    } else {
-      fetch(`/api/pets?type=${this.state.filters.type}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            pets: result
-          })
-        }
-      )
-    }
-  }
+  fetchPets = () => {
+    let endpoint = '/api/pets';
 
-  onAdoptPet = (petID) => {
-    let updatedPets = this.state.pets
-    let petIndex = this.state.pets.findIndex(pet => pet.id === petID)
-    updatedPets[petIndex].isAdopted = true;
-    this.setState({
-      pets: updatedPets
+    if (this.state.filters.type !== 'all') {
+      endpoint += `?type=${this.state.filters.type}`;
+    }
+
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(pets => this.setState({ pets: pets }));
+  };
+
+  onAdoptPet = petId => {
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? { ...p, isAdopted: true } : p;
     });
-  }
+    this.setState({ pets: pets });
+  };
 
 
   render() {
@@ -67,10 +52,16 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onChangeType={this.updateFilter} onFindPetsClick={this.retrievePetInfo}/>
+              <Filters 
+                onChangeType={this.updateFilter} 
+                onFindPetsClick={this.fetchPets}
+              />
             </div>
             <div className="twelve wide column">
-            <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
+              <PetBrowser 
+                pets={this.state.pets} 
+                onAdoptPet={this.onAdoptPet}
+              />
             </div>
           </div>
         </div>
