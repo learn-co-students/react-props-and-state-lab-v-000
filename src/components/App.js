@@ -40,6 +40,19 @@ class App extends React.Component {
     })
   }
 
+// info is passed from pet (id)
+  onAdoptPet = (id) => {
+    let petsArrayCopy = [...this.state.pets]
+    let thePet = petsArrayCopy.find(p => p.id === id)
+    thePet.isAdopted = true
+    this.setState({
+      pets: petsArrayCopy
+    })
+   
+  }
+
+  
+
   render() {
     return (
       <div className="ui container">
@@ -56,6 +69,7 @@ class App extends React.Component {
             </div>
             <div className="twelve wide column">
               <PetBrowser
+              onAdoptPet={this.onAdoptPet}
                pets={this.state.pets}
                />
             </div>
