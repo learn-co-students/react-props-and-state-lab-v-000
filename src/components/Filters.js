@@ -1,10 +1,13 @@
 import React from 'react';
+import SubFilter from './SubFilter';
 
 class Filters extends React.Component {
   render() {
     return (
       <div className="ui form">
+
         <h3>Animal type</h3>
+
         <div className="field">
           <select name="type" id="type" onChange={this.props.onChangeType}>
             <option value="all">All</option>
@@ -21,7 +24,13 @@ class Filters extends React.Component {
             Find pets
           </button>
         </div>
+
+        <div>
+          <SubFilter />
+        </div>
+
       </div>
+
     );
   }
 }

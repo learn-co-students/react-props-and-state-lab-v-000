@@ -1,0 +1,11 @@
+.tweet {
+  border: 2px solid black;
+  border-radius: 12px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background: rgb(95, 167, 190);
+  align-items: center;
+  margin: 20px;
+}
