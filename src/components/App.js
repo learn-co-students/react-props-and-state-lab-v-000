@@ -26,9 +26,9 @@ class App extends React.Component {
     const query = type === 'all' ? '/api/pets' : `/api/pets?type=${type}`
     
     return fetch(query)
-    .then(response => response.json())
-    .then(data => this.setState( { pets: data } ))
-    .catch(error => alert(error))
+      .then(response => response.json())
+      .then(data => this.setState( { pets: data } ))
+      .catch(error => alert(error))
   }
 
   onAdoptPet = (petID) => {
@@ -49,13 +49,15 @@ class App extends React.Component {
           <div className="ui grid">
             <div className="four wide column">
               <Filters 
-                value={this.state.filters.type}
                 onChangeType={this.onChangeType} 
                 onFindPetsClick={this.onFindPetsClick}
               />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet} />
+              <PetBrowser 
+                pets={this.state.pets} 
+                onAdoptPet={this.onAdoptPet}
+              />
             </div>
           </div>
         </div>

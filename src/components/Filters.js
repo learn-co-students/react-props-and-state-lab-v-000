@@ -9,7 +9,6 @@ const Filters = (props) => {
           name="type" 
           id="type"
           onChange={e => props.onChangeType(e)}
-          value={props.value}
         >
           <option value="all">All</option>
           <option value="cat">Cats</option>

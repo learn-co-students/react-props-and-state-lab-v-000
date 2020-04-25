@@ -8,7 +8,7 @@ const Pet = (props) => {
       <div className="content">
         <a className="header">
           { gender === 'female' ? '♀' : '♂' }
-          {name}
+          { name }
         </a>
         <div className="meta">
           <span className="date">{ type }</span>
