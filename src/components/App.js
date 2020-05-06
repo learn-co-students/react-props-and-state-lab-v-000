@@ -25,15 +25,17 @@ class App extends React.Component {
   };
 
   handleFindPetsClick = ()=>{
-    let endpoint = '/api/pets';
-
-    if (this.state.filters.type !== 'all') {
-      endpoint += `?type=${this.state.filters.type}`;
+    if (this.state.filters.type === 'all') {
+      fetch('/api/pets')
+        .then(response => response.json())
+        .then(pets => this.setState({pets: pets}))
+        .catch(error => console.log(error))
+    } else {
+      fetch(`/api/pets?type=${this.state.filters.type}`)
+        .then(response => response.json())
+        .then(pets => this.setState({pets: pets}))
+        .catch(error => console.log(error))
     }
-
-    fetch(endpoint)
-      .then(res => res.json())
-      .then(pets => this.setState({ pets }));
   }
 
   handleAdoptPet = (petId)=>{
