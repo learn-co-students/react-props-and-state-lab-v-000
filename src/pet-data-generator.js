@@ -1,3 +1,6 @@
+// NOTE: This code isn't doing anything inside of this workspace...
+// it must've been used as seed data to setup an initial phase of the lab.
+
 const MALE_PET_NAMES = [
   "Rocket",
   "Strike",
