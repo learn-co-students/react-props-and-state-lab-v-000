@@ -19,15 +19,16 @@ class App extends React.Component {
     this.setState({
       filters : {
         ...this.state.filters,
-        type:event.target.value
+        type: event.target.value
       }
     })
   }
 
   onFindPetsClick = event => {
     let url = "/api/pets"
+    console.log("on click triggered!")
     if (this.state.filters.type !== "all") {
-      url += '?this=${this.state.filters.type}'
+      url += `?type=${this.state.filters.type}`
     }
     fetch(url)
     .then(resp => resp.json())
