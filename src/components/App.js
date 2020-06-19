@@ -15,6 +15,48 @@ class App extends React.Component {
     }
   }
 
+  fetchPets(type) {
+    let url
+    if (type === "cat" || type === "dog" || type === "micropig") {
+      url = `/api/pets?type=${type}`
+    } else {
+      url = `/api/pets`
+    }
+    fetch(url)
+      .then(res => res.json())
+      .then(
+        (results) => {
+          console.log(results)
+          
+          // this.setState({
+          //   isLoaded: true,
+          //   items: result.items
+          // });
+        }//,
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        // (error) => {
+        //   this.setState({
+        //     isLoaded: true,
+        //     error
+        //   });
+        // }
+      )
+  }
+
+  changeType = (event) => {
+    this.setState({
+      filters: {
+        type: event.target.value
+      }
+    })
+  }
+
+  onFindPetsClick = (event) => {
+    this.fetchPets(this.state.filters.type)
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,7 +66,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.changeType} onFindPetsClick={this.onFindPetsClick} />
             </div>
             <div className="twelve wide column">
               <PetBrowser />
