@@ -26,22 +26,10 @@ class App extends React.Component {
       .then(res => res.json())
       .then(
         (results) => {
-          console.log(results)
-          
-          // this.setState({
-          //   isLoaded: true,
-          //   items: result.items
-          // });
-        }//,
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        // (error) => {
-        //   this.setState({
-        //     isLoaded: true,
-        //     error
-        //   });
-        // }
+          this.setState({
+            pets: results
+          });
+        }
       )
   }
 
@@ -53,8 +41,13 @@ class App extends React.Component {
     })
   }
 
-  onFindPetsClick = (event) => {
+  onFindPetsClick = () => {
     this.fetchPets(this.state.filters.type)
+  }
+
+  onAdoptPet = (id) => {
+    const pet = this.state.pets.find(element => element.id == id)
+    pet.isAdopted = true
   }
 
   render() {
@@ -69,7 +62,7 @@ class App extends React.Component {
               <Filters onChangeType={this.changeType} onFindPetsClick={this.onFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
