@@ -15,6 +15,26 @@ class App extends React.Component {
     }
   }
 
+  handleTypeChange() {
+    this.setState({ 
+      filters: {
+        ...this.state.filters,
+          type: type}
+        });
+  }
+
+  onFindPetsClick = () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify
+    };
+    fetch('http://localhost:3000/api/pets')
+  // fetch('http://localhost:3000/api/pets', requestOptions)
+      .then(response => console.log(response));
+      // .then(data => this.setState({ postId: data.id }));
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -24,10 +44,13 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters 
+                onChangeType={this.handleTypeChange()} 
+                onFindPetsClick={this.onFindPetsClick.bind(this)}
+              />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser onAdoptPet={null} />
             </div>
           </div>
         </div>
