@@ -15,8 +15,6 @@ class App extends React.Component {
     }
   }
 
-  // **Need to find out how to send right data to handleTypeChange
-
   handleTypeChange = ({ target: { value } }) => {
     this.setState({ 
       filters: {
@@ -46,11 +44,13 @@ class App extends React.Component {
   }
 
   onAdoptPet = petId => {
-    
+    //should find matching pet in state.pets and set the isAdopted property to true
+    console.log(petId)
+    const pets = this.state.pets.map((pet) => {
+      return pet.id === petId ? {...pet, isAdopted: true } : pet;
+    });
+      this.setState({ pets: pets });
   }
-
-// Set <App/>'s state.pets with the results of your fetch request so you can 
-// pass the pet data down as props to <PetBrowser />
 
   render() {
     return (
