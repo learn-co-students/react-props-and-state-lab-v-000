@@ -10,26 +10,58 @@ class App extends React.Component {
     this.state = {
       pets: [],
       filters: {
-        type: 'all'
+        type: ['all', 'cat', 'dog', 'micropig']
       }
     }
   }
 
-fetchPets = () => {
-  fetch('/api/pets')
-  .then(response => response.json())
-  .then(data => console.log(data))
-}
-  
-  onChangeType = event => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        type: event.target.value
+onFindPetsClick = () => {
+  // const url = '/app/pets'
+    if (this.state.filters.type == 'all'){ 
+    fetch(`/api/pets`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    } elsif (this.state.filters.type == 'cat'); {
+      fetch(`/api/pets/${'?type=cat'}`)
+      .then(response => response.json())
+      .then(data => console.log(data))
+    } elsif (this.state.filters.type == 'dog'); {
+      fetch(`/app/pets/${'?type=dog'}`)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      } else {
+        fetch(`/api/pets/${'?type=micropig'}`)
+        .then(response => response.json())
+        .then(data => console.log(data))
       }
+}
+  // switch(url){
+  //   url = `/app/pets`
+  //   .then(response => response.json())
+  //   .then(data => console.log(data))
+  //   fetch(`/api/pets${'?type=cats'}`)
+  //   .then(response => response.json())
+  //   .then(data => console.log(data))
+  // }
+//   if(this.state.filters.type !== 'all'){
+//     elsif(this.state.filters.type == 'cat') {
+//     fetch(`/api/pets${?type=cat}`)
+//     }
+//   } else {
+//     fetch(url)
+//     .then(response => response.json())
+//     .then(data => console.log(data))
+//   }
+// }
+//   onChangeType = event => {
+//     this.setState({
+//       filters: {
+//         ...this.state.filters,
+//         type: event.target.value
+//       }
 
-    })
-  }
+//     })
+  
 
 
   // onFindPetsClick => event {
@@ -46,8 +78,8 @@ fetchPets = () => {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onChangeType={this.onChangeType}/>
-              <Filters fetchPets={this.fetchPets}/>
+              <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick}/>
+              {/* <Filters /> */}
             </div>
             <div className="twelve wide column">
               <PetBrowser />
