@@ -53,14 +53,14 @@ onFindPetsClick = () => {
 //     .then(data => console.log(data))
 //   }
 // }
-//   onChangeType = event => {
-//     this.setState({
-//       filters: {
-//         ...this.state.filters,
-//         type: event.target.value
-//       }
+  onChangeType = event => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        type: event.target.value
+      }
 
-//     })
+    })
   
 
 
