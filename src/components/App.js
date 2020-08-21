@@ -15,9 +15,11 @@ class App extends React.Component {
     }
   }
 
-  // fetch('/api/pets')
-  // .then(response => response.json())
-  // .then(data => console.log(data))
+fetchPets = () => {
+  fetch('/api/pets')
+  .then(response => response.json())
+  .then(data => console.log(data))
+}
   
   onChangeType = event => {
     this.setState({
@@ -28,6 +30,7 @@ class App extends React.Component {
 
     })
   }
+
 
   // onFindPetsClick => event {
 
@@ -44,6 +47,7 @@ class App extends React.Component {
           <div className="ui grid">
             <div className="four wide column">
               <Filters onChangeType={this.onChangeType}/>
+              <Filters fetchPets={this.fetchPets}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser />
