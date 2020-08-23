@@ -14,6 +14,9 @@ class Pet extends React.Component {
             } */}
 
             PET NAME
+            { console.log("flag2- this.props.pet.name", this.props.pet.name )}
+            { console.log("flag3- this.props.pet.id", this.props.pet.id )}
+
             {this.props.pet.name}
           </a>
           <div className="meta">
@@ -26,7 +29,7 @@ class Pet extends React.Component {
         </div>
         <div className="extra content">
           <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button">Adopt pet</button>
+          <button className="ui primary button" onClick={ this.props.onAdoptPet(this.props.pet.id)}>Adopt pet</button>
         </div>
       </div>
     )

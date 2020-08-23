@@ -72,9 +72,10 @@ class App extends React.Component {
 
 
       onAdoptPet(petId){
-        console.log("petId", petId)
-          // const pet = this.state.pets.find(petId);
-          // pet.isAdopted = true
+        console.log("flag1 petId", petId)
+        console.log("flag4 pet", this.state.pets.find(petId))
+          const pet = this.state.pets.find(petId);
+          pet.isAdopted = true
         }
 
 
