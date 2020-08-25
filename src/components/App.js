@@ -20,7 +20,6 @@ class App extends React.Component {
     console.log("selectedType", selectedType.target.value)
     this.setState({
       filters: {
-        // type: selectedType
         type: selectedType.target.value
       }
     })
@@ -33,6 +32,7 @@ class App extends React.Component {
 */
 
   onFindPetsClick = () => {
+      console.log("i am here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
       if (this.state.filters.type === "all") {
         fetch('/api/pets')
           .then(res => res.json())
@@ -51,7 +51,7 @@ class App extends React.Component {
 
           }) }
 
-        else if (this.state.filters.type == "cat") {
+        else if (this.state.filters.type === "cat") {
           fetch('/api/pets?type=cat')
             .then(res => res.json())
             .then(res => {
@@ -60,7 +60,7 @@ class App extends React.Component {
 
           }) }
 
-        else if (this.state.filters.type == "micropig") {
+        else if (this.state.filters.type === "micropig") {
           fetch('/api/pets?type=micropig')
             .then(res => res.json())
             .then(res => {
@@ -72,10 +72,31 @@ class App extends React.Component {
 
 
       onAdoptPet(petId){
-        console.log("flag1 petId", petId)
-        console.log("flag4 pet", this.state.pets.find(petId))
-          const pet = this.state.pets.find(petId);
-          pet.isAdopted = true
+        console.log("pets!!!!!!!!!!!!!!!!", this.state.pets)
+        console.log("petId in on AdoptPet!!!!!!!!!!!!!", petId)
+        const mappedPets = this.state.pets.map(pet => {
+          (pet.id === petId) ? pet.isAdopted = true : pet
+        })
+
+        this.setState({
+          pets: mappedPets
+        })
+        // const mappedPets = this.state.pets.map(pet =>
+        //
+        //   if (pet.id === petId) {
+        //     pet.isAdopted = true
+        //   } else {
+        //     return pet
+        //   }
+          // here i should do some kind of condition that tests to see if one of these
+          // pets is equal to the petId given. if that's true, then take that pet and all
+          // it's attributes and change its 'isAdopted' attribute to true. If false, just
+          // return the pet.
+        // )
+
+          // after the mapping is done, you want to update the state to the updated
+          // pets array.
+
         }
 
 
@@ -92,7 +113,7 @@ class App extends React.Component {
               <Filters onFindPetsClick={ this.onFindPetsClick } onChangeType={ this.onChangeType } />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdoptPet={ this.onAdoptPet() }/>
+              <PetBrowser pets={this.state.pets} onAdoptPet={ this.onAdoptPet }/>
             </div>
             <div className="twelve wide column">
               {/* <Pet pet={}> */}

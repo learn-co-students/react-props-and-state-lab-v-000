@@ -1,4 +1,5 @@
 import React from 'react'
+// you don't have to import the other components if you're not using them/calling them
 
 class Pet extends React.Component {
   render() {
@@ -14,10 +15,12 @@ class Pet extends React.Component {
             } */}
 
             PET NAME
-            { console.log("flag2- this.props.pet.name", this.props.pet.name )}
-            { console.log("flag3- this.props.pet.id", this.props.pet.id )}
+            {/* // console.log("flag2- this.props.pet.name", this.props.pet.name )*/}
+            {/* { console.log("flag3- this.props.pet.id", this.props.pet.id )} */}
 
+            {"this.props.pet.name (in render in Pet.js)----", this.props.pet.name }
             {this.props.pet.name}
+
           </a>
           <div className="meta">
             <span className="date">PET TYPE</span>
@@ -28,8 +31,11 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
+          { console.log("flag3- this.props.pet.id", this.props.pet.id )}
           <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button" onClick={ this.props.onAdoptPet(this.props.pet.id)}>Adopt pet</button>
+          <button className="ui primary button" onClick={ () => this.props.onAdoptPet(this.props.pet.id) }> Adopt pet</button>
+          <button className="ui primary button" > Adopt pet</button>
+
         </div>
       </div>
     )
