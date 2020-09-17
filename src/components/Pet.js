@@ -2,29 +2,49 @@ import React from 'react'
 
 class Pet extends React.Component {
   render() {
+    const { onAdoptPet } = this.props
+    // destructure this.props.pet
+    const { 
+      id, 
+      gender, 
+      age, 
+      name, 
+      type, 
+      weight, 
+      isAdopted 
+    } = this.props.pet
+
+    const alreadyAdoptedButton = <button className="ui disabled button">Already adopted</button>
+    const adoptPetButton = <button className="ui primary button" onClick={() => onAdoptPet(id)}>Adopt pet</button>
+    //const button = isAdopted ? alreadyAdoptedButton : adoptPetButton
+    
     return (
       <div className="card">
         <div className="content">
-          <a className="header">
+          <a className="header" href="/">
             {/*'♀' OR '♂' */}
-            {this.props.pet.gender === 'female' ? '♀' : '♂'}
-            {this.props.pet.name}
+            {gender === 'female' ? '♀' : '♂'}
+            {name}
           </a>
           <div className="meta">
-            <span className="date">{this.props.pet.type}</span>
+            <span className="date">{type}</span>
           </div>
           <div className="description">
-            <p>Age: {this.props.pet.age}</p>
-            <p>Weight: {this.props.pet.weight}</p>
+            <p>Age: {age}</p>
+            <p>Weight: {weight}</p>
           </div>
         </div>
         <div className="extra content">
-          {this.props.pet.isAdopted === true &&
+          {isAdopted ? alreadyAdoptedButton : adoptPetButton}
+          {/* button */}
+          {/* 
+          {isAdopted === true &&
             <button className="ui disabled button">Already adopted</button>
           }
-          {this.props.pet.isAdopted === false &&
-            <button className="ui primary button" onClick={() => this.props.onAdoptPet(this.props.pet.id)}>Adopt pet</button>
+          {isAdopted === false &&
+            <button className="ui primary button" onClick={() => onAdoptPet(id)}>Adopt pet</button>
           }
+          */}
         </div>
       </div>
     )
