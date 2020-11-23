@@ -9,11 +9,47 @@ class App extends React.Component {
 
     this.state = {
       pets: [],
+      adoptedPets: [],
       filters: {
-        type: 'all'
+        type: 'all',
       }
     }
   }
+
+  onChangeType = (event) => {
+    event.preventDefault()
+    const petType = event.target.value
+
+    this.setState({
+      filters: { type: petType }
+    })
+  }
+
+  onFindPetsClick = (event) => {
+    // fetch setup and fetch
+    let url
+    const petType = this.state.filters.type
+
+    if (this.state.filters.type === 'all') { url = '/api/pets' }
+    else { url = `/api/pets?type=${petType}` }
+
+    fetch(url)
+    .then((resp) => resp.json())
+    .then((data) => this.setState({ pets: data }))
+  }
+
+  onAdoptPet = (petId) => {
+    const pets = this.state.pets.map( (pet) => {
+      // '{}' tells Javascript that we want to create a new object
+      // the '...pet' says that we want that new object to contain all the same contents as the pet object
+      // return new pet object that isAdopted/update the adopted pet's adoption status
+      // OR return the current pet
+      return pet.id === petId ? { ...pet, isAdopted: true } : pet
+    })
+    // reset pets array state to previously filtered pets
+    this.setState({ pets })
+  }
+
 
   render() {
     return (
@@ -24,10 +60,15 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters 
+              onChangeType={this.onChangeType}
+              onFindPetsClick={this.onFindPetsClick}
+              />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser 
+              pets={this.state.pets}
+              onAdoptPet={this.onAdoptPet}/>
             </div>
           </div>
         </div>
