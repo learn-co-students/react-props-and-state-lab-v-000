@@ -1,7 +1,7 @@
 import React from 'react'
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
-
+import Pet from './Pet'
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +17,7 @@ class App extends React.Component {
 
 // this has to listen and take in whatever value is being selected (cat, dog, etc)
   onChangeType = (selectedType) => {
-    console.log("selectedType", selectedType.target.value)
+    // console.log("selectedType", selectedType.target.value)
     this.setState({
       filters: {
         type: selectedType.target.value
@@ -32,12 +32,12 @@ class App extends React.Component {
 */
 
   onFindPetsClick = () => {
-      console.log("i am here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+      // console.log("i am here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
       if (this.state.filters.type === "all") {
         fetch('/api/pets')
           .then(res => res.json())
           .then(res => {
-            console.log("res", res)
+            // console.log("res", res)
             this.state.pets.push(res)
           }) }
 
@@ -46,7 +46,7 @@ class App extends React.Component {
         fetch('/api/pets?type=dog')
           .then(res => res.json())
           .then(res => {
-            console.log("dogs", res)
+            // console.log("dogs", res)
             this.state.pets.push(res)
 
           }) }
@@ -55,7 +55,7 @@ class App extends React.Component {
           fetch('/api/pets?type=cat')
             .then(res => res.json())
             .then(res => {
-              console.log("cats", res)
+              // console.log("cats", res)
               this.state.pets.push(res)
 
           }) }
@@ -64,39 +64,70 @@ class App extends React.Component {
           fetch('/api/pets?type=micropig')
             .then(res => res.json())
             .then(res => {
-              console.log("micropigs", res)
+              // console.log("micropigs", res)
               this.state.pets.push(res)
 
           })}
         }
 
+// walkthrough onFindPetsClick:
 
-      onAdoptPet(petId){
-        console.log("pets!!!!!!!!!!!!!!!!", this.state.pets)
-        console.log("petId in on AdoptPet!!!!!!!!!!!!!", petId)
-        const mappedPets = this.state.pets.map(pet => {
-          (pet.id === petId) ? pet.isAdopted = true : pet
-        })
+      // let url = "/api/pets"
+      // if (this.state.filters.type !== 'all') {
+      //   url += `?type${this.state.filters.type}`
+      // }
+      //
+      // fetch(url)
+      //   .then(r => r.json())
+      //   .then(petsJsonArray => {
+      //     this.setState({
+      //       pets: petsJsonArray
+      //     }, console.log(petsJsonArray))
+      //
+      //   })
+    // }
 
-        this.setState({
-          pets: mappedPets
-        })
-        // const mappedPets = this.state.pets.map(pet =>
-        //
-        //   if (pet.id === petId) {
-        //     pet.isAdopted = true
-        //   } else {
-        //     return pet
-        //   }
+          onAdoptPet = (id) => {
+            let petsArrayCopy = [ ...this.state.pets]
+            let chosenPet = petsArrayCopy.find(p => p.id === id)
+            chosenPet.isAdopted = true
+            this.setState({
+              pets: petsArrayCopy
+            })
+
+
+
+
+
+
+
+
+            // console.log("pets!!!!!!!!!!!!!!!!", this.state.pets)
+          //   console.log("petId in on AdoptPet!!!!!!!!!!!!!", petId)
+          //   const mappedPets = this.state.pets.map(pet => {
+          //     (pet.id === petId) ? pet.isAdopted = true : pet
+          //   })
+          //
+          //   this.setState({
+          //     pets: mappedPets
+          //   })
+          //
+          //   const mappedPets = this.state.pets.map(pet =>
+          //
+          // if (pet.id === petId) {
+          //   pet.isAdopted = true
+          // } else {
+          //   return pet
+          // }
           // here i should do some kind of condition that tests to see if one of these
           // pets is equal to the petId given. if that's true, then take that pet and all
           // it's attributes and change its 'isAdopted' attribute to true. If false, just
           // return the pet.
         // )
-
-          // after the mapping is done, you want to update the state to the updated
-          // pets array.
-
+        //
+        //   after the mapping is done, you want to update the state to the updated
+        //   pets array.
+        //
         }
 
 
