@@ -48,9 +48,31 @@ class App extends React.Component {
     }
   }
 
-  // onAdoptPet = (petId) => {
-  //   this.setState({})
-  // }
+  //  onAdoptPet = () => {
+  //    console.log('onAdoptPet clicked, id is')
+  //   //  if (petId === this.state.pets.id) {
+  //   //   this.setState({
+  //   //     pets: {
+  //   //       ...this.state.pets,
+  //   //       isAdopted: true
+  //   //     }
+  //   //   });
+  //   //  }
+  //   // const pet = this.state.pets.find((petID) => {
+  //   //   petID === pet.id
+  //   // })
+  //   // pet.setState({
+
+  //   // })
+     
+  //  }
+
+   onAdoptPet = petId => {
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? { ...p, isAdopted: true } : p;
+    });
+    this.setState({ pets: pets });
+  };
 
   render() {
     return (
@@ -64,7 +86,7 @@ class App extends React.Component {
               <Filters onChangeType={this.updateFilters} onFindPetsClick={this.getPets}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
+              <PetBrowser onAdoptPet={this.onAdoptPet} pets={this.state.pets}/>
             </div>
           </div>
         </div>
