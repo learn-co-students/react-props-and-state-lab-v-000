@@ -4,8 +4,18 @@ import Pet from './Pet'
 
 class PetBrowser extends React.Component {
   render() {
-    return <div className="ui cards">PET COMPONENT SHOULD GO HERE</div>
-  }
+    const petCards = this.props.pets;
+
+    return <div className="ui cards">
+            {petCards.map((pet) => {
+              return (
+                <Pet pet={pet} key={pet.id} onAdoptPet={this.props.onAdoptPet}/>
+              )
+            }
+            )}
+             
+            </div>
+    }
 }
 
 export default PetBrowser
