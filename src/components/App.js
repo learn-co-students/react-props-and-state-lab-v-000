@@ -14,6 +14,15 @@ class App extends React.Component {
       }
     }
   }
+  handleFilterChange=(event)=>{
+      console.log(this.state);
+        this.setState({
+            filters: {
+                ...this.state.filters,
+                type:event.target.value
+                }
+        })
+  }
 
   render() {
     return (
@@ -24,7 +33,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.handleFilterChange}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser />
