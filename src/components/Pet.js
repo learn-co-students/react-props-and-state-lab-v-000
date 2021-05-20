@@ -1,6 +1,21 @@
 import React from 'react'
 
 class Pet extends React.Component {
+    handleIsPetAdopted=()=>{
+        if (this.props.pet.isAdopted){
+            return (
+            <button 
+            className="ui disabled button">Already adopted</button>
+            )
+        }else{
+            return (
+            <button 
+            className="ui primary button"
+            onClick={(event)=>this.props.onAdoptPet(this.props.pet.id)}>Adopt pet
+            </button>)
+        }
+    }
+
   render() {
     return (
       <div className="card">
@@ -18,8 +33,7 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button">Adopt pet</button>
+            {this.handleIsPetAdopted()}
         </div>
       </div>
     )
